@@ -1,10 +1,20 @@
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen/LoginScreen';
 
 function App() {
   return (
-    <div className="App">
-      <h2>Recommend.me</h2>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          <HomeScreen />
+        </Route>
+        <Route exact path='/login' >
+          <LoginScreen />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
