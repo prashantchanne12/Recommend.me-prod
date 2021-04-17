@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 // Configuring environment variables with .dotenv
 dotenv.config();
 
+// Connecting to MongoDB database
 connectDB();
 
 const app = express();
