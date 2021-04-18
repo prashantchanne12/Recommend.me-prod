@@ -31,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 
 // Serving static files
 const __dirname = path.resolve();
