@@ -18,10 +18,11 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     image: { type: String },
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-    }
+
+}, {
+    timestamps: true,
 });
 
-module.exports = mongoose.Model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+export default User;
