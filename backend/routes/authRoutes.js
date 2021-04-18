@@ -12,4 +12,17 @@ authRouter.get('/google', passport.authenticate('google', {
 // @route GET /auth/google/callback
 authRouter.get('/google/callback', passport.authenticate('google'));
 
+// @desc Current logged in user
+// @route GET /auth/currentUser
+authRouter.get('/currentUser', (req, res) => {
+    res.send(req.user);
+});
+
+// @desc Log out user
+// @route GET /auth/logout
+authRouter.get('/logout', (req, res) => {
+    req.logOut();
+    res.send(req.user);
+});
+
 export default authRouter;

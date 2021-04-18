@@ -4,8 +4,18 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from '../models/userModel.js';
 
+// this is called after adding or fetching the user from Mongo and passed it into done(null, user) 
+// this will take the user which is logged in and will make the cookie out of user._id
 passport.serializeUser((user, done) => {
     done(null, user._id);
+});
+
+// Taking info out from the cookie i.e. userId
+passport.deserializeUser(async (id, done) => {
+    const user = await User.findById(id);
+    if (user) {
+        done(null, user);
+    }
 });
 
 dotenv.config();

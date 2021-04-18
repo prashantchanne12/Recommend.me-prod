@@ -3,7 +3,8 @@ import path from 'path';
 import express from 'express';
 // passport middleware
 import './services/passport.js';
-import session from 'express-session';
+import passport from 'passport';
+import coockieSession from 'cookie-session';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
@@ -19,6 +20,15 @@ connectDB();
 const app = express();
 
 app.use(express.json());
+
+app.use(coockieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY]
+}));
+
+// To tell passport make use of cookies
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use('/auth', authRouter);
