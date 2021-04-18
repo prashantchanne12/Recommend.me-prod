@@ -3,23 +3,29 @@ import passport from 'passport';
 const authRouter = express.Router();
 
 // @desc Google authentication
-// @route GET /api/auth/google
+// @route GET auth/google
 authRouter.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email'],
 }));
 
 // @desc Google authentication callback
-// @route GET /api/auth/google/callback
-authRouter.get('/google/callback', passport.authenticate('google'));
+// @route GET auth/google/callback
+authRouter.get(
+    '/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+        res.redirect('/');
+    }
+);
 
 // @desc Current logged in user
-// @route GET /api/auth/currentUser
+// @route GET auth/currentUser
 authRouter.get('/currentUser', (req, res) => {
     res.send(req.user);
 });
 
 // @desc Log out user
-// @route GET /api/auth/logout
+// @route GET auth/logout
 authRouter.get('/logout', (req, res) => {
     req.logOut();
     res.send(req.user);

@@ -1,6 +1,5 @@
 import React from 'react'
 import './loginScreen.scss';
-import { Link } from 'react-router-dom';
 import { FaGoogle, FaTwitter } from 'react-icons/fa';
 
 
@@ -15,7 +14,7 @@ function LoginScreen() {
                     <p className='policy'>By logging in you accept our <a href='None'>Privacy Policy</a> and <a href='None'>Terms of Service</a>.</p>
 
                     <div className="login-buttons">
-                       <a href='/api/auth/google'>
+                       <a href='/auth/google'>
                        <div className="google-button">
                             <FaGoogle/>
                             <p>Login with Google</p>
