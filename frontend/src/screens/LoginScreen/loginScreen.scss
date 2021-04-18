@@ -1,5 +1,6 @@
 @import '../../global';
 
+
 h3{
     color: $primary-color;
     cursor: pointer;
@@ -41,6 +42,18 @@ h3{
                 padding-left: 1rem;
                 font-weight: bold;
             }
+        }
+
+       .google-button .icon{
+           color: #EA4335;
+       }
+
+       .twitter-button .icon{
+            color: $primary-color;
+        }
+
+        a{
+            color: #222;
         }
 
         .google-button:hover,

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    googleId: {
+    userId: {
         type: String,
         required: true,
     },
@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     lastName: {
+        type: String,
+        required: true,
+    },
+    loginMethod: {
         type: String,
         required: true,
     },

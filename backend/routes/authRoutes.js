@@ -18,6 +18,20 @@ authRouter.get(
     }
 );
 
+// @desc Twitter authentication
+// @route GET auth/twitter
+authRouter.get('/twitter', passport.authenticate('twitter'));
+
+// @desc Twitter authentication callback
+// @route GET auth/twitter/callback
+authRouter.get(
+    '/twitter/callback',
+    passport.authenticate('twitter'),
+    (req, res) => {
+        res.redirect('/');
+    }
+);
+
 // @desc Current logged in user
 // @route GET auth/currentUser
 authRouter.get('/currentUser', (req, res) => {

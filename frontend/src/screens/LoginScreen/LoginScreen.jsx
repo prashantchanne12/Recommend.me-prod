@@ -15,15 +15,17 @@ function LoginScreen() {
 
                     <div className="login-buttons">
                        <a href='/auth/google'>
-                       <div className="google-button">
-                            <FaGoogle/>
-                            <p>Login with Google</p>
-                        </div> 
+                            <div className="google-button">
+                                <FaGoogle className='icon'/>
+                                <p>Login with Google</p>
+                            </div> 
                        </a>
-                        <div className="twitter-button">
-                            <FaTwitter />
-                            <p>Login with Twitter</p>
-                        </div>
+                        <a href="/auth/twitter">
+                            <div className="twitter-button">
+                                <FaTwitter className='icon'/>
+                                <p>Login with Twitter</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
