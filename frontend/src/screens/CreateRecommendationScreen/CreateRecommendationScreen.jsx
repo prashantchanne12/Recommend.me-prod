@@ -12,6 +12,7 @@ import { stateToHTML } from 'draft-js-export-html';
 import chroma from 'chroma-js';
 import Select from 'react-select';
 import { colourOptions } from './data/data';
+import Button from '../../components/Button/Button';
 
 const MAX_LENGTH = 450;
 
@@ -274,7 +275,7 @@ class CreateRecommendationScreen extends React.Component{
               </div>
             </div>
             <div className="btn">
-              <button onClick={this.handleSubmit}>Submit</button>
+              <Button onClick={this.handleSubmit} props='regular' />
             </div>
           </div>
         );
