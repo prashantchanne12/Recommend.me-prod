@@ -7,7 +7,7 @@ import {RiSearchLine} from 'react-icons/ri';
 
 function Header() {
     return (
-        <div className='container'>
+        <div className='container header'>
             <div className="header-container">
                 <h3 className="title">Recommend.me</h3>
                 <div className="options">
