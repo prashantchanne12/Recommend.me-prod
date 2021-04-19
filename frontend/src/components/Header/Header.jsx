@@ -1,18 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CgAddR } from 'react-icons/cg';
 import {VscAccount} from 'react-icons/vsc';
+import './header.scss';
+import {RiSearchLine} from 'react-icons/ri';
 
 function Header() {
     return (
         <div className='container'>
             <div className="header-container">
                 <h3 className="title">Recommend.me</h3>
-                <div className="search-input">
-                    <input className='search' />
-                </div>
                 <div className="options">
-                    <CgAddR />
-                    <VscAccount />
+                    <Link to='/' className='link'>
+                        <RiSearchLine className='header-icon' />
+                    </Link>
+                    <Link to='/create' className='link'>
+                        <CgAddR className='header-icon' />
+                    </Link>
+                    <Link to='/' className='link'>
+                        <VscAccount className='header-icon'/>
+                    </Link>
                 </div>
             </div>
         </div>

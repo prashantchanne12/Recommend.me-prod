@@ -1,0 +1,62 @@
+@import '../../global';
+
+
+
+.header-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3{
+        margin-left: 1rem;
+    }
+
+    .options{
+        display: flex;
+        align-items: center;
+        .header-icon{
+            padding-left: 1.5rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+
+            &:last-child{
+                margin-right: 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
+    .header-container{
+    
+        .options{
+            .header-icon{
+                font-size: 1.1rem;
+            
+            }
+        }
+       
+    }
+
+}
+
+.link{
+//  padding: 0;
+ margin-top: 0.5rem;
+ color: black;   
+}
+
+@media screen and (max-width: 760px) {
+    
+    .header-container{
+
+        .options{
+            .header-icon{
+                font-size: 1.2rem;
+            
+            }
+        }
+    }
+
+}

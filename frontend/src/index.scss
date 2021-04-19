@@ -21,8 +21,16 @@ a{
   margin: 0 auto;
 }
 
+.container-md{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .container-sm{
   max-width: 380px;
   margin: 0 auto;
 }
 
+.active{
+  color: $primary-color;
+}
