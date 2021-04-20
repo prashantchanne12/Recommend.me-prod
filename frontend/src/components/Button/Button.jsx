@@ -1,10 +1,9 @@
 import React from 'react';
 import './button.scss';
 
-const Button = ({props}) => {
-    console.log(props);
+const Button = ({onClick}) => {
     return (
-        <button className={props}>
+        <button className='regular' onClick={onClick}>
             Create
         </button>
     )

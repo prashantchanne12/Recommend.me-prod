@@ -186,10 +186,15 @@ class CreateRecommendationScreen extends React.Component{
       };
     
       handleSubmit = () => {
+        console.log('handlesubmit called');
         const { options } = this.state;
     
         const blocks = convertToRaw(this.state.editorState.getCurrentContent())
           .blocks;
+
+        console.log(blocks);
+        console.log(options);
+
         if (blocks.length === 1 && blocks[0].text === "") {
           return alert("Please add recommendation!");
         } else {
@@ -276,7 +281,7 @@ class CreateRecommendationScreen extends React.Component{
               </div>
             </div>
             <div className="btn">
-              <Button onClick={this.handleSubmit} props='regular' />
+              <Button onClick={this.handleSubmit} />
             </div>
           </div>
         );
