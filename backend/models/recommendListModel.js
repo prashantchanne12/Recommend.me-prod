@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const upvotedUserSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: 'User',
     },
 });

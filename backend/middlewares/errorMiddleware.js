@@ -8,6 +8,8 @@ export const notFound = (req, res, next) => {
 // Now, whenever there is error in our application this middleware will be called
 export const errorHandler = (err, req, res, next) => {
 
+    // sometimes you get statusCode 200 even if its an error
+    // change 200 -> 500 (server error)
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
 
     res.status(statusCode);

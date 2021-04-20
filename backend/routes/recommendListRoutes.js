@@ -1,9 +1,10 @@
 import express from 'express';
 const recommendListRouter = express.Router();
 
-recommendListRouter.post('', (req, res) => {
+// Controllers
+import { createRecommendList } from '../controllers/recommendListControllers.js';
 
-});
+recommendListRouter.post('/create', createRecommendList);
 
 
 export default recommendListRouter;
