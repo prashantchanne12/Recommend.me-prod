@@ -271,6 +271,7 @@ class CreateRecommendationScreen extends React.Component{
                   options={colourOptions}
                   styles={this.colourStyles}
                   onChange={this.handleChips}
+                  className='select'
                 />
               </div>
             </div>

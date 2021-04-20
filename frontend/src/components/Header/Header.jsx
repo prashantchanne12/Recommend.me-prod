@@ -9,7 +9,7 @@ function Header() {
     return (
         <div className='container header'>
             <div className="header-container">
-                <h3 className="title">Recommend.me</h3>
+                <Link to='/'><h3 className="title">Recommend.me</h3></Link>
                 <div className="options">
                     <Link to='/' className='link'>
                         <RiSearchLine className='header-icon' />
