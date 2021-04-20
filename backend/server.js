@@ -11,6 +11,9 @@ import connectDB from './config/db.js';
 // Routers
 import authRouter from './routes/authRoutes.js';
 
+// Middlewares
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
+
 // Configuring environment variables with .dotenv
 dotenv.config();
 
@@ -49,6 +52,10 @@ const __dirname = path.resolve();
 //         res.send('API is running');
 //     });
 // }
+
+// Middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
