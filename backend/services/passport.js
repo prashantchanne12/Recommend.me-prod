@@ -7,15 +7,18 @@ import User from '../models/userModel.js';
 
 // this is called after adding or fetching the user from Mongo and passed it into done(null, user) 
 // this will take the user which is logged in and will make the cookie out of user._id
+// Called only once
 passport.serializeUser((user, done) => {
     done(null, user._id);
 });
 
 // Taking info out from the cookie i.e. userId
+// Called everytime user hits endpoint
 passport.deserializeUser(async (id, done) => {
+    console.log('de-serializing');
     const user = await User.findById(id);
     if (user) {
-        // this adds user to req.user
+        // this adds user to req.user everytime user requests endpoint 
         done(null, user);
     }
 });
@@ -28,6 +31,7 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback', // Callback URL after user grants permissions to the google
 }, async (accessToken, refreshToken, profile, done) => {
 
+    console.log(accessToken);
     const user = await User.findOne({ userId: profile.id });
 
     if (user) {

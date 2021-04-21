@@ -6,7 +6,6 @@ import { FaGoogle, FaTwitter } from 'react-icons/fa';
 function LoginScreen() {
     return (
         <div className='container'>
-            <h3>Recommend.me</h3>
 
             <div className="login-container">
                 <div className="container-sm ">

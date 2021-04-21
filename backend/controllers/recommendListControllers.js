@@ -7,6 +7,8 @@ import RecommendList from '../models/recommendListModel.js';
 export const createRecommendList = asyncHandlers(async (req, res) => {
     const { data, tags } = req.body;
 
+    console.log(req.user);
+
     const recommendList = await new RecommendList({
         data,
         owner: req.user._id,

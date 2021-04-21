@@ -23,6 +23,7 @@ connectDB();
 
 const app = express();
 
+// parse json data
 app.use(express.json());
 
 app.use(coockieSession({

@@ -1,5 +1,7 @@
 import express from 'express';
 import passport from 'passport';
+import User from '../models/userModel.js';
+import { protect } from '../middlewares/authMiddleware.js';
 const authRouter = express.Router();
 
 // @desc Google authentication
@@ -34,7 +36,15 @@ authRouter.get(
 
 // @desc Current logged in user
 // @route GET auth/currentUser
-authRouter.get('/currentUser', (req, res) => {
+authRouter.get('/currentUser', protect, (req, res) => {
+    res.send(req.user);
+});
+
+authRouter.get('/dummy', (req, res) => {
+    if (!req.user) {
+        res.send('Abort');
+    }
+
     res.send(req.user);
 });
 
