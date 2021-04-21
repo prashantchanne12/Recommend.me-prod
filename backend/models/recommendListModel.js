@@ -1,38 +1,41 @@
 import mongoose from 'mongoose';
 
-const upvotedUserSchema = mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-});
+const userRef = {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+}
 
-const tagSchema = mongoose.Schema({
-    tag: {
-        type: String,
-        required: true,
-    },
-});
 
-const commentSchema = mongoose.Schema({
-    comment: {
-        type: String,
-    }
-});
 
 const RecommendListSchema = new mongoose.Schema({
     data: {
         type: String,
         required: true,
     },
-    upvotes: [upvotedUserSchema],
+    upvotes: [userRef],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     },
-    tags: [tagSchema],
-    comments: [commentSchema],
+    tags: [
+        {
+            type: String,
+            required: true,
+        }
+    ],
+    comments: [
+        {
+            type: String,
+            required: true,
+            from: userRef,
+            timestamp: { type: Date, default: Date.now() },
+            upvotes: [userRef],
+            downvotes: [userRef],
+            replys: [comments]
+        }
+    ],
 }, {
     timestamps: true,
 });
