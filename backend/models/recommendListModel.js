@@ -6,6 +6,14 @@ const userRef = {
     required: true,
 }
 
+const comment = {
+    type: String,
+    required: true,
+    from: userRef,
+    timestamp: { type: Date, default: Date.now() },
+    upvotes: [userRef],
+    downvotes: [userRef],
+}
 
 
 const RecommendListSchema = new mongoose.Schema({
@@ -21,19 +29,14 @@ const RecommendListSchema = new mongoose.Schema({
     },
     tags: [
         {
-            type: String,
+            type: Object,
             required: true,
         }
     ],
     comments: [
         {
-            type: String,
-            required: true,
-            from: userRef,
-            timestamp: { type: Date, default: Date.now() },
-            upvotes: [userRef],
-            downvotes: [userRef],
-            replys: [comments]
+            ...comment,
+            replys: [comment]
         }
     ],
 }, {

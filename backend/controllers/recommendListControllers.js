@@ -7,8 +7,6 @@ import RecommendList from '../models/recommendListModel.js';
 export const createRecommendList = asyncHandlers(async (req, res) => {
     const { data, tags } = req.body;
 
-    console.log(req.user);
-
     const recommendList = await new RecommendList({
         data,
         owner: req.user._id,
@@ -16,7 +14,7 @@ export const createRecommendList = asyncHandlers(async (req, res) => {
     }).save();
 
     if (recommendList) {
-        res.status(200).send(recommendList);
+        res.status(201).send(recommendList);
     } else {
         res.status(500);
         throw new Error('Error while adding list');
