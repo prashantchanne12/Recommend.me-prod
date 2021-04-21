@@ -17,7 +17,7 @@ function Header() {
                     <Link to='/create' className='link'>
                         <CgAddR className='header-icon' />
                     </Link>
-                    <Link to='/' className='link'>
+                    <Link to='/profile' className='link'>
                         <VscAccount className='header-icon'/>
                     </Link>
                 </div>

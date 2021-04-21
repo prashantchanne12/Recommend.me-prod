@@ -10,6 +10,7 @@ import {
 const INIT_STATE = {
     user: null,
     error: null,
+    loading: null,
 }
 
 export const userProfileReducer = (state = INIT_STATE, action) => {
