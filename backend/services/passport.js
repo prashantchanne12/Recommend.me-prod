@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import e from 'express';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import TwitterStrategy from 'passport-twitter';
@@ -31,7 +30,6 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback', // Callback URL after user grants permissions to the google
 }, async (accessToken, refreshToken, profile, done) => {
 
-    console.log(accessToken);
     const user = await User.findOne({ userId: profile.id });
 
     if (user) {
