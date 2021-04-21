@@ -205,12 +205,16 @@ class CreateRecommendationScreen extends React.Component{
           }
     
           let finalData = stateToHTML(this.state.editorState.getCurrentContent());
-    
+          
           finalData = finalData
             .split("\n")
+            // eslint-disable-next-line
             .filter((str) => str != "<h1><br></h1>")
+            // eslint-disable-next-line
             .filter((str) => str != "<h2><br></h2>")
+            // eslint-disable-next-line 
             .filter((str) => str != "<h3><br></h3>")
+            // eslint-disable-next-line
             .filter((str) => str != "<p><br></p>")
             .join("");
     
