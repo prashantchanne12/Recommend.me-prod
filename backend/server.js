@@ -11,6 +11,7 @@ import connectDB from './config/db.js';
 // Routers
 import authRouter from './routes/authRoutes.js';
 import recommendListRouter from './routes/recommendListRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Middlewares
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
@@ -38,6 +39,7 @@ app.use(passport.session());
 // Routes
 app.use('/auth', authRouter);
 app.use('/api/recommend', recommendListRouter);
+app.use('/api/user', userRoutes);
 
 // Serving static files
 const __dirname = path.resolve();
