@@ -1,30 +1,32 @@
 import React, {useEffect} from 'react';
 import './profileScreen.scss';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userProfile } from '../../actions/userActions';
+import ProfileTabs from '../../components/ProfileTabs/ProfileTabs';
+import Profile from '../../components/Profile/Profile';
 
 
-const ProfileScreen = ({history}) => {
+const ProfileScreen = () => {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const userProfile = useSelector(state => state.userProfile);
-    const { user } = userProfile;
+    const profile = useSelector(state => state.userProfile);
+    const { user } = profile;
 
     useEffect(() => {
-
         if(!user){
-            dispatch(userProfile());
-        }else{
-            history.push('/auth/login');
+            history.push('/login');
         }
-
-    },[dispatch, user, history, userProfile]);
+    },[dispatch, user, history, profile]);
 
     return (
         <>
            <div className="container-md">
-               <h2>Profile Screen</h2>
+              <div className="profile-container">
+                <ProfileTabs />
+                <Profile />
+              </div>
            </div>
         </>
     )
