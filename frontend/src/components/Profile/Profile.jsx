@@ -4,16 +4,18 @@ import './profile.scss';
 const Profile = ({user}) => {
 
 
-    return (
+    return user ? (
         <>
             <div className="profile-box">
-                <div className="profile-image">
-                    <img src={user.image} alt='' />
-                </div>
-                <div className="display-name">
-                    <p className='f-name'>{user.firstName}</p>
-                    <p className='l-name'>{user.lastName}</p>
-                </div>
+               <div className="profile-header">
+                    <div className="profile-image">
+                        <img src={user.image} alt='' />
+                    </div>
+                    <div className="display-name">
+                        <p className='f-name'>{user.firstName}</p>
+                        <p className='l-name'>{user.lastName}</p>
+                    </div>
+               </div>
                 <div className="counts">
                     <div className="recommendation-counts">
                         <p>Recommendations</p>
@@ -30,7 +32,7 @@ const Profile = ({user}) => {
                 </div>
             </div>
         </>
-    );
+    ): <p>Loading...</p>;
 }
 
 export default Profile;

@@ -17,6 +17,8 @@ export const userSession = () => async (dispatch) => {
 
         const { data } = await axios.get('/api/user/profile');
 
+        localStorage.setItem('userInfo', JSON.stringify(data));
+
         dispatch({
             type: USER_SESSION_SUCCESS,
             payload: data,
