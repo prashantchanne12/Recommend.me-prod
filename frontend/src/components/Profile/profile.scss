@@ -1,14 +1,19 @@
 .profile-box{
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(221, 221, 221, 0.658);
+    padding: 1rem;
+    background: rgb(253, 253, 253);
+
+    .hr{
+        border-bottom: 1px solid rgba(221, 221, 221, 0.568);
+        height: 0.5rem;
+    }
 
     .profile-header{
         display: flex;
+        justify-content: flex-start;
         align-items: center;
-        
+
         .profile-image{
             img{
                 height: 70px;
@@ -17,7 +22,7 @@
             }
         }
     
-        .display-name{
+    .display-name{
             display: flex;
             padding-left: 0.5rem;
             font-weight: 500;
@@ -26,6 +31,22 @@
                 margin-left: 0.3rem;
             }
         }
+    }
+
+    .counts{
+        color: #576574;
+       .count{
+            display: flex;  
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 0.75rem;
+
+            .count-number{
+                padding-left: 0.5rem;
+           
+            }
+        }
+
     }
 
 }

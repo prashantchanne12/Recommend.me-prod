@@ -16,18 +16,19 @@ const Profile = ({user}) => {
                         <p className='l-name'>{user.lastName}</p>
                     </div>
                </div>
+               <div className='hr' />
                 <div className="counts">
-                    <div className="recommendation-counts">
+                    <div className="count">
                         <p>Recommendations</p>
-                        <p>{user.recommendations.length}</p>
+                        <p className='count-number'>{user.recommendations.length}</p>
                     </div>
-                    <div className="following-counts">
+                    <div className="count">
                         <p>Following</p>
-                        <p>{user.followings.length}</p>
+                        <p className='count-number'>{user.followings.length}</p>
                     </div>
-                    <div className="followers-counts">
+                    <div className="count">
                         <p>Followers</p>
-                        <p>{user.followers.length}</p>
+                        <p className='count-number'>{user.followers.length}</p>
                     </div>
                 </div>
             </div>

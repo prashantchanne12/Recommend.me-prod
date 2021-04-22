@@ -9,12 +9,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0 auto;
   background: $light-grey-1;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 a{
   text-decoration: none;
   color: $primary-color;
+}
+
+p{
+  margin: 0;
+  padding: 0;
 }
 
 .row{
@@ -38,6 +45,11 @@ a{
 
 .container-md{
   max-width: 800px;
+  margin: 0 auto;
+}
+
+.container-lg{
+  max-width: 960px;
   margin: 0 auto;
 }
 
