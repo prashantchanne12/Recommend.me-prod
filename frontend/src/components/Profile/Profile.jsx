@@ -1,14 +1,32 @@
 import React from 'react';
 import './profile.scss';
 
-const Profile = () => {
+const Profile = ({user}) => {
 
 
     return (
         <>
             <div className="profile-box">
                 <div className="profile-image">
-                    <img src='' alt='' />
+                    <img src={user.image} alt='' />
+                </div>
+                <div className="display-name">
+                    <p className='f-name'>{user.firstName}</p>
+                    <p className='l-name'>{user.lastName}</p>
+                </div>
+                <div className="counts">
+                    <div className="recommendation-counts">
+                        <p>Recommendations</p>
+                        <p>{user.recommendations.length}</p>
+                    </div>
+                    <div className="following-counts">
+                        <p>Following</p>
+                        <p>{user.followings.length}</p>
+                    </div>
+                    <div className="followers-counts">
+                        <p>Followers</p>
+                        <p>{user.followers.length}</p>
+                    </div>
                 </div>
             </div>
         </>
