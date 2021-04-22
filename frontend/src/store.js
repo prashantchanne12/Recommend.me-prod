@@ -4,10 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import { userSessionReducer } from './reducers/userReducers';
+import { loaderReducer } from './reducers/loaderReducers';
 
 // Combine reducers
 const reducer = combineReducers({
     userSession: userSessionReducer,
+    loader: loaderReducer,
 });
 
 

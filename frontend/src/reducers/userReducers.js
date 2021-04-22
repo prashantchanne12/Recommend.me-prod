@@ -19,11 +19,15 @@ export const userSessionReducer = (state = INIT_STATE, action) => {
 
 
         case USER_SESSION_REQUEST: {
-            return { loading: true }
+            return {
+                ...state,
+                loading: true
+            }
         }
 
         case USER_SESSION_SUCCESS: {
             return {
+                ...state,
                 loading: false,
                 user: action.payload
             }
@@ -31,6 +35,7 @@ export const userSessionReducer = (state = INIT_STATE, action) => {
 
         case USER_SESSION_FAIL: {
             return {
+                ...state,
                 loading: false,
                 error: action.payload,
             }

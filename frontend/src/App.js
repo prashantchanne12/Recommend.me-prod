@@ -8,6 +8,7 @@ import Layout from './components/Layout/Layout';
 import CreateRecommendationScreen from './screens/CreateRecommendationScreen/CreateRecommendationScreen';
 
 import { userSession } from './actions/userActions';
+import { loadingStart, loadingEnd } from './actions/loaderActions';
 import { useDispatch } from 'react-redux';
 
 
@@ -16,7 +17,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(loadingStart());
     dispatch(userSession());
+    dispatch(loadingEnd());
   }, [dispatch]);
 
   return (
