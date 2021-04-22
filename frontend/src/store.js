@@ -3,11 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
-import { userProfileReducer } from './reducers/userReducers';
+import { userSessionReducer } from './reducers/userReducers';
 
 // Combine reducers
 const reducer = combineReducers({
-    userProfile: userProfileReducer,
+    userSession: userSessionReducer,
 });
 
 

@@ -1,9 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './loginScreen.scss';
 import { FaGoogle, FaTwitter } from 'react-icons/fa';
 
+import { useSelector } from 'react-redux';
 
-function LoginScreen() {
+function LoginScreen({history}) {
+
+    const userSession = useSelector(state => state.userSession);
+    const {user} = userSession;
+
+    useEffect(() => {
+        if(user){
+            history.push('/');
+        }
+    },[user, history]);
+
     return (
         <div className='container'>
 

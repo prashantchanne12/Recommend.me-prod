@@ -1,14 +1,6 @@
-import React, {useEffect} from 'react';
-import { useDispatch } from 'react-redux';
-import { userProfile } from '../../actions/userActions';
+import React from 'react';
 
-function HomeScreen({location, history}) { 
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(userProfile());
-    }, [dispatch]);
+function HomeScreen() { 
 
     return (
         <>

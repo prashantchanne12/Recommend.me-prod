@@ -1,9 +1,9 @@
 import {
 
-    USER_PROFILE_REQUEST,
-    USER_PROFILE_SUCCESS,
-    USER_PROFILE_FAIL,
-    USER_PROFILE_RESET,
+    USER_SESSION_REQUEST,
+    USER_SESSION_SUCCESS,
+    USER_SESSION_FAIL,
+    USER_SESSION_RESET,
 
 } from '../constants/userConstants';
 
@@ -13,30 +13,30 @@ const INIT_STATE = {
     loading: null,
 }
 
-export const userProfileReducer = (state = INIT_STATE, action) => {
+export const userSessionReducer = (state = INIT_STATE, action) => {
 
     switch (action.type) {
 
 
-        case USER_PROFILE_REQUEST: {
+        case USER_SESSION_REQUEST: {
             return { loading: true }
         }
 
-        case USER_PROFILE_SUCCESS: {
+        case USER_SESSION_SUCCESS: {
             return {
                 loading: false,
                 user: action.payload
             }
         }
 
-        case USER_PROFILE_FAIL: {
+        case USER_SESSION_FAIL: {
             return {
                 loading: false,
                 error: action.payload,
             }
         }
 
-        case USER_PROFILE_RESET: {
+        case USER_SESSION_RESET: {
             return { user: null }
         }
 
