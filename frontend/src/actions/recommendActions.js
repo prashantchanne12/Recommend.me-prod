@@ -3,10 +3,9 @@ import {
     ADD_RECOMMEND_LIST_SUCCESS,
     ADD_RECOMMEND_LIST_FAIL,
 
-    FETCH_PROFILE_RECOMMEND_LIST_REQUEST,
-    FETCH_PROFILE_RECOMMEND_LIST_SUCCESS,
-    FETCH_PROFILE_RECOMMEND_LIST_FAIL,
-    FETCH_PROFILE_RECOMMEND_LIST_RESET,
+    FETCH_USERS_RECOMMEND_LIST_REQUEST,
+    FETCH_USERS_RECOMMEND_LIST_SUCCESS,
+    FETCH_USERS_RECOMMEND_LIST_FAIL,
 
 } from '../constants/recommendConstants';
 
@@ -50,23 +49,23 @@ export const addRecommendAction = (body) => async (dispatch) => {
     }
 }
 
-export const fetchRecommendation = (id) => async (dispatch) => {
+export const fetchRecommendation = () => async (dispatch) => {
 
     try {
         dispatch({
-            type: FETCH_PROFILE_RECOMMEND_LIST_REQUEST,
+            type: FETCH_USERS_RECOMMEND_LIST_REQUEST,
         });
 
-        const { data } = await axios.get(`/api/recommend/${id}`);
+        const { data } = await axios.get(`/api/recommend/lists`);
 
         dispatch({
-            type: FETCH_PROFILE_RECOMMEND_LIST_SUCCESS,
+            type: FETCH_USERS_RECOMMEND_LIST_SUCCESS,
             payload: data,
         });
 
     } catch (err) {
         dispatch({
-            type: FETCH_PROFILE_RECOMMEND_LIST_FAIL,
+            type: FETCH_USERS_RECOMMEND_LIST_FAIL,
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message

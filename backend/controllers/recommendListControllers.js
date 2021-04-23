@@ -43,7 +43,7 @@ export const createRecommendList = asyncHandlers(async (req, res) => {
 
 
 // @desc Get recommendation list from database
-// @route GET /api/recommend/:id
+// @route GET /api/recommend/list/:id
 export const getRecommendationList = asyncHandlers(async (req, res) => {
 
     const id = req.params.id;

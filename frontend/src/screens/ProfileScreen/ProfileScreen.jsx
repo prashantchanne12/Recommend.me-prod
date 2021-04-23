@@ -3,12 +3,19 @@ import './profileScreen.scss';
 import ProfileTabs from '../../components/ProfileTabs/ProfileTabs';
 import Profile from '../../components/Profile/Profile';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchRecommendation } from '../../actions/recommendActions';
+import { loadingStartAction, loadingEndAction, loadingResetAction } from '../../actions/loadingActions';
 
 const ProfileScreen = ({history}) => {
 
+    const dispatch = useDispatch();
+
     const userSession = useSelector(state => state.userSession);
     const {user} = userSession;
+
+    const userRecommendation = useSelector(state => state.userRecommendations);
+    const {loading} = userRecommendation;
 
     useEffect(() => {
     
@@ -16,7 +23,15 @@ const ProfileScreen = ({history}) => {
         history.push('/login');
       }
 
-    }, [user, history]);
+      dispatch(loadingStartAction());
+      dispatch(fetchRecommendation());
+
+
+    }, [user, history, dispatch]);
+
+    if(!loading){
+      dispatch(loadingEndAction());
+    }
 
     return (
         <>
