@@ -61,10 +61,43 @@ export const getRecommendationList = asyncHandlers(async (req, res) => {
 
 });
 
+const getRecommendationLists = async (ids) => {
+
+    let lists = [];
+
+    if (ids.length === 0) {
+        return lists;
+    }
+
+    for (let i = 0; i < ids.length; i++) {
+        const recommendList = await RecommendList.findById(ids[i]);
+        lists.push(recommendList);
+    }
+
+    return lists;
+}
+
 // @desc Get users all recommendation lists from database
 // @route GET /api/recommend/lists
 export const getUsersRecommendationLists = asyncHandlers(async (req, res) => {
 
-    res.send('helo world');
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found!');
+    }
+
+    const uploadedRecommendations = user.recommendations;
+    const upvotedRecommendations = user.upvotedRecommendations;
+    const bucketRecommendations = user.bucket;
+
+    let lists = {};
+
+    lists['uploadedRecommendations'] = await getRecommendationLists(uploadedRecommendations);
+    lists['upvotedRecommendations'] = await getRecommendationLists(upvotedRecommendations);
+    lists['bucketRecommendations'] = await getRecommendationLists(bucketRecommendations);
+
+    res.send(lists);
 
 });
