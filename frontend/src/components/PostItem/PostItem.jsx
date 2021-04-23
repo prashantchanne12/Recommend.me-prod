@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react';
+
 
 const PostItem = ({id}) => {
+
     return (
         <div>
             <h4>{id}</h4>

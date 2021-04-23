@@ -9,6 +9,7 @@ import {
 const INIT_STATE = {
     loading: false,
     error: null,
+    list: null
 }
 
 export const addRecommendationReducer = (state = INIT_STATE, action) => {
@@ -41,3 +42,4 @@ export const addRecommendationReducer = (state = INIT_STATE, action) => {
         default: { return state }
     }
 }
+

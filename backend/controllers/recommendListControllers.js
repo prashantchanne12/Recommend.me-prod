@@ -43,7 +43,7 @@ export const createRecommendList = asyncHandlers(async (req, res) => {
 
 
 // @desc Get recommendation list from database
-// @route POST /api/recommend/:id
+// @route GET /api/recommend/:id
 export const getRecommendationList = asyncHandlers(async (req, res) => {
 
     const id = req.params.id;
@@ -56,7 +56,15 @@ export const getRecommendationList = asyncHandlers(async (req, res) => {
 
     } else {
         res.status(404)
-        throw new Error('Recommendation list not found with id ', id);
+        throw new Error('Recommendation list not found with id ' + id);
     }
+
+});
+
+// @desc Get users all recommendation lists from database
+// @route GET /api/recommend/lists
+export const getUsersRecommendationLists = asyncHandlers(async (req, res) => {
+
+    res.send('helo world');
 
 });
