@@ -1,11 +1,16 @@
 import React from 'react';
+import PostItem from '../PostItem/PostItem';
 import './posts.scss';
 
-const Posts = () => {
+const Posts = ({props}) => {
     return (
-        <div>
-            <h4>Posts</h4>
-        </div>
+        <>
+            <div className="posts-container">
+                { props.map((id)=> (
+                    <PostItem id={id} key={id}/>
+                )) }
+            </div>
+        </>
     )
 }
 
