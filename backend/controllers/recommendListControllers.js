@@ -40,3 +40,23 @@ export const createRecommendList = asyncHandlers(async (req, res) => {
         throw new Error('Error while adding list');
     }
 });
+
+
+// @desc Get recommendation list from database
+// @route POST /api/recommend/:id
+export const getRecommendationList = asyncHandlers(async (req, res) => {
+
+    const id = req.params.id;
+
+    const recommendationList = await RecommendList.findById(id);
+
+    if (recommendationList) {
+
+        res.send(recommendationList);
+
+    } else {
+        res.status(404)
+        throw new Error('Recommendation list not found with id ', id);
+    }
+
+});
