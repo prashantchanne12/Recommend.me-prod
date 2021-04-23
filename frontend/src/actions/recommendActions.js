@@ -3,6 +3,8 @@ import {
     ADD_RECOMMEND_LIST_SUCCESS,
     ADD_RECOMMEND_LIST_FAIL
 } from '../constants/recommendConstants';
+
+import { userSession } from './userActions';
 import axios from 'axios';
 
 export const addRecommendAction = (body) => async (dispatch) => {
@@ -26,7 +28,9 @@ export const addRecommendAction = (body) => async (dispatch) => {
         dispatch({
             type: ADD_RECOMMEND_LIST_SUCCESS,
             payload: data,
-        })
+        });
+
+        dispatch(userSession());
 
     } catch (err) {
         dispatch({

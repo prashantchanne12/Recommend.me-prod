@@ -14,9 +14,13 @@ import Select from 'react-select';
 import { colourOptions } from './data/data';
 import Button from '../../components/Button/Button';
 
+import { connect } from 'react-redux';
+import { addRecommendAction } from '../../actions/recommendActions';
+
 const MAX_LENGTH = 450;
 
 class CreateRecommendationScreen extends React.Component{
+
     constructor(props) {
         super(props);
         this.state = { editorState: EditorState.createEmpty(), options: [] };
@@ -82,6 +86,7 @@ class CreateRecommendationScreen extends React.Component{
         this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
         this.toggleBlockType = this._toggleBlockType.bind(this);
         this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+
       }
     
       _handleKeyCommand(command, editorState) {
@@ -186,14 +191,14 @@ class CreateRecommendationScreen extends React.Component{
       };
     
       handleSubmit = () => {
+
+        const { addRecommendAction } = this.props;
+
         console.log('handlesubmit called');
         const { options } = this.state;
     
         const blocks = convertToRaw(this.state.editorState.getCurrentContent())
           .blocks;
-
-        console.log(blocks);
-        console.log(options);
 
         if (blocks.length === 1 && blocks[0].text === "") {
           return alert("Please add recommendation!");
@@ -218,8 +223,8 @@ class CreateRecommendationScreen extends React.Component{
             .filter((str) => str != "<p><br></p>")
             .join("");
     
-          console.log(finalData);
-          console.log(options);
+
+          addRecommendAction({data: finalData, tags: options});
 
           this.setState({
             editorState: EditorState.createEmpty(),
@@ -394,4 +399,9 @@ class CreateRecommendationScreen extends React.Component{
       );
 }
 
-export default CreateRecommendationScreen;
+const mapDispatchToProps = (dispatch) => ({
+  addRecommendAction: (data) => dispatch(addRecommendAction(data)),
+})
+
+
+export default connect(null, mapDispatchToProps)(CreateRecommendationScreen);

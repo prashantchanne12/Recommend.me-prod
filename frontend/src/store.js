@@ -5,11 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers
 import { userSessionReducer } from './reducers/userReducers';
 import { loaderReducer } from './reducers/loaderReducers';
+import { addRecommendationReducer } from './reducers/recommendReducers';
 
 // Combine reducers
 const reducer = combineReducers({
     userSession: userSessionReducer,
     loader: loaderReducer,
+    addRecommendation: addRecommendationReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
