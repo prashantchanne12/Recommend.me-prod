@@ -27,6 +27,13 @@ const RecommendListSchema = new mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    ownerUserName: {
+        type: String,
+        required: true,
+    },
+    ownerPhotoUrl: {
+        type: String,
+    },
     tags: [
         {
             type: Object,

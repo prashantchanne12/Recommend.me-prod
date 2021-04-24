@@ -10,6 +10,8 @@ export const createRecommendList = asyncHandlers(async (req, res) => {
     const recommendList = await new RecommendList({
         data,
         owner: req.user._id,
+        ownerUserName: req.user.displayName,
+        ownerPhotoUrl: req.user.image,
         tags,
     }).save();
 
