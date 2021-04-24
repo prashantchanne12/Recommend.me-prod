@@ -1,12 +1,14 @@
 import React from 'react';
-
+import './postItem.scss';
 
 const PostItem = ({item}) => {
 
     return (
         <>
            <div className="list-container" id={item._id}>
-               <div dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
+               <div className="list-data">
+               <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
+               </div>
            </div>
         </>
     )

@@ -20,7 +20,7 @@ function LoginScreen({history}) {
 
             <div className="login-container">
                 <div className="container-sm ">
-                    <h2 className='welcome'>Welcome</h2>
+                    <h2>Welcome</h2>
                     <p className='policy'>By logging in you accept our <a href='None'>Privacy Policy</a> and <a href='None'>Terms of Service</a>.</p>
 
                     <div className="login-buttons">

@@ -35,7 +35,7 @@ const ProfileScreen = ({history}) => {
 
     return (
         <>
-           <div className="container-lg">
+           <div className="container">
               <div className="row">
                 <div className="column tab-container">
                  <ProfileTabs />
