@@ -1,12 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 
-const PostItem = ({id}) => {
+const PostItem = ({item}) => {
 
     return (
-        <div>
-            <h4>{id}</h4>
-        </div>
+        <>
+           <div className="list-container" id={item._id}>
+               <div dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
+           </div>
+        </>
     )
 }
 

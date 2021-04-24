@@ -12,7 +12,7 @@ const Loader = () => {
             <LoadingBar
             height={3}
             color='#0984e3'
-            loaderSpeed={1000}
+            loaderSpeed={600}
             progress={percentage}
             onLoaderFinished={0}
             />

@@ -5,7 +5,7 @@ import Profile from '../../components/Profile/Profile';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRecommendation } from '../../actions/recommendActions';
-import { loadingStartAction, loadingEndAction, loadingResetAction } from '../../actions/loadingActions';
+import { loadingEndAction } from '../../actions/loadingActions';
 
 const ProfileScreen = ({history}) => {
 
@@ -23,7 +23,7 @@ const ProfileScreen = ({history}) => {
         history.push('/login');
       }
 
-      dispatch(loadingStartAction());
+      console.log('In useEffect');
       dispatch(fetchRecommendation());
 
 

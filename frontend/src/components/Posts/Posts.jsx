@@ -3,15 +3,17 @@ import PostItem from '../PostItem/PostItem';
 import './posts.scss';
 
 const Posts = ({props}) => {
-    return (
+    return props ? (
         <>
             <div className="posts-container">
-                { props.map((id)=> (
-                    <PostItem id={id} key={id}/>
-                )) }
+               {
+                   props.map((item) => (
+                        <PostItem key={item._id} item={item} />
+                   ))
+               }
             </div>
         </>
-    )
+    ) : <div>Loading...</div>
 }
 
 export default Posts;
