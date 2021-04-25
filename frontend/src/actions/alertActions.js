@@ -3,11 +3,11 @@ import {
     ALERT_MESSAGE_RESET
 } from '../constants/alertConstants';
 
-export const alertMessageAction = ({ message, color }) => async (dispatch) => {
+export const alertMessageAction = ({ message, type }) => async (dispatch) => {
 
     dispatch({
         type: ALERT_MESSAGE_REQUEST,
-        payload: { message, color }
+        payload: { message, type }
     })
 }
 

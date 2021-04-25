@@ -5,7 +5,7 @@ import {
 
 const INIT_STATE = {
     message: null,
-    color: null,
+    type: null,
 }
 
 export const alertMessageReducer = (state = INIT_STATE, action) => {
@@ -17,14 +17,14 @@ export const alertMessageReducer = (state = INIT_STATE, action) => {
             return {
                 ...state,
                 message: action.payload.message,
-                color: action.payload.color,
+                type: action.payload.type,
             }
         }
         case ALERT_MESSAGE_RESET: {
             return {
                 ...state,
                 message: null,
-                color: null,
+                type: null,
             }
         }
 

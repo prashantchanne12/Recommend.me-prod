@@ -1,7 +1,6 @@
-import React from 'react';
+import React, from 'react';
 
 function HomeScreen() { 
-
     return (
         <>
             <div className="container-md">
@@ -11,4 +10,4 @@ function HomeScreen() {
     )
 }
 
-export default HomeScreen
+export default HomeScreen;
