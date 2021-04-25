@@ -1,9 +1,16 @@
 import express from 'express';
-import { getUserProfile } from '../controllers/userControllers.js';
+import {
+    followUser,
+    getUserProfile,
+    unfollowUser,
+} from '../controllers/userControllers.js';
 import { protect } from '../middlewares/authMiddleware.js';
 const userRoutes = express.Router();
 
+// @route /api/user
 userRoutes.get('/profile', protect, getUserProfile);
+userRoutes.put('/follow/:id', protect, followUser);
+userRoutes.put('/unfollow/:id', protect, unfollowUser);
 
 
 export default userRoutes;
