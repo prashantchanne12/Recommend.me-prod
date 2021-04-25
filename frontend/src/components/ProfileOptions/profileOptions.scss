@@ -1,0 +1,67 @@
+@import '../../global';
+
+.profile-options-container{
+    position: absolute;
+    top: 3.3rem;
+    right: 11rem;
+    z-index: 10;
+    background: #fff;
+    width: 150px;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+    font-weight: 500;
+    
+    .profile-options{
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 1rem 1rem;
+        text-align: left;
+
+        .hr{
+            border-bottom: 1px solid rgba(221, 221, 221, 0.568);
+            height: 0.2rem;
+        }
+
+        .profile, 
+        .profile-login,
+        .profile-logout
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .icon{
+                padding-left: 0.4rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        .profile{
+            .icon {
+                color: $primary-color;
+            }
+        }
+
+        .profile-login{
+            .icon {
+                color: #00b894;
+            }
+        }
+
+        .profile-logout{
+            .icon{
+                color: #d63031;
+            }
+        }
+
+
+
+        & div{
+            margin-top: 0.2rem;
+        }
+
+    }
+
+}
