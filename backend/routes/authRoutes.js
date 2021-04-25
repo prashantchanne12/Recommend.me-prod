@@ -40,14 +40,6 @@ authRouter.get('/currentUser', protect, (req, res) => {
     res.send(req.user);
 });
 
-authRouter.get('/dummy', (req, res) => {
-    if (!req.user) {
-        res.send('Abort');
-    }
-
-    res.send(req.user);
-});
-
 // @desc Log out user
 // @route GET auth/logout
 authRouter.get('/logout', (req, res) => {

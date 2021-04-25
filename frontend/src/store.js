@@ -9,10 +9,12 @@ import {
     fetchUserRecommendListsReducer
 } from './reducers/recommendReducers';
 import { loadingReducer } from './reducers/loadingReducer';
+import { alertMessageReducer } from './reducers/alertReducer';
 
 // Combine reducers
 const reducer = combineReducers({
     loader: loadingReducer,
+    alertMessage: alertMessageReducer,
     userSession: userSessionReducer,
     addRecommendation: addRecommendationReducer,
     userRecommendations: fetchUserRecommendListsReducer,

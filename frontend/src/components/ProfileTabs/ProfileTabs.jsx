@@ -8,8 +8,8 @@ const ProfileTabs = () => {
 
 
     let props = {};
-    const userSession = useSelector(state => state.userSession);
-    const { user } = userSession;
+    // const userSession = useSelector(state => state.userSession);
+    // const { user } = userSession;
 
     const userRecommendations = useSelector(state => state.userRecommendations);
     const {lists} = userRecommendations;
