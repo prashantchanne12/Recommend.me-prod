@@ -166,12 +166,27 @@ export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
 
         if (user) {
 
+            // check if id is already in bucket list
+            const isInBucket = user.bucket.find(item => item == id);
+            if (isInBucket) {
+                res.status(400);
+                throw new Error('Recommendation already in the bucket list');
+            }
+
             user.bucket = [...user.bucket, id];
             const newUser = await user.save();
 
             if (newUser) {
 
                 // add user's id into the addedInBucket
+
+                // // check if its already in bucket
+                // const isUserIdInBucket = recommendList.addedInBucket.find(item => item == userId);
+                // if (isUserIdInBucket) {
+                //     res.status(400);
+                //     throw new Error('Recommendation already in the bucket list');
+                // }
+
                 recommendList.addedInBucket = [...recommendList.addedInBucket, userId];
                 const newRecommendList = await recommendList.save();
 
