@@ -194,11 +194,14 @@ class CreateRecommendationScreen extends React.Component{
     
       handleSubmit = () => {
 
+        this.setState({
+          buttonClicked: true,
+        });
+
         const { 
           addRecommendAction,
           alertMessageAction } = this.props;
 
-        console.log('handlesubmit called');
         const { options } = this.state;
     
         const blocks = convertToRaw(this.state.editorState.getCurrentContent())
@@ -240,6 +243,7 @@ class CreateRecommendationScreen extends React.Component{
 
           this.setState({
             editorState: EditorState.createEmpty(),
+            buttonClicked: false,
           });
         }
       };
@@ -256,6 +260,7 @@ class CreateRecommendationScreen extends React.Component{
             className += " RichEditor-hidePlaceholder";
           }
         }
+
     
         return (
           <div className="editor-container">
@@ -294,7 +299,9 @@ class CreateRecommendationScreen extends React.Component{
                   closeMenuOnSelect={false}
                   // defaultValue={[colourOptions[0], colourOptions[1]]}
                   isMulti
+                  key={`${Date.now()}`}
                   options={colourOptions}
+                  isSearchable={true}
                   styles={this.colourStyles}
                   onChange={this.handleChips}
                   className='select'

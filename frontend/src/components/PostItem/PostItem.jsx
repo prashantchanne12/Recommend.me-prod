@@ -42,12 +42,14 @@ const PostItem = ({item}) => {
                         <div className="list-img">
                             <img src={item.ownerPhotoUrl} alt=""/>
                         </div>
-                        <div className="list-username">
-                            <p>{item.ownerUserName}</p>
-                        </div>
-                        <div className="list-date">
-                            <p>{dateFormat(item.createdAt, "mmmm dS, yyyy")}</p>
-                        </div>
+                       <div className="section-2">
+                            <div className="list-username">
+                                <p>{item.ownerUserName.split(' ')[0].length <= 9 ? item.ownerUserName.split(' ')[0] : item.ownerUserName.split(' ')[0].substr(0,9).toString()+'..'}</p>
+                            </div>
+                            <div className="list-date">
+                                <p>{dateFormat(item.createdAt, "mmmm dS, yyyy")}</p>
+                            </div>
+                       </div>
                     </div>
                 </div>
            </div>

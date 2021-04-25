@@ -50,8 +50,7 @@
         padding-top: 0.75rem;
         display: flex;
         align-items: center;
-        justify-content: start;
-
+        justify-content: flex-start;
 
         .list-img{
             img{
@@ -61,20 +60,31 @@
             }
         }
 
-        .list-username{
-            font-size: 0.85rem;
-            margin-left: 0.5rem;
-            font-weight: 500;
-            padding-bottom: 0.4rem;
+        .section-2{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .list-username{
+                font-size: 0.85rem;
+                margin-left: 0.5rem;
+                font-weight: 500;
+                padding-bottom: 0.4rem;
+            }
+    
+            .list-date{
+                align-self: flex-end;
+                text-align: right;
+                color: #576574;
+                margin-left: 0.6rem;
+                font-size: 0.75rem;
+                padding-bottom: 0.45rem;
+                align-self: flex-end;
+    
+            }
         }
 
-        .list-date{
-            color: #576574;
-            margin-left: 0.6rem;
-            font-size: 0.75rem;
-            padding-bottom: 0.4rem;
-
-        }
+       
 
     }
 

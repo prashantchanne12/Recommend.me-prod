@@ -1,5 +1,7 @@
 import React from 'react';
 
+// dispatch user session
+
 function HomeScreen() { 
     return (
         <>
