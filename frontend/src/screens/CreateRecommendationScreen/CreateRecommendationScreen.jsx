@@ -16,6 +16,7 @@ import Button from '../../components/Button/Button';
 
 import { connect } from 'react-redux';
 import { addRecommendAction } from '../../actions/recommendActions';
+import { alertMessageAction } from '../../actions/alertActions';
 
 const MAX_LENGTH = 450;
 
@@ -169,8 +170,9 @@ class CreateRecommendationScreen extends React.Component{
         const selectedTextLength = this._getLengthOfSelectedText();
     
         if (currentContentLength - selectedTextLength > MAX_LENGTH - 1) {
-          alert("you can type max 450 characters");
     
+          alertMessageAction({message: "you can type max 450 characters!", type: "failure"});
+
           return "handled";
         }
       };
@@ -184,7 +186,7 @@ class CreateRecommendationScreen extends React.Component{
           currentContentLength + pastedText.length - selectedTextLength >
           MAX_LENGTH
         ) {
-          alert("you can type max 450 characters");
+          alertMessageAction({message: "you can type max 450 characters!", type: "failure"});
     
           return "handled";
         }
@@ -192,7 +194,9 @@ class CreateRecommendationScreen extends React.Component{
     
       handleSubmit = () => {
 
-        const { addRecommendAction } = this.props;
+        const { 
+          addRecommendAction,
+          alertMessageAction } = this.props;
 
         console.log('handlesubmit called');
         const { options } = this.state;
@@ -201,12 +205,18 @@ class CreateRecommendationScreen extends React.Component{
           .blocks;
 
         if (blocks.length === 1 && blocks[0].text === "") {
-          return alert("Please add recommendation!");
+          // return alert("Please add recommendation!");
+          return alertMessageAction({message: "Please add recommendation!", type: "failure"});
+  
         } else {
           if (options.length === 0) {
-            return alert("Please select Tags!");
-          } else if (options.length > 3) {
-            return alert("You can select max 3 Tags!");
+            // return alert("Please select Tags!");
+            return alertMessageAction({message: "Please select Tags!", type: "failure"});
+
+          } else if (options.length > 2) {
+            // return alert("You can select max 3 Tags!");
+            return alertMessageAction({message: "You can select max 2 Tags!", type: "failure"});
+
           }
     
           let finalData = stateToHTML(this.state.editorState.getCurrentContent());
@@ -225,6 +235,8 @@ class CreateRecommendationScreen extends React.Component{
     
 
           addRecommendAction({data: finalData, tags: options});
+          alertMessageAction({message: "Recommendation created successfully", type: "success"});
+
 
           this.setState({
             editorState: EditorState.createEmpty(),
@@ -401,6 +413,7 @@ class CreateRecommendationScreen extends React.Component{
 
 const mapDispatchToProps = (dispatch) => ({
   addRecommendAction: (data) => dispatch(addRecommendAction(data)),
+  alertMessageAction: ({message, type}) => dispatch(alertMessageAction({message, type})),
 })
 
 

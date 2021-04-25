@@ -2,12 +2,20 @@ import React from 'react';
 import './alert.scss';
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { alertMessageResetAction } from '../../actions/alertActions';
 
 const Alert = () => {
 
+    const dispatch = useDispatch();
     const alertMessage = useSelector(state => state.alertMessage);
     const {message, type} = alertMessage;
+
+    if(message!==null){
+        setTimeout(() => {
+            dispatch(alertMessageResetAction());
+        }, 5000);
+    }
 
     return message ?(
         <>
