@@ -40,7 +40,7 @@ const ProfileScreen = ({history}) => {
                 <div className="column tab-container">
                  <ProfileTabs />
                 </div>
-                <div className="column">
+                <div className="column profile-container">
                  <Profile user={user} />
                 </div>
               </div>

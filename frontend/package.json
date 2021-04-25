@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "chroma-js": "^2.1.1",
+    "dateformat": "^4.5.1",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "http-proxy-middleware": "^1.1.2",

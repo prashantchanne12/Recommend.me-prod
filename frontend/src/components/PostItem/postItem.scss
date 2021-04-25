@@ -1,13 +1,66 @@
 .list-container{
     border: 1px solid rgba(221, 221, 221, 0.658);
-    padding: 0.5rem 1rem;
-    background: rgb(253, 253, 253);
+    padding: 0.75rem;
+    background: #fdfdfd;
     border-radius: 5px;
 
     .list-data{
-        .html-data > p{
-            padding-top: 0.5rem;
+        .html-data  p{
+            padding: 0.3rem;
         }
+        padding-bottom: 0.5rem;
+    }
+    
+    .hr{
+        height: 0.5px;
+        background-color:  rgba(221, 221, 221, 0.658);
+    }
+
+    .section{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .upvote-icon{
+
+        }
+
+        .share-icon{
+            
+        }
+
+    }
+
+    .list-footer{
+        padding-top: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+
+
+        .list-img{
+            img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+        }
+
+        .list-username{
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+            font-weight: 500;
+            padding-bottom: 0.4rem;
+        }
+
+        .list-date{
+            color: #576574;
+            margin-left: 0.6rem;
+            font-size: 0.75rem;
+            padding-bottom: 0.4rem;
+
+        }
+
     }
 
 }

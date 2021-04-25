@@ -9,6 +9,7 @@ const Posts = ({props}) => {
 
     const { height, width } = useWindowDimensions();
 
+    console.log(width);
 
     return props ? (
         <>
@@ -16,7 +17,7 @@ const Posts = ({props}) => {
                 <StackGrid
                       gutterHeight={10}
                       gutterWidth={10}
-                      columnWidth={width <= 800 ? (width < 500 ? "100%" : "50%") : "25%"}                >
+                      columnWidth={width <= 800 ? (width < 500 ? "100%" : "50%") : "33.3%"}                >
                     {
                         props.map((item) => (
                                 <PostItem key={item._id} item={item} />
