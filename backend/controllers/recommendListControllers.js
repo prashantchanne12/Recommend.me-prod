@@ -151,6 +151,53 @@ export const upvoteRecommendationList = asyncHandlers(async (req, res) => {
 
 });
 
+// @desc Remove upvote from the recommend list
+// @route PUT /api/recommend/list/removeUpvote/:id 
+export const removeUpvoteFromRecommendationList = asyncHandlers(async (req, res) => {
+
+    const id = req.params.id;
+    const userId = req.user._id;
+
+    const recommendList = await RecommendList.findById(id);
+
+    if (recommendList) {
+
+        recommendList.upvotes.splice(userId, 1);
+        const newRecommendList = await recommendList.save();
+
+        if (newRecommendList) {
+
+            // update user's upvoted recommendations array
+            const user = await User.findById(userId);
+
+            if (user) {
+                user.upvotedRecommendations.splice(id, 1);
+                const newUser = await user.save();
+
+                if (newUser) {
+                    res.send(newRecommendList);
+                } else {
+                    res.status(500);
+                    throw new Error('Error while updating upvotes in User!');
+                }
+
+            } else {
+                res.status(404);
+                throw new Error('User not find!');
+            }
+
+        } else {
+            res.status(500);
+            throw new Error('Error while updating upvotes!');
+        }
+
+    } else {
+        res.status(404);
+        throw new Error('Recommend list not found!');
+    }
+
+});
+
 // @desc Add the recommend list into the bucket
 // @route PUT /api/recommend/list/bucket/:id 
 export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
