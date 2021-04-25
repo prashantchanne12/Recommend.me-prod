@@ -46,6 +46,7 @@ const RecommendListSchema = new mongoose.Schema({
             replys: [comment]
         }
     ],
+    addedInBucket: [userRef],
 }, {
     timestamps: true,
 });

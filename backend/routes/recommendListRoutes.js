@@ -6,6 +6,7 @@ import { protect } from '../middlewares/authMiddleware.js';
 // @route /api/recommend/
 
 import {
+    addRecommendListToBucket,
     createRecommendList,
     getRecommendationList,
     getUsersRecommendationLists,
@@ -16,6 +17,7 @@ recommendListRouter.post('/create', protect, createRecommendList);
 recommendListRouter.get('/list/:id', protect, getRecommendationList);
 recommendListRouter.get('/lists', protect, getUsersRecommendationLists);
 recommendListRouter.put('/list/upvote/:id', protect, upvoteRecommendationList);
+recommendListRouter.put('/list/bucket/:id', protect, addRecommendListToBucket);
 
 
 export default recommendListRouter;

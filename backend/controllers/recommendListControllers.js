@@ -150,3 +150,48 @@ export const upvoteRecommendationList = asyncHandlers(async (req, res) => {
     }
 
 });
+
+// @desc Add the recommend list into the bucket
+// @route PUT /api/recommend/list/bucket/:id 
+export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
+
+    const id = req.params.id;
+    const userId = req.user._id;
+
+    const recommendList = await RecommendList.findById(id);
+
+    if (recommendList) {
+
+        const user = await User.findById(userId);
+
+        if (user) {
+
+            user.bucket = [...user.bucket, id];
+            const newUser = await user.save();
+
+            if (newUser) {
+
+                // add user's id into the addedInBucket
+                recommendList.addedInBucket = [...recommendList.addedInBucket, userId];
+                const newRecommendList = await recommendList.save();
+
+                if (newRecommendList) {
+                    res.send(newUser);
+                } else {
+                    throw new Error('Error while updating lists bucket!');
+                }
+
+            } else {
+                res.status(500);
+                throw new Error('Error while updating bucket list!');
+            }
+        } else {
+            res.status(404);
+            throw new Error('User not found!');
+        }
+    } else {
+        res.status(404);
+        throw new Error('Recommend list not found');
+    }
+
+});
