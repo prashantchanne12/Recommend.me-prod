@@ -4,6 +4,9 @@ import {
     USER_SESSION_SUCCESS,
     USER_SESSION_FAIL,
 
+    USER_PROFILE_TOGGLE_REQUEST,
+    USER_PROFILE_TOGGLE_RESET,
+
 } from '../constants/userConstants';
 import axios from 'axios';
 
@@ -33,4 +36,16 @@ export const userSession = () => async (dispatch) => {
         })
     }
 
+}
+
+export const userProfileToggle = () => async (dispatch) => {
+    dispatch({
+        type: USER_PROFILE_TOGGLE_REQUEST,
+    });
+}
+
+export const userProfileToggleReset = () => async (dispatch) => {
+    dispatch({
+        type: USER_PROFILE_TOGGLE_RESET,
+    });
 }

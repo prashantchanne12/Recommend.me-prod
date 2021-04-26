@@ -5,6 +5,9 @@ import {
     USER_SESSION_FAIL,
     USER_SESSION_RESET,
 
+    USER_PROFILE_TOGGLE_REQUEST,
+    USER_PROFILE_TOGGLE_RESET,
+
 } from '../constants/userConstants';
 
 const INIT_STATE = {
@@ -46,6 +49,31 @@ export const userSessionReducer = (state = INIT_STATE, action) => {
         }
 
         default: return state;
+
+    }
+
+}
+
+export const userProfileToggleReducer = (state = { toggle: null }, action) => {
+
+    switch (action.type) {
+
+
+        case USER_PROFILE_TOGGLE_REQUEST: {
+            return {
+                ...state,
+                toggle: true
+            }
+        }
+
+        case USER_PROFILE_TOGGLE_RESET: {
+            return {
+                ...state,
+                toggle: false
+            }
+        }
+
+        default: return state
 
     }
 
