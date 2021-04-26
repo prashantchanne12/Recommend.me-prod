@@ -6,7 +6,7 @@ import { IoLogOutOutline } from 'react-icons/all';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { userProfileToggleReset, userLogout } from '../../actions/userActions';
+import { profileToggleReset, userLogout } from '../../actions/userActions';
 
 const ProfileOptions = () => {
 
@@ -17,7 +17,7 @@ const ProfileOptions = () => {
         <>
          <div className="profile-options-container">
             <div className="profile-options">
-                <Link to='/profile' className="profile" onClick={() => dispatch(userProfileToggleReset())}>
+                <Link to='/profile' className="profile" onClick={() => dispatch(profileToggleReset())}>
                     <p>Profile</p>    
                     <RiAccountPinCircleLine className='icon' />
                 </Link> 
@@ -26,11 +26,11 @@ const ProfileOptions = () => {
                 {
                     user ? (<div className="profile-logout" onClick={() => {
                         dispatch(userLogout());
-                        dispatch(userProfileToggleReset());
+                        dispatch(profileToggleReset());
                     }}>
                     <p>Logout</p>
                     <IoLogOutOutline className='icon' />
-                </div>) : ( <Link to='/login' className="profile-login" onClick={() => dispatch(userProfileToggleReset())}>
+                </div>) : ( <Link to='/login' className="profile-login" onClick={() => dispatch(profileToggleReset())}>
                     <p>Login</p>
                     <AiOutlineLogin className='icon' />
                     </Link>)

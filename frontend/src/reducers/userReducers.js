@@ -62,7 +62,7 @@ export const mySessionReducer = (state = INIT_STATE, action) => {
 
 }
 
-export const userProfileToggleReducer = (state = { toggle: null }, action) => {
+export const profileToggleReducer = (state = { toggle: null }, action) => {
 
     switch (action.type) {
 

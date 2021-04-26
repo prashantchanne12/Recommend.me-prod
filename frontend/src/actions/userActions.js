@@ -51,13 +51,13 @@ export const mySession = () => async (dispatch) => {
 
 }
 
-export const userProfileToggle = () => async (dispatch) => {
+export const profileToggle = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_REQUEST,
     });
 }
 
-export const userProfileToggleReset = () => async (dispatch) => {
+export const profileToggleReset = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_RESET,
     });

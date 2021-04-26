@@ -5,9 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers
 import {
     mySessionReducer,
+    profileToggleReducer,
     userLogoutReducer,
     userProfileReducer,
-    userProfileToggleReducer,
 } from './reducers/userReducers';
 import {
     addRecommendationReducer,
@@ -20,12 +20,14 @@ import { alertMessageReducer } from './reducers/alertReducer';
 const reducer = combineReducers({
     loader: loadingReducer,
     alertMessage: alertMessageReducer,
+
     mySession: mySessionReducer,
-    userProfile: userProfileReducer,
-    addRecommendation: addRecommendationReducer,
     myRecommendations: fetchMyRecommendListsReducer,
-    userProfileToggle: userProfileToggleReducer,
+    addRecommendation: addRecommendationReducer,
+    profileToggle: profileToggleReducer,
     userLogout: userLogoutReducer,
+
+    userProfile: userProfileReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
