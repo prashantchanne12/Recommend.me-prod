@@ -9,6 +9,10 @@ import {
     FETCH_MY_RECOMMEND_LIST_FAIL,
     FETCH_MY_RECOMMEND_LIST_RESET,
 
+    FETCH_USER_RECOMMEND_LIST_REQUEST,
+    FETCH_USER_RECOMMEND_LIST_SUCCESS,
+    FETCH_USER_RECOMMEND_LIST_FAIL,
+
 } from '../constants/recommendConstants';
 
 const INIT_STATE = {
@@ -80,6 +84,40 @@ export const fetchMyRecommendListsReducer = (state = INIT_STATE, action) => {
         case FETCH_MY_RECOMMEND_LIST_RESET: return INIT_STATE;
 
         default: return state;
+
+    }
+
+}
+
+export const fetchUserRecommendListReducer = (state = INIT_STATE, action) => {
+
+    switch (action.type) {
+
+        case FETCH_USER_RECOMMEND_LIST_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case FETCH_USER_RECOMMEND_LIST_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                lists: action.payload,
+            }
+        }
+
+        case FETCH_USER_RECOMMEND_LIST_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
+
 
     }
 

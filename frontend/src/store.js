@@ -12,6 +12,7 @@ import {
 import {
     addRecommendationReducer,
     fetchMyRecommendListsReducer,
+    fetchUserRecommendListReducer,
 } from './reducers/recommendReducers';
 import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
@@ -28,6 +29,7 @@ const reducer = combineReducers({
     userLogout: userLogoutReducer,
 
     userProfile: userProfileReducer,
+    userRecommendations: fetchUserRecommendListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
