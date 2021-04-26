@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import ProfileTabs from '../../components/ProfileTabs/ProfileTabs';
+import Profile from '../../components/Profile/Profile';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { userProfile } from '../../actions/userActions';
@@ -21,9 +23,18 @@ const UserProfile = ({match}) => {
     },[dispatch, match, user, lists]);
 
     return user ? (
-        <div className='container'>
-            {user.firstName}
+        <>
+        <div className="container">
+           <div className="row">
+             <div className="column tab-container">
+              <ProfileTabs lists={lists}/>
+             </div>
+             <div className="column profile-container">
+              <Profile user={user} />
+             </div>
+           </div>
         </div>
+     </>
     ) : <div>Loading...</div>
 }
 

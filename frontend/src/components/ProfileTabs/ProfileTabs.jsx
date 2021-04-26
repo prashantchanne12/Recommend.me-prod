@@ -2,17 +2,10 @@ import React, {useState} from 'react';
 import './profileTabs.scss';
 import Posts from '../Posts/Posts';
 
-import { useSelector } from 'react-redux';
-
-const ProfileTabs = () => {
+const ProfileTabs = ({lists}) => {
 
 
     let props = {};
-    // const userSession = useSelector(state => state.userSession);
-    // const { user } = userSession;
-
-    const {lists} = useSelector(state => state.myRecommendations);
-
 
     const [tab, selectTab] = useState('posts');
 
