@@ -11,7 +11,7 @@ import {
 } from './reducers/userReducers';
 import {
     addRecommendationReducer,
-    fetchUserRecommendListsReducer
+    fetchMyRecommendListsReducer,
 } from './reducers/recommendReducers';
 import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
@@ -23,7 +23,7 @@ const reducer = combineReducers({
     mySession: mySessionReducer,
     userProfile: userProfileReducer,
     addRecommendation: addRecommendationReducer,
-    userRecommendations: fetchUserRecommendListsReducer,
+    myRecommendations: fetchMyRecommendListsReducer,
     userProfileToggle: userProfileToggleReducer,
     userLogout: userLogoutReducer,
 });

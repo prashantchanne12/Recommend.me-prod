@@ -11,8 +11,8 @@ const ProfileTabs = () => {
     // const userSession = useSelector(state => state.userSession);
     // const { user } = userSession;
 
-    const userRecommendations = useSelector(state => state.userRecommendations);
-    const {lists} = userRecommendations;
+    const {lists} = useSelector(state => state.myRecommendations);
+
 
     const [tab, selectTab] = useState('posts');
 

@@ -18,7 +18,7 @@ import {
 
 } from '../constants/userConstants';
 
-import { FETCH_USERS_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
+import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
 
 import axios from 'axios';
 
@@ -79,7 +79,7 @@ export const userLogout = () => async (dispatch) => {
         });
 
         dispatch({
-            type: FETCH_USERS_RECOMMEND_LIST_RESET,
+            type: FETCH_MY_RECOMMEND_LIST_RESET,
         })
 
         dispatch({

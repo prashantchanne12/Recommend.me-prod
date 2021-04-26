@@ -4,7 +4,7 @@ import ProfileTabs from '../../components/ProfileTabs/ProfileTabs';
 import Profile from '../../components/Profile/Profile';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchRecommendation } from '../../actions/recommendActions';
+import { fetchMyRecommendations } from '../../actions/recommendActions';
 import { loadingEndAction } from '../../actions/loadingActions';
 
 const ProfileScreen = ({history}) => {
@@ -13,15 +13,15 @@ const ProfileScreen = ({history}) => {
 
     const {user} = useSelector(state => state.mySession);
 
-    const userRecommendation = useSelector(state => state.userRecommendations);
-    const {loading} = userRecommendation;
+    const myRecommendations = useSelector(state => state.myRecommendations);
+    const {loading} = myRecommendations;
 
     useEffect(() => {
     
       if(!user){
         history.push('/login');
       }else{
-        dispatch(fetchRecommendation());
+        dispatch(fetchMyRecommendations());
       }
 
     }, [user, history, dispatch]);

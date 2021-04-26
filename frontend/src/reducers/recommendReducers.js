@@ -4,10 +4,10 @@ import {
     ADD_RECOMMEND_LIST_SUCCESS,
     ADD_RECOMMEND_LIST_FAIL,
 
-    FETCH_USERS_RECOMMEND_LIST_REQUEST,
-    FETCH_USERS_RECOMMEND_LIST_SUCCESS,
-    FETCH_USERS_RECOMMEND_LIST_FAIL,
-    FETCH_USERS_RECOMMEND_LIST_RESET,
+    FETCH_MY_RECOMMEND_LIST_REQUEST,
+    FETCH_MY_RECOMMEND_LIST_SUCCESS,
+    FETCH_MY_RECOMMEND_LIST_FAIL,
+    FETCH_MY_RECOMMEND_LIST_RESET,
 
 } from '../constants/recommendConstants';
 
@@ -48,18 +48,18 @@ export const addRecommendationReducer = (state = INIT_STATE, action) => {
     }
 }
 
-export const fetchUserRecommendListsReducer = (state = INIT_STATE, action) => {
+export const fetchMyRecommendListsReducer = (state = INIT_STATE, action) => {
 
     switch (action.type) {
 
-        case FETCH_USERS_RECOMMEND_LIST_REQUEST: {
+        case FETCH_MY_RECOMMEND_LIST_REQUEST: {
             return {
                 ...state,
                 loading: true,
             }
         }
 
-        case FETCH_USERS_RECOMMEND_LIST_SUCCESS: {
+        case FETCH_MY_RECOMMEND_LIST_SUCCESS: {
             return {
                 ...state,
                 loading: false,
@@ -68,7 +68,7 @@ export const fetchUserRecommendListsReducer = (state = INIT_STATE, action) => {
         }
 
 
-        case FETCH_USERS_RECOMMEND_LIST_FAIL: {
+        case FETCH_MY_RECOMMEND_LIST_FAIL: {
             return {
                 ...state,
                 loading: false,
@@ -77,7 +77,7 @@ export const fetchUserRecommendListsReducer = (state = INIT_STATE, action) => {
             }
         }
 
-        case FETCH_USERS_RECOMMEND_LIST_RESET: return INIT_STATE;
+        case FETCH_MY_RECOMMEND_LIST_RESET: return INIT_STATE;
 
         default: return state;
 
