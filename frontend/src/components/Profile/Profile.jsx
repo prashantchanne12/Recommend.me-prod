@@ -1,5 +1,6 @@
 import React from 'react';
 import './profile.scss';
+import {BiLink, BiUnlink} from 'react-icons/bi';
 
 const Profile = ({user}) => {
 
@@ -29,6 +30,21 @@ const Profile = ({user}) => {
                     <div className="count">
                         <p>Followers</p>
                         <p className='count-number'>{user.followers.length}</p>
+                    </div>
+                </div>
+                <div className="follow-unfollow">
+                   <div className='hr' />
+                    <div className="connect" style={{
+                        color: '#0984e3'
+                    }}>
+                        <p>Connect</p>
+                        <BiLink className='icon' />
+                    </div>
+                    <div className="connect" style={{
+                        color: '#d63031'
+                    }}>
+                        <p>Disconnect</p>
+                        <BiUnlink className='icon' />
                     </div>
                 </div>
             </div>

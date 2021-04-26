@@ -37,6 +37,10 @@ authRouter.get(
 // @desc Current logged in user
 // @route GET auth/currentUser
 authRouter.get('/currentUser', protect, (req, res) => {
+    if (!req.user) {
+        res.status(404);
+        throw new Error('User not found!');
+    }
     res.send(req.user);
 });
 

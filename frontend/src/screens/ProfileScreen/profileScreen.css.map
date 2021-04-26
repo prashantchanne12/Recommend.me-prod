@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,cAAc,CAAA;EACV,IAAI,EAAE,CAAC;CACV;;AACD,AAAA,kBAAkB,CAAA;EACd,IAAI,EAAE,CAAC;CACV",
-    "sources": [
-        "profileScreen.scss"
-    ],
-    "names": [],
-    "file": "profileScreen.css"
-}

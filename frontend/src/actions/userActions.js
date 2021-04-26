@@ -12,6 +12,11 @@ import {
     USER_LOGOUT_SUCCESS,
     USER_LOGOUT_FAIL,
 
+    USER_PROFILE_REQUEST,
+    USER_PROFILE_SUCCESS,
+    USER_PROFILE_FAIL,
+    USER_PROFILE_RESET,
+
 } from '../constants/userConstants';
 
 import { FETCH_USERS_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
@@ -90,4 +95,14 @@ export const userLogout = () => async (dispatch) => {
                 : err.message
         })
     }
+}
+
+const userProfile = (id) => async (dispatch) => {
+
+    dispatch({
+        type: USER_PROFILE_REQUEST
+    });
+
+
+
 }

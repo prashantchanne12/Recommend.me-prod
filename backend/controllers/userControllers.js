@@ -14,6 +14,23 @@ export const getUserProfile = asyncHandler((req, res) => {
     }
 
 });
+// @desc Get user profile by Id
+// @route /api/user/profile
+// @access Private
+export const getUserProfileById = asyncHandler(async (req, res) => {
+
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    if (user) {
+        res.send(user);
+    } else {
+        res.status(404);
+        throw new Error('User not found!');
+    }
+
+});
 
 // @desc Follow user
 // @route /api/user/follow/:id
