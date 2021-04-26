@@ -79,6 +79,22 @@ const getRecommendationLists = async (ids) => {
     return lists;
 }
 
+const createUsersRecommendationLists = async (user) => {
+    const uploadedRecommendations = user.recommendations;
+    const upvotedRecommendations = user.upvotedRecommendations;
+    const bucketRecommendations = user.bucket;
+
+    let lists = {};
+
+    lists['uploadedRecommendations'] = await getRecommendationLists(uploadedRecommendations);
+    lists['upvotedRecommendations'] = await getRecommendationLists(upvotedRecommendations);
+    lists['bucketRecommendations'] = await getRecommendationLists(bucketRecommendations);
+
+    return lists;
+}
+
+
+
 // @desc Get users all recommendation lists from database
 // @route GET /api/recommend/lists
 export const getUsersRecommendationLists = asyncHandlers(async (req, res) => {
@@ -90,15 +106,25 @@ export const getUsersRecommendationLists = asyncHandlers(async (req, res) => {
         throw new Error('User not found!');
     }
 
-    const uploadedRecommendations = user.recommendations;
-    const upvotedRecommendations = user.upvotedRecommendations;
-    const bucketRecommendations = user.bucket;
+    const lists = await createUsersRecommendationLists(user);
 
-    let lists = {};
+    res.send(lists);
 
-    lists['uploadedRecommendations'] = await getRecommendationLists(uploadedRecommendations);
-    lists['upvotedRecommendations'] = await getRecommendationLists(upvotedRecommendations);
-    lists['bucketRecommendations'] = await getRecommendationLists(bucketRecommendations);
+});
+
+// @desc Get users all recommendation lists by Id from database 
+// @route GET /api/recommend/lists/u/:id
+export const getUsersRecommendationListsById = asyncHandlers(async (req, res) => {
+
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found!');
+    }
+
+    const lists = await createUsersRecommendationLists(user);
 
     res.send(lists);
 

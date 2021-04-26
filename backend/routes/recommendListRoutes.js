@@ -10,6 +10,7 @@ import {
     createRecommendList,
     getRecommendationList,
     getUsersRecommendationLists,
+    getUsersRecommendationListsById,
     removeUpvoteFromRecommendationList,
     upvoteRecommendationList,
 } from '../controllers/recommendListControllers.js';
@@ -17,6 +18,7 @@ import {
 recommendListRouter.post('/create', protect, createRecommendList);
 recommendListRouter.get('/list/:id', protect, getRecommendationList);
 recommendListRouter.get('/lists', protect, getUsersRecommendationLists);
+recommendListRouter.get('/lists/u/:id', protect, getUsersRecommendationListsById);
 recommendListRouter.put('/list/upvote/:id', protect, upvoteRecommendationList);
 recommendListRouter.put('/list/removeUpvote/:id', protect, removeUpvoteFromRecommendationList);
 recommendListRouter.put('/list/bucket/:id', protect, addRecommendListToBucket);
