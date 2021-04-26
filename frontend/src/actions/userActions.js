@@ -3,6 +3,7 @@ import {
     USER_SESSION_REQUEST,
     USER_SESSION_SUCCESS,
     USER_SESSION_FAIL,
+    USER_SESSION_RESET,
 
     USER_PROFILE_TOGGLE_REQUEST,
     USER_PROFILE_TOGGLE_RESET,
@@ -12,7 +13,11 @@ import {
     USER_LOGOUT_FAIL,
 
 } from '../constants/userConstants';
+
+import { FETCH_USERS_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
+
 import axios from 'axios';
+
 
 export const userSession = () => async (dispatch) => {
 
@@ -66,12 +71,20 @@ export const userLogout = () => async (dispatch) => {
         localStorage.removeItem('userInfo');
 
         dispatch({
+            type: USER_SESSION_RESET,
+        });
+
+        dispatch({
+            type: FETCH_USERS_RECOMMEND_LIST_RESET,
+        })
+
+        dispatch({
             type: USER_LOGOUT_SUCCESS,
         });
 
     } catch (err) {
         dispatch({
-            type: USER_SESSION_FAIL,
+            type: USER_LOGOUT_FAIL,
             payload: err.response && err.response.data.message
                 ? err.response.data.message
                 : err.message
