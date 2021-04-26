@@ -21,11 +21,9 @@ const ProfileScreen = ({history}) => {
     
       if(!user){
         history.push('/login');
+      }else{
+        dispatch(fetchRecommendation());
       }
-
-      console.log('In useEffect');
-      dispatch(fetchRecommendation());
-
 
     }, [user, history, dispatch]);
 

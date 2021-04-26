@@ -1,0 +1,26 @@
+.profile-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1rem;
+  color: #576574;
+}
+
+.profile-tabs .active {
+  color: black;
+  border-bottom: 4px solid #0984e3;
+}
+
+.profile-tabs .tab {
+  cursor: pointer;
+  font-size: 1.065rem;
+  padding-bottom: 0.3rem;
+}
+
+.profile-tabs .tab:not(:first-child) {
+  margin-left: 2rem;
+}
+/*# sourceMappingURL=profileTabs.css.map */

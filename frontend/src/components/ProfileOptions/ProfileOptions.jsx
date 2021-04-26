@@ -24,7 +24,10 @@ const ProfileOptions = () => {
                 <div className="hr"></div>
 
                 {
-                    user ? (<div className="profile-logout" onClick={() => dispatch(userLogout())}>
+                    user ? (<div className="profile-logout" onClick={() => {
+                        dispatch(userLogout());
+                        dispatch(userProfileToggleReset());
+                    }}>
                     <p>Logout</p>
                     <IoLogOutOutline className='icon' />
                 </div>) : ( <Link to='/login' className="profile-login" onClick={() => dispatch(userProfileToggleReset())}>

@@ -10,6 +10,7 @@
     border: 1px solid #ddd;
     font-size: 0.95rem;
     font-weight: 500;
+    border-radius: 5px;
     
     .profile-options{
         cursor: pointer;
@@ -31,7 +32,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 0.1rem;
+            margin-top: 0.2rem;
 
             .icon{
                 padding-left: 0.4rem;

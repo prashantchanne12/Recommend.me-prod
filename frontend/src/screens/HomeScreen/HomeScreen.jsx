@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-// dispatch user session
+import { useSelector, useDispatch } from 'react-redux';
+import { userSession } from '../../actions/userActions';
 
 function HomeScreen() { 
+
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state.userSession);
+
+    useEffect(() => {
+        if(!user){
+            dispatch(userSession());
+        }
+    }, [user, dispatch]);
+
+
     return (
         <>
             <div className="container-md">

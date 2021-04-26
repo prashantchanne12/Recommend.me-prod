@@ -1,0 +1,34 @@
+.alert-message-container {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  text-align: center;
+  background: #fff;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.alert-message-container .alert-message {
+  border-top: 1px solid rgba(221, 221, 221, 0.568);
+  border-right: 1px solid rgba(221, 221, 221, 0.568);
+  border-bottom: 1px solid rgba(221, 221, 221, 0.568);
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.5rem 1rem;
+}
+
+.alert-message-container .alert-message p {
+  padding-left: 0.5rem;
+  font-weight: 500;
+}
+/*# sourceMappingURL=alert.css.map */

@@ -40,7 +40,7 @@ function LoginScreen({history}) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default LoginScreen;

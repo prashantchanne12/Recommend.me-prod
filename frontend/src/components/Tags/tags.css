@@ -1,0 +1,23 @@
+.tags-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.tags-container .tag {
+  padding: 0.15rem 0.25rem;
+  border-radius: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.tags-container .tag .tag-name {
+  font-size: 0.72rem;
+  color: #fff;
+}
+/*# sourceMappingURL=tags.css.map */
