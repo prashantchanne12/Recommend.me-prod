@@ -7,6 +7,10 @@ import {
     USER_PROFILE_TOGGLE_REQUEST,
     USER_PROFILE_TOGGLE_RESET,
 
+    USER_LOGOUT_REQUEST,
+    USER_LOGOUT_SUCCESS,
+    USER_LOGOUT_FAIL,
+
 } from '../constants/userConstants';
 import axios from 'axios';
 
@@ -48,4 +52,29 @@ export const userProfileToggleReset = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_RESET,
     });
+}
+
+export const userLogout = () => async (dispatch) => {
+
+    try {
+
+        dispatch({
+            type: USER_LOGOUT_REQUEST,
+        });
+
+        await axios.get('/auth/logout');
+        localStorage.removeItem('userInfo');
+
+        dispatch({
+            type: USER_LOGOUT_SUCCESS,
+        });
+
+    } catch (err) {
+        dispatch({
+            type: USER_SESSION_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        })
+    }
 }

@@ -8,6 +8,10 @@ import {
     USER_PROFILE_TOGGLE_REQUEST,
     USER_PROFILE_TOGGLE_RESET,
 
+    USER_LOGOUT_REQUEST,
+    USER_LOGOUT_SUCCESS,
+    USER_LOGOUT_FAIL,
+
 } from '../constants/userConstants';
 
 const INIT_STATE = {
@@ -75,6 +79,38 @@ export const userProfileToggleReducer = (state = { toggle: null }, action) => {
 
         default: return state
 
+    }
+
+}
+
+export const userLogoutReducer = (state = { error: null, loading: null }, action) => {
+
+    switch (action.type) {
+
+        case USER_LOGOUT_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case USER_LOGOUT_SUCCESS: {
+            return {
+                ...state,
+                error: null,
+                loading: null,
+            }
+        }
+
+        case USER_LOGOUT_FAIL: {
+            return {
+                ...state,
+                error: action.payload,
+                loading: null,
+            }
+        }
+
+        default: return state
     }
 
 }

@@ -3,7 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
-import { userProfileToggleReducer, userSessionReducer } from './reducers/userReducers';
+import {
+    userLogoutReducer,
+    userProfileToggleReducer,
+    userSessionReducer
+} from './reducers/userReducers';
 import {
     addRecommendationReducer,
     fetchUserRecommendListsReducer
@@ -19,6 +23,7 @@ const reducer = combineReducers({
     addRecommendation: addRecommendationReducer,
     userRecommendations: fetchUserRecommendListsReducer,
     userProfileToggle: userProfileToggleReducer,
+    userLogout: userLogoutReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
