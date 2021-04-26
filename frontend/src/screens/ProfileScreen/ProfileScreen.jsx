@@ -11,8 +11,7 @@ const ProfileScreen = ({history}) => {
 
     const dispatch = useDispatch();
 
-    const userSession = useSelector(state => state.userSession);
-    const {user} = userSession;
+    const {user} = useSelector(state => state.mySession);
 
     const userRecommendation = useSelector(state => state.userRecommendations);
     const {loading} = userRecommendation;

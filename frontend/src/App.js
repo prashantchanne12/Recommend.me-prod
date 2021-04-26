@@ -7,7 +7,7 @@ import Layout from './components/Layout/Layout';
 import CreateRecommendationScreen from './screens/CreateRecommendationScreen/CreateRecommendationScreen';
 import UserProfile from './screens/UserProfile/UserProfile';
 
-import { userSession } from './actions/userActions';
+import { mySession } from './actions/userActions';
 import { useDispatch } from 'react-redux';
 
 
@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userSession());
+    dispatch(mySession());
   }, [dispatch]);
 
   return (

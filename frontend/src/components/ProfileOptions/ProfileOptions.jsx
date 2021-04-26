@@ -11,7 +11,7 @@ import { userProfileToggleReset, userLogout } from '../../actions/userActions';
 const ProfileOptions = () => {
 
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.userSession);
+    const { user } = useSelector(state => state.mySession);
 
     return (
         <>

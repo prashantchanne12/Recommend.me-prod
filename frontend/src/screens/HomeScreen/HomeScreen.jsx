@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { userSession } from '../../actions/userActions';
+import { mySession } from '../../actions/userActions';
 
 function HomeScreen() { 
 
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.userSession);
+    const { user } = useSelector(state => state.mySession);
 
     useEffect(() => {
         if(!user){
-            dispatch(userSession());
+            dispatch(mySession());
         }
     }, [user, dispatch]);
 

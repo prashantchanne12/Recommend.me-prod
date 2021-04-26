@@ -9,7 +9,7 @@ import {
 
 } from '../constants/recommendConstants';
 
-import { userSession } from './userActions';
+import { mySession } from './userActions';
 import axios from 'axios';
 
 export const addRecommendAction = (body) => async (dispatch) => {
@@ -35,7 +35,7 @@ export const addRecommendAction = (body) => async (dispatch) => {
             payload: data,
         });
 
-        dispatch(userSession());
+        dispatch(mySession());
 
     } catch (err) {
         dispatch({

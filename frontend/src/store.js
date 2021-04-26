@@ -4,10 +4,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import {
+    mySessionReducer,
     userLogoutReducer,
     userProfileReducer,
     userProfileToggleReducer,
-    userSessionReducer
 } from './reducers/userReducers';
 import {
     addRecommendationReducer,
@@ -20,7 +20,7 @@ import { alertMessageReducer } from './reducers/alertReducer';
 const reducer = combineReducers({
     loader: loadingReducer,
     alertMessage: alertMessageReducer,
-    userSession: userSessionReducer,
+    mySession: mySessionReducer,
     userProfile: userProfileReducer,
     addRecommendation: addRecommendationReducer,
     userRecommendations: fetchUserRecommendListsReducer,

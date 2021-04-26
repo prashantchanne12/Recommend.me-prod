@@ -6,9 +6,8 @@ import { useSelector } from 'react-redux';
 
 function LoginScreen({history}) {
 
-    const userSession = useSelector(state => state.userSession);
-    const {user} = userSession;
-
+    const {user} = useSelector(state => state.mySession);
+ 
     useEffect(() => {
         if(user){
             history.push('/');
