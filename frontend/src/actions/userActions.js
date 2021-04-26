@@ -97,12 +97,31 @@ export const userLogout = () => async (dispatch) => {
     }
 }
 
-const userProfile = (id) => async (dispatch) => {
+export const userProfile = (id) => async (dispatch) => {
 
-    dispatch({
-        type: USER_PROFILE_REQUEST
-    });
+    try {
 
+        dispatch({
+            type: USER_PROFILE_REQUEST
+        });
+
+        const { data } = await axios.get(`/api/user/profile/u/${id}`);
+
+        dispatch({
+            type: USER_PROFILE_SUCCESS,
+            payload: data,
+        });
+
+    } catch (err) {
+
+        dispatch({
+            type: USER_PROFILE_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        });
+
+    }
 
 
 }

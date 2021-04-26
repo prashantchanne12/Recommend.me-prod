@@ -12,6 +12,11 @@ import {
     USER_LOGOUT_SUCCESS,
     USER_LOGOUT_FAIL,
 
+    USER_PROFILE_REQUEST,
+    USER_PROFILE_SUCCESS,
+    USER_PROFILE_FAIL,
+    USER_PROFILE_RESET,
+
 } from '../constants/userConstants';
 
 const INIT_STATE = {
@@ -111,6 +116,40 @@ export const userLogoutReducer = (state = { error: null, loading: null }, action
         }
 
         default: return state
+    }
+
+}
+
+export const userProfileReducer = (state = { loading: null, user: null, error: null }, action) => {
+
+    switch (action.type) {
+
+        case USER_PROFILE_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case USER_PROFILE_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                user: action.payload,
+            }
+        }
+
+        case USER_PROFILE_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                user: null,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
     }
 
 }

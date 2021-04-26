@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers
 import {
     userLogoutReducer,
+    userProfileReducer,
     userProfileToggleReducer,
     userSessionReducer
 } from './reducers/userReducers';
@@ -20,6 +21,7 @@ const reducer = combineReducers({
     loader: loadingReducer,
     alertMessage: alertMessageReducer,
     userSession: userSessionReducer,
+    userProfile: userProfileReducer,
     addRecommendation: addRecommendationReducer,
     userRecommendations: fetchUserRecommendListsReducer,
     userProfileToggle: userProfileToggleReducer,
