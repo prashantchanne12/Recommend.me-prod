@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userProfile } from '../../actions/userActions';
 import { fetchUserRecommendations } from '../../actions/recommendActions';
 
-const UserProfile = ({match}) => {
+const UserProfile = ({match, history}) => {
 
     const dispatch = useDispatch();
-    const {user} = useSelector(state => state.userProfile);
+    const {user, error} = useSelector(state => state.userProfile);
     const {lists} = useSelector(state => state.userRecommendations)
 
     useEffect(() => {
@@ -20,7 +20,12 @@ const UserProfile = ({match}) => {
         if(!lists){
             dispatch(fetchUserRecommendations(match.params.userId));
         }
+
     },[dispatch, match, user, lists]);
+
+    if(error){
+        history.push('/profile');
+    }
 
     return user ? (
         <>
@@ -35,7 +40,7 @@ const UserProfile = ({match}) => {
            </div>
         </div>
      </>
-    ) : <div className="container">Loading Profile...</div>
+    ) : error ? <div className="container">{error}</div> : <div className="container">Loading Profile...</div>
 }
 
 export default UserProfile;
