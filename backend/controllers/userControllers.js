@@ -38,26 +38,26 @@ export const getUserProfileById = asyncHandler(async (req, res) => {
 export const followUser = asyncHandler(async (req, res) => {
 
     const id = req.params.id;
-    const userId = req.params.id;
+    const currentUserId = req.user._id;
 
     const followUser = await User.findById(id);
-    const currentUser = await User.findById(userId);
+    const currentUser = await User.findById(currentUserId);
 
     if (followUser && currentUser) {
 
-        // Add followUser id in current user's followings
-        currentUser.followings = [...currentUser.followings, id];
-        const newCurrentUser = await currentUser.save();
+        // add the current user's id in follow user's followers
+        followUser.followers.push(currentUserId);
+        await followUser.save();
 
-        // Add current user's id in followUser followers
-        followUser.followers = [...followUser.followers, userId]
-        const newFollowUser = await followUser.save();
+        // add the follow user's id in current user's followings
+        currentUser.followings.push(id);
+        const newUser = await currentUser.save();
 
-        if (newCurrentUser && newFollowUser) {
-            res.status(newCurrentUser);
+        if (newUser) {
+            res.send(newUser);
         } else {
             res.status(500);
-            throw new Error('Error while adding follower & followings!');
+            throw new Error('Error while updating follow')
         }
 
     } else {
@@ -72,26 +72,26 @@ export const followUser = asyncHandler(async (req, res) => {
 export const unfollowUser = asyncHandler(async (req, res) => {
 
     const id = req.params.id;
-    const userId = req.params.id;
+    const currentUserId = req.user._id;
 
     const unfollowUser = await User.findById(id);
-    const currentUser = await User.findById(userId);
+    const currentUser = await User.findById(currentUserId);
 
     if (unfollowUser && currentUser) {
 
-        // Remove followUser id from the current user's followings
+        // remove current user's id from the follow user's followers
+        unfollowUser.followers.splice(currentUserId, 1);
+        await unfollowUser.save();
+
+        // remove follow user's id from the current user's followings
         currentUser.followings.splice(id, 1);
-        const newCurrentUser = await currentUser.save();
+        const newUser = await currentUser.save();
 
-        // Remove current user's id from the unfollowUser followers
-        followUser.followers.splice(userId, 1)
-        const newFollowUser = await followUser.save();
-
-        if (newCurrentUser && newFollowUser) {
-            res.status(newCurrentUser);
+        if (newUser) {
+            res.send(newUser);
         } else {
             res.status(500);
-            throw new Error('Error while removing follower & followings!');
+            throw new Error('Error while updating unfollow');
         }
 
     } else {

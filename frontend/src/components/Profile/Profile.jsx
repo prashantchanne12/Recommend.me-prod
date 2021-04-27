@@ -2,15 +2,21 @@ import React from 'react';
 import './profile.scss';
 import {BiLink, BiUnlink} from 'react-icons/bi';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { followUser } from '../../actions/userActions';
 
 const Profile = ({user}) => {
 
+    const dispatch = useDispatch();
     const mySession = useSelector(state => state.mySession);
     const currentUser = mySession.user;
+    let isUserProfile = null;
+    let amIFollowing = null;
 
-    const isUserProfile =  currentUser._id !== user._id;
-    const amIFollowing = currentUser.followings.find(id => id === user._id);
+    if (currentUser && user){
+        isUserProfile =  currentUser._id !== user._id;
+        amIFollowing = currentUser.followings.find(id => id === user._id);
+    }
 
     return user ? (
         <>
@@ -57,7 +63,7 @@ const Profile = ({user}) => {
                             ): (
                                 <div className="connect" style={{
                                     color: '#0984e3'
-                                }}>
+                                }} onClick={() => dispatch(followUser(user._id))}>
                                     <p>Connect</p>
                                     <BiLink className='icon' />
                                 </div>

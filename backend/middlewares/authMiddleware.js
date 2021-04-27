@@ -9,7 +9,7 @@ export const protect = asyncHandler(async (req, res, next) => {
     // }
 
     // POSTMAN TESTING
-    const user = await User.findById('608665aaef1be0753483d7cc');
+    const user = await User.findById('6087adb792b80f747894ff56');
 
     req.user = user;
 
