@@ -16,6 +16,14 @@ import {
     USER_PROFILE_SUCCESS,
     USER_PROFILE_FAIL,
 
+    USER_FOLLOW_REQUEST,
+    USER_FOLLOW_SUCCESS,
+    USER_FOLLOW_FAIL,
+
+    USER_UNFOLLOW_REQUEST,
+    USER_UNFOLLOW_SUCCESS,
+    USER_UNFOLLOW_FAIL,
+
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
@@ -121,6 +129,29 @@ export const userProfile = (id) => async (dispatch) => {
         });
 
     }
+}
 
+export const followUser = (id) => async (dispatch) => {
+    try {
 
+        dispatch({
+            type: USER_FOLLOW_REQUEST
+        });
+
+        await axios.get(`/api/user/follow/${id}`);
+
+        dispatch({
+            type: USER_FOLLOW_SUCCESS
+        });
+
+        dispatch(mySession());
+
+    } catch (err) {
+        dispatch({
+            type: USER_FOLLOW_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        });
+    }
 }

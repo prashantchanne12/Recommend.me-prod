@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import {
+    followUserReducer,
     mySessionReducer,
     profileToggleReducer,
     userLogoutReducer,
@@ -30,6 +31,7 @@ const reducer = combineReducers({
 
     userProfile: userProfileReducer,
     userRecommendations: fetchUserRecommendListReducer,
+    userFollow: followUserReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

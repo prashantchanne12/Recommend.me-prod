@@ -35,7 +35,7 @@ const UserProfile = ({match}) => {
            </div>
         </div>
      </>
-    ) : <div>Loading...</div>
+    ) : <div className="container">Loading Profile...</div>
 }
 
 export default UserProfile;

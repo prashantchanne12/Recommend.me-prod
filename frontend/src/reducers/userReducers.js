@@ -16,6 +16,10 @@ import {
     USER_PROFILE_SUCCESS,
     USER_PROFILE_FAIL,
 
+    USER_FOLLOW_REQUEST,
+    USER_FOLLOW_SUCCESS,
+    USER_FOLLOW_FAIL
+
 } from '../constants/userConstants';
 
 const INIT_STATE = {
@@ -144,6 +148,37 @@ export const userProfileReducer = (state = { loading: null, user: null, error: n
                 ...state,
                 loading: false,
                 user: null,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
+    }
+
+}
+
+export const followUserReducer = (state = { error: null, loading: null }, action) => {
+
+    switch (action.type) {
+
+        case USER_FOLLOW_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case USER_FOLLOW_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+            }
+        }
+
+        case USER_FOLLOW_FAIL: {
+            return {
+                ...state,
+                loading: false,
                 error: action.payload,
             }
         }

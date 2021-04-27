@@ -2,8 +2,15 @@ import React from 'react';
 import './profile.scss';
 import {BiLink, BiUnlink} from 'react-icons/bi';
 
+import { useSelector } from 'react-redux';
+
 const Profile = ({user}) => {
 
+    const mySession = useSelector(state => state.mySession);
+    const currentUser = mySession.user;
+
+    const isUserProfile =  currentUser._id !== user._id;
+    const amIFollowing = currentUser.followings.find(id => id === user._id);
 
     return user ? (
         <>
@@ -32,21 +39,34 @@ const Profile = ({user}) => {
                         <p className='count-number'>{user.followers.length}</p>
                     </div>
                 </div>
-                <div className="follow-unfollow">
-                   <div className='hr' />
-                    <div className="connect" style={{
-                        color: '#0984e3'
-                    }}>
-                        <p>Connect</p>
-                        <BiLink className='icon' />
-                    </div>
-                    <div className="connect" style={{
-                        color: '#d63031'
-                    }}>
-                        <p>Disconnect</p>
-                        <BiUnlink className='icon' />
-                    </div>
-                </div>
+                {
+
+                   isUserProfile ? (
+                        <div className="follow-unfollow">
+                        <div className='hr' />
+                         
+                         {
+
+                            amIFollowing ? (
+                                <div className="connect" style={{
+                                    color: '#d63031'
+                                }}>
+                                    <p>Disconnect</p>
+                                    <BiUnlink className='icon' />
+                                </div>
+                            ): (
+                                <div className="connect" style={{
+                                    color: '#0984e3'
+                                }}>
+                                    <p>Connect</p>
+                                    <BiLink className='icon' />
+                                </div>
+                            )
+
+                         }
+                     </div>
+                    ) : null
+                }
             </div>
         </>
     ): <p>Loading...</p>;
