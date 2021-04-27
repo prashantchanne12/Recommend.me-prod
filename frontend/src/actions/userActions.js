@@ -140,11 +140,12 @@ export const followUser = (id) => async (dispatch) => {
 
         await axios.put(`/api/user/follow/${id}`);
 
-        dispatch(mySession());
-
         dispatch({
             type: USER_FOLLOW_SUCCESS
         });
+
+        dispatch(userProfile(id));
+        dispatch(mySession());
 
 
     } catch (err) {

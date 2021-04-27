@@ -15,7 +15,7 @@ const Profile = ({user}) => {
 
     if (currentUser && user){
         isUserProfile =  currentUser._id !== user._id;
-        amIFollowing = currentUser.followings.find(id => id === user._id);
+        amIFollowing = user.followers.find(id => id === currentUser._id);
     }
 
     return user ? (
@@ -38,7 +38,7 @@ const Profile = ({user}) => {
                     </div>
                     <div className="count">
                         <p>Following</p>
-                        <p className='count-number'>{user.followings.length}</p>
+                        <p className='count-number'>{ user.followings.length}</p>
                     </div>
                     <div className="count">
                         <p>Followers</p>
