@@ -161,3 +161,33 @@ export const followUser = (id) => async (dispatch) => {
         });
     }
 }
+
+export const unfollowUser = (id) => async (dispatch) => {
+    try {
+
+        dispatch(loadingStartAction());
+
+        dispatch({
+            type: USER_UNFOLLOW_REQUEST
+        });
+
+        await axios.put(`/api/user/unfollow/${id}`);
+
+        dispatch({
+            type: USER_UNFOLLOW_SUCCESS
+        });
+
+        dispatch(userProfile(id));
+        dispatch(loadingEndAction());
+        dispatch(mySession());
+
+
+    } catch (err) {
+        dispatch({
+            type: USER_UNFOLLOW_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        });
+    }
+}

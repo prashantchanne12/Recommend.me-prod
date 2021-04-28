@@ -18,7 +18,12 @@ import {
 
     USER_FOLLOW_REQUEST,
     USER_FOLLOW_SUCCESS,
-    USER_FOLLOW_FAIL
+    USER_FOLLOW_FAIL,
+    
+    USER_UNFOLLOW_REQUEST,
+    USER_UNFOLLOW_SUCCESS,
+    USER_UNFOLLOW_FAIL,
+
 
 } from '../constants/userConstants';
 
@@ -176,6 +181,37 @@ export const followUserReducer = (state = { error: null, loading: null }, action
         }
 
         case USER_FOLLOW_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
+    }
+
+}
+
+export const unfollowUserReducer = (state = { error: null, loading: null }, action) => {
+
+    switch (action.type) {
+
+        case USER_UNFOLLOW_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case USER_UNFOLLOW_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+            }
+        }
+
+        case USER_UNFOLLOW_FAIL: {
             return {
                 ...state,
                 loading: false,

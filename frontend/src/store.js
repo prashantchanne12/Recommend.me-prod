@@ -7,6 +7,7 @@ import {
     followUserReducer,
     mySessionReducer,
     profileToggleReducer,
+    unfollowUserReducer,
     userLogoutReducer,
     userProfileReducer,
 } from './reducers/userReducers';
@@ -32,6 +33,7 @@ const reducer = combineReducers({
     userProfile: userProfileReducer,
     userRecommendations: fetchUserRecommendListReducer,
     userFollow: followUserReducer,
+    userUnfollow: unfollowUserReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

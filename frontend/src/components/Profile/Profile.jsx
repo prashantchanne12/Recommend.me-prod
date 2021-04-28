@@ -3,9 +3,9 @@ import './profile.scss';
 import {BiLink, BiUnlink} from 'react-icons/bi';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { followUser } from '../../actions/userActions';
+import { followUser, unfollowUser } from '../../actions/userActions';
 
-const Profile = ({user, loading}) => {
+const Profile = ({user, followLoading, unfollowLoading}) => {
 
     const dispatch = useDispatch();
     const mySession = useSelector(state => state.mySession);
@@ -49,7 +49,7 @@ const Profile = ({user, loading}) => {
 
                    isUserProfile ? (
                         <div className="follow-unfollow" style={{
-                            cursor: loading ? 'progress' : 'pointer'
+                            cursor: followLoading || unfollowLoading ? 'progress' : 'pointer'
                         }}>
                         <div className='hr' />
                          
@@ -58,7 +58,7 @@ const Profile = ({user, loading}) => {
                             amIFollowing ? (
                                 <div className="connect" style={{
                                     color: '#d63031'
-                                }}>
+                                }} onClick={() => dispatch(unfollowUser(user._id))}>
                                     <p>Disconnect</p>
                                     <BiUnlink className='icon' />
                                 </div>

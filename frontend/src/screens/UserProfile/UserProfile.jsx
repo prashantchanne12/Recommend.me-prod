@@ -10,7 +10,8 @@ const UserProfile = ({match, history}) => {
 
     const dispatch = useDispatch();
     const {user, error} = useSelector(state => state.userProfile);
-    const {loading} = useSelector(state => state.userFollow);
+    const {loading : followLoading} = useSelector(state => state.userFollow);
+    const {loading: unfollowLoading} = useSelector(state => state.userUnfollow);
     const mySession = useSelector(state => state.mySession);
     const currentUser = mySession.user;
     const {lists} = useSelector(state => state.userRecommendations)
@@ -46,7 +47,7 @@ const UserProfile = ({match, history}) => {
               <ProfileTabs lists={lists}/>
              </div>
              <div className="column profile-container">
-              <Profile user={user} loading={loading} />
+              <Profile user={user} followLoading={followLoading} unfollowLoading={unfollowLoading} />
              </div>
            </div>
         </div>
