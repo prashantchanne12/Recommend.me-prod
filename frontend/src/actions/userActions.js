@@ -27,6 +27,7 @@ import {
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
+import { loadingStartAction, loadingEndAction } from '../actions/loadingActions';
 
 import axios from 'axios';
 
@@ -134,6 +135,8 @@ export const userProfile = (id) => async (dispatch) => {
 export const followUser = (id) => async (dispatch) => {
     try {
 
+        dispatch(loadingStartAction());
+
         dispatch({
             type: USER_FOLLOW_REQUEST
         });
@@ -145,6 +148,7 @@ export const followUser = (id) => async (dispatch) => {
         });
 
         dispatch(userProfile(id));
+        dispatch(loadingEndAction());
         dispatch(mySession());
 
 
