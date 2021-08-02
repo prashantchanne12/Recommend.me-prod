@@ -41,6 +41,8 @@ app.use('/auth', authRouter);
 app.use('/api/recommend', recommendListRouter);
 app.use('/api/user', userRoutes);
 
+// import './streams/feed.js';
+
 // Serving static files
 const __dirname = path.resolve();
 

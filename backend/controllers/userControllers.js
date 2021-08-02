@@ -46,18 +46,26 @@ export const followUser = asyncHandler(async (req, res) => {
     if (followUser && currentUser) {
 
         // add the current user's id in follow user's followers
-        followUser.followers.push(currentUserId);
-        await followUser.save();
+        if (!followUser.followers.includes(currentUserId)) {
+            followUser.followers.push(currentUserId);
+            await followUser.save();
+        } else {
+            throw new Error('User already followed!');
+        }
 
         // add the follow user's id in current user's followings
-        currentUser.followings.push(id);
-        const newUser = await currentUser.save();
+        if (!currentUser.followings.includes(id)) {
+            currentUser.followings.push(id);
+            const newUser = await currentUser.save();
 
-        if (newUser) {
-            res.send(newUser);
+            if (newUser) {
+                res.send(newUser);
+            } else {
+                res.status(500);
+                throw new Error('Error while updating follow')
+            }
         } else {
-            res.status(500);
-            throw new Error('Error while updating follow')
+            throw new Error('User already followed!');
         }
 
     } else {
