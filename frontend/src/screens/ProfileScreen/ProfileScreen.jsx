@@ -5,7 +5,6 @@ import Profile from '../../components/Profile/Profile';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMyRecommendations } from '../../actions/recommendActions';
-import { loadingEndAction } from '../../actions/loadingActions';
 
 const ProfileScreen = ({history}) => {
 
@@ -14,22 +13,18 @@ const ProfileScreen = ({history}) => {
     const {user} = useSelector(state => state.mySession);
     const {lists} = useSelector(state => state.myRecommendations);
 
-    const myRecommendations = useSelector(state => state.myRecommendations);
-    const {loading} = myRecommendations;
-
     useEffect(() => {
     
       if(!user){
         history.push('/login');
       }else{
-        dispatch(fetchMyRecommendations());
+        if(!lists){
+          dispatch(fetchMyRecommendations());
+        }
       }
 
-    }, [user, history, dispatch]);
+    }, [user, history, dispatch, lists]);
 
-    if(!loading){
-      dispatch(loadingEndAction());
-    }
 
     return (
         <>

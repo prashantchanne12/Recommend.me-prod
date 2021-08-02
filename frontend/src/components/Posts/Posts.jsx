@@ -9,8 +9,6 @@ const Posts = ({props}) => {
 
     const { width } = useWindowDimensions();
 
-    console.log(width);
-
     return props ? (
         <>
             <div className="posts-container">

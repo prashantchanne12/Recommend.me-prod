@@ -14,6 +14,8 @@ import {
 } from '../constants/recommendConstants';
 
 import { mySession } from './userActions';
+import { loadingStartAction, loadingEndAction } from './loadingActions';
+
 import axios from 'axios';
 
 export const addRecommendAction = (body) => async (dispatch) => {
@@ -21,6 +23,7 @@ export const addRecommendAction = (body) => async (dispatch) => {
         dispatch({
             type: ADD_RECOMMEND_LIST_REQUEST
         });
+        dispatch(loadingStartAction());
 
         const config = {
             headers: {
@@ -38,6 +41,7 @@ export const addRecommendAction = (body) => async (dispatch) => {
             type: ADD_RECOMMEND_LIST_SUCCESS,
             payload: data,
         });
+        dispatch(loadingEndAction());
 
         dispatch(mySession());
 
@@ -59,6 +63,7 @@ export const fetchMyRecommendations = () => async (dispatch) => {
         dispatch({
             type: FETCH_MY_RECOMMEND_LIST_REQUEST,
         });
+        dispatch(loadingStartAction());
 
         const { data } = await axios.get(`/api/recommend/lists`);
 
@@ -66,6 +71,7 @@ export const fetchMyRecommendations = () => async (dispatch) => {
             type: FETCH_MY_RECOMMEND_LIST_SUCCESS,
             payload: data,
         });
+        dispatch(loadingEndAction());
 
     } catch (err) {
         dispatch({
@@ -86,6 +92,7 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
         dispatch({
             type: FETCH_USER_RECOMMEND_LIST_REQUEST
         });
+        dispatch(loadingStartAction());
 
         const { data } = await axios.get(`/api/recommend/lists/u/${id}`);
 
@@ -93,6 +100,7 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
             type: FETCH_USER_RECOMMEND_LIST_SUCCESS,
             payload: data,
         });
+        dispatch(loadingEndAction());
 
     } catch (err) {
         dispatch({

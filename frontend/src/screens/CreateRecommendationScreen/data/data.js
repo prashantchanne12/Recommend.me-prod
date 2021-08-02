@@ -16,6 +16,7 @@ export const colourOptions = [
     { value: 'Authors', label: 'Authors', color: '#d63031' },
     { value: 'Gear', label: 'Gear', color: '#6c5ce7' },
     { value: 'Actors', label: 'Actors', color: '#ED4C67' },
+    { value: 'Netflix', label: 'Netflix', color: '#E50914' },
     { value: 'Documentry', label: 'Documentry', color: '#B53471' },
     { value: 'ShortFilms', label: 'ShortFilms', color: '#ff793f' },
 ];

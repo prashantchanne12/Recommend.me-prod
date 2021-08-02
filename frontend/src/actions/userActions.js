@@ -40,7 +40,8 @@ export const mySession = () => async (dispatch) => {
             type: MY_SESSION_REQUEST,
         });
 
-        const { data } = await axios.get('/api/user/profile');
+        // const { data } = await axios.get('/api/user/currentUser');
+        const { data } = await axios.get('/auth/currentUser');
 
         localStorage.setItem('userInfo', JSON.stringify(data));
 
