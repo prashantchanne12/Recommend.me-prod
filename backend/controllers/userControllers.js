@@ -123,15 +123,24 @@ export const unfollowUser = asyncHandler(async (req, res) => {
     const unfollowUser = await User.findById(id);
     const currentUser = await User.findById(currentUserId);
 
+    const unfollow1 = await UserFollowings.findOne({ userId: currentUserId });
+    const unfollow2 = await UserFollowers.findOne({ userId: id });
+
     if (unfollowUser && currentUser) {
 
         // remove current user's id from the follow user's followers
         unfollowUser.followers.splice(currentUserId, 1);
         await unfollowUser.save();
 
+        unfollow2.followers.splice(currentUserId, 1);
+        await unfollow2.save();
+
         // remove follow user's id from the current user's followings
         currentUser.followings.splice(id, 1);
         const newUser = await currentUser.save();
+
+        unfollow1.followings.splice(id, 1);
+        await unfollow1.save();
 
         if (newUser) {
             res.send(newUser);
