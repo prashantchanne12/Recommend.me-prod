@@ -23,7 +23,10 @@ recommendListRouter.get('/lists/u/:id', protect, getUsersRecommendationListsById
 recommendListRouter.put('/list/upvote/:id', protect, upvoteRecommendationList);
 recommendListRouter.put('/list/removeUpvote/:id', protect, removeUpvoteFromRecommendationList);
 recommendListRouter.put('/list/bucket/:id', protect, addRecommendListToBucket);
+
+// TEMP CHECK
 recommendListRouter.delete('/list/delete/:id', protect, deleteRecommendList);
+
 
 
 export default recommendListRouter;

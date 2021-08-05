@@ -1,4 +1,5 @@
 import asyncHandlers from 'express-async-handler';
+import { ObjectId } from 'mongodb';
 import RecommendList from '../models/recommendListModel.js';
 import User from '../models/userModel.js';
 
@@ -284,14 +285,37 @@ export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
 
 });
 
+// TEMP CHECK
+
 // @desc Delete the recommend list
 // @route DELETE /api/recommend/list/delete/:id 
 export const deleteRecommendList = asyncHandlers(async (req, res, next) => {
 
     const id = req.params.id;
+    const user = await User.findById(req.user._id);
 
-    await RecommendList.findByIdAndDelete(id);
+    const isMyList = user.recommendations.includes(id);
 
-    res.send(`Post deleted ${id}`);
+    if (isMyList) {
 
+        if (user) {
+
+            user.recommendations.splice(id, 1);
+            var deleted = await user.save();
+
+        } else {
+            res.status(404);
+            throw new Error('User not find!');
+        }
+
+        await RecommendList.findByIdAndDelete(id);
+
+        if (deleted) {
+            res.send('deleted');
+        }
+
+    } else {
+        res.status(404);
+        throw new Error('PostId is incorrect');
+    }
 });
