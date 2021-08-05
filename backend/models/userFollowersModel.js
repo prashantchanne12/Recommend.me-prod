@@ -7,10 +7,7 @@ const userRef = {
 };
 
 const UserFollowerSchema = new mongoose.Schema({
-    userId: {
-        type: String,
-        required: true,
-    },
+    userId: userRef,
     followers: [userRef],
 }, {
     timestamps: true,

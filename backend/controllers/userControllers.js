@@ -63,7 +63,8 @@ export const followUser = asyncHandler(async (req, res) => {
                 }).save();
 
             } else {
-                await userFollowers.followers.push(currentUserId);
+                userFollowers.followers.push(currentUserId);
+                await userFollowers.save();
 
             }
 
@@ -74,6 +75,7 @@ export const followUser = asyncHandler(async (req, res) => {
 
         // add the follow user's id in current user's followings
         if (!currentUser.followings.includes(id)) {
+
             currentUser.followings.push(id);
             const newUser = await currentUser.save();
 
@@ -89,7 +91,8 @@ export const followUser = asyncHandler(async (req, res) => {
 
             } else {
 
-                await userFollowings.followings.push(id);
+                userFollowings.followings.push(id)
+                await userFollowings.save();
 
             }
 
@@ -99,7 +102,6 @@ export const followUser = asyncHandler(async (req, res) => {
                 res.status(500);
                 throw new Error('Error while updating follow')
             }
-
 
 
         } else {

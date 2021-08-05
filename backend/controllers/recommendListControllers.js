@@ -283,3 +283,15 @@ export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
     }
 
 });
+
+// @desc Delete the recommend list
+// @route DELETE /api/recommend/list/delete/:id 
+export const deleteRecommendList = asyncHandlers(async (req, res, next) => {
+
+    const id = req.params.id;
+
+    await RecommendList.findByIdAndDelete(id);
+
+    res.send(`Post deleted ${id}`);
+
+});
