@@ -1,5 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
+import UserFollowings from '../models/userFollowingModel.js';
+import UserFollowers from '../models/userFollowersModel.js';
 
 // @desc Get user profile
 // @route /api/user/profile
@@ -47,10 +49,27 @@ export const followUser = asyncHandler(async (req, res) => {
 
         // add the current user's id in follow user's followers
         if (!followUser.followers.includes(currentUserId)) {
+
             followUser.followers.push(currentUserId);
             await followUser.save();
+
+            const userFollowers = await UserFollowers.findOne({ userId: id });
+
+            if (!userFollowers) {
+
+                await new UserFollowers({
+                    userId: id,
+                    followers: [currentUserId]
+                }).save();
+
+            } else {
+                await userFollowers.followers.push(currentUserId);
+
+            }
+
+
         } else {
-            throw new Error('User already followed!');
+            throw new Error('User has already been followed!');
         }
 
         // add the follow user's id in current user's followings
@@ -58,14 +77,33 @@ export const followUser = asyncHandler(async (req, res) => {
             currentUser.followings.push(id);
             const newUser = await currentUser.save();
 
+
+            const userFollowings = await UserFollowings.findOne({ userId: id });
+
+            if (!userFollowings) {
+
+                await new UserFollowings({
+                    userId: currentUserId,
+                    followings: [id]
+                }).save();
+
+            } else {
+
+                await userFollowings.followings.push(id);
+
+            }
+
             if (newUser) {
                 res.send(newUser);
             } else {
                 res.status(500);
                 throw new Error('Error while updating follow')
             }
+
+
+
         } else {
-            throw new Error('User already followed!');
+            throw new Error('User has already been followed!');
         }
 
     } else {
