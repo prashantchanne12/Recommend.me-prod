@@ -15,14 +15,19 @@ import {
     USER_PROFILE_REQUEST,
     USER_PROFILE_SUCCESS,
     USER_PROFILE_FAIL,
+    USER_PROFILE_RESET,
+
 
     USER_FOLLOW_REQUEST,
     USER_FOLLOW_SUCCESS,
     USER_FOLLOW_FAIL,
-    
+
     USER_UNFOLLOW_REQUEST,
     USER_UNFOLLOW_SUCCESS,
     USER_UNFOLLOW_FAIL,
+
+    INBOX_TOGGLE_REQUEST,
+    INBOX_TOGGLE_RESET,
 
 
 } from '../constants/userConstants';
@@ -96,6 +101,31 @@ export const profileToggleReducer = (state = { toggle: null }, action) => {
 
 }
 
+export const inboxToggleReducer = (state = { toggle: null }, action) => {
+
+    switch (action.type) {
+
+
+        case INBOX_TOGGLE_REQUEST: {
+            return {
+                ...state,
+                toggle: true
+            }
+        }
+
+        case INBOX_TOGGLE_RESET: {
+            return {
+                ...state,
+                toggle: false
+            }
+        }
+
+        default: return state;
+
+    }
+
+}
+
 export const userLogoutReducer = (state = { error: null, loading: null }, action) => {
 
     switch (action.type) {
@@ -155,6 +185,11 @@ export const userProfileReducer = (state = { loading: null, user: null, error: n
                 user: null,
                 error: action.payload,
             }
+        }
+
+        case USER_PROFILE_RESET: {
+            return { loading: null, user: null, error: null };
+
         }
 
         default: return state;

@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // Reducers
 import {
     followUserReducer,
+    inboxToggleReducer,
     mySessionReducer,
     profileToggleReducer,
     unfollowUserReducer,
@@ -16,6 +17,7 @@ import {
     fetchMyRecommendListsReducer,
     fetchUserRecommendListReducer,
 } from './reducers/recommendReducers';
+import { searchProfileReducer } from './reducers/searchReducers';
 import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
 
@@ -34,6 +36,9 @@ const reducer = combineReducers({
     userRecommendations: fetchUserRecommendListReducer,
     userFollow: followUserReducer,
     userUnfollow: unfollowUserReducer,
+
+    searchUsers: searchProfileReducer,
+    inboxToggle: inboxToggleReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

@@ -10,7 +10,7 @@ const userRoutes = express.Router();
 
 // @route /api/user
 userRoutes.get('/profile', protect, getUserProfile);
-userRoutes.get('/profile/u/:id', protect, getUserProfileById);
+userRoutes.get('/profile/u/:id', getUserProfileById);
 userRoutes.put('/follow/:id', protect, followUser);
 userRoutes.put('/unfollow/:id', protect, unfollowUser);
 

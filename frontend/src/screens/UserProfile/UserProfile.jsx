@@ -16,14 +16,14 @@ const UserProfile = ({match, history}) => {
     const currentUser = mySession.user;
     const {lists} = useSelector(state => state.userRecommendations)
 
-    if(user){    
+    if(user && currentUser){    
       if(currentUser._id === match.params.userId){
             history.push('/profile');
         }
     }
 
     useEffect(() => {
-        if(!user){
+        if(!user ){
             dispatch(userProfile(match.params.userId));
         }
 

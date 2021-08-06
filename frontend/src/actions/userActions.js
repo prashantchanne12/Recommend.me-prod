@@ -24,6 +24,9 @@ import {
     USER_UNFOLLOW_SUCCESS,
     USER_UNFOLLOW_FAIL,
 
+    INBOX_TOGGLE_REQUEST,
+    INBOX_TOGGLE_RESET,
+
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
@@ -64,6 +67,18 @@ export const mySession = () => async (dispatch) => {
 export const profileToggle = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_REQUEST,
+    });
+}
+
+export const inboxToggle = () => async (dispatch) => {
+    dispatch({
+        type: INBOX_TOGGLE_REQUEST,
+    });
+}
+
+export const inboxToggleReset = () => async (dispatch) => {
+    dispatch({
+        type: INBOX_TOGGLE_RESET,
     });
 }
 

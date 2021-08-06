@@ -34,7 +34,7 @@ const PostItem = ({item}) => {
                             <IoShareSocialOutline className="share-icon" />
                         </div>
                         <div className="list-tags">
-                            <Tags tags={item.tags} />
+                            <Tags tags={item.tags}/>
                         </div>
                     </div>    
                     <div className="hr"></div>

@@ -5,7 +5,8 @@ import { protect } from '../middlewares/authMiddleware.js';
 
 const searchRoutes = express.Router();
 
+// public
 // @route /api/search/profile
-searchRoutes.get('/profile', protect, searchUserProfile);
+searchRoutes.post('/profile', searchUserProfile);
 
 export default searchRoutes;

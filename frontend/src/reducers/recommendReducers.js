@@ -12,6 +12,7 @@ import {
     FETCH_USER_RECOMMEND_LIST_REQUEST,
     FETCH_USER_RECOMMEND_LIST_SUCCESS,
     FETCH_USER_RECOMMEND_LIST_FAIL,
+    FETCH_USER_RECOMMEND_LIST_RESET,
 
 } from '../constants/recommendConstants';
 
@@ -115,6 +116,8 @@ export const fetchUserRecommendListReducer = (state = INIT_STATE, action) => {
                 error: action.payload,
             }
         }
+
+        case FETCH_USER_RECOMMEND_LIST_RESET: return INIT_STATE;
 
         default: return state;
 

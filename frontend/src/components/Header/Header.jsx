@@ -6,11 +6,9 @@ import './header.scss';
 // import {RiSearchLine} from 'react-icons/ri';
 import {RiNotification2Line} from 'react-icons/all';
 import ProfileOptions from '../ProfileOptions/ProfileOptions';
-import SearchField from 'react-search-field';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { profileToggle, profileToggleReset } from '../../actions/userActions';
-import SearchProfile from '../SearchProfile/SearchProfile';
+import SearchBar from '../SearchBar/SearchBar';
 
 function Header() {
 
@@ -26,23 +24,7 @@ function Header() {
                 
                 <Link to='/'><h3 className="title">Recommend.me</h3></Link>
 
-
-                <div className="search-bar"
-                  
-                >
-                    <input type="text"
-                        placeholder="search"
-                        onChange={(change) => {
-                            console.log(change.target.value);
-                        }}
-                    />
-
-                    <div className="search-result">
-                        <SearchProfile />
-                    </div>
-                </div>
-
-                
+                <SearchBar />
 
                 <div className="options-container" style={{
                     position:"relative"

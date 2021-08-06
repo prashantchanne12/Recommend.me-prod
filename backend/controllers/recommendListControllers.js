@@ -1,5 +1,4 @@
 import asyncHandlers from 'express-async-handler';
-import { ObjectId } from 'mongodb';
 import RecommendList from '../models/recommendListModel.js';
 import User from '../models/userModel.js';
 
@@ -99,7 +98,6 @@ const createUsersRecommendationLists = async (user) => {
 // @desc Get users all recommendation lists from database
 // @route GET /api/recommend/lists
 export const getUsersRecommendationLists = asyncHandlers(async (req, res) => {
-
     const user = await User.findById(req.user._id);
 
     if (!user) {
