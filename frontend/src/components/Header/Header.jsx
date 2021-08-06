@@ -39,15 +39,6 @@ function Header() {
 
                     <div className="search-result">
                         <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-                        <SearchProfile />
-
                     </div>
                 </div>
 

@@ -12,6 +12,7 @@ import connectDB from './config/db.js';
 import authRouter from './routes/authRoutes.js';
 import recommendListRouter from './routes/recommendListRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import searchRoutes from './routes/searchRoutes.js';
 
 // Middlewares
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
@@ -40,6 +41,7 @@ app.use(passport.session());
 app.use('/auth', authRouter);
 app.use('/api/recommend', recommendListRouter);
 app.use('/api/user', userRoutes);
+app.use('/api/search', searchRoutes);
 
 // import './streams/feed.js';
 
