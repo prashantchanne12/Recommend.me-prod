@@ -41,8 +41,8 @@ export const addRecommendAction = (body) => async (dispatch) => {
             type: ADD_RECOMMEND_LIST_SUCCESS,
             payload: data,
         });
+        
         dispatch(loadingEndAction());
-
         dispatch(mySession());
 
     } catch (err) {

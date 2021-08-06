@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import { CgAddR } from 'react-icons/cg';
 import {VscAccount} from 'react-icons/vsc';
 import './header.scss';
-import {RiSearchLine} from 'react-icons/ri';
+// import {RiSearchLine} from 'react-icons/ri';
+import {RiNotification2Line} from 'react-icons/all';
 import ProfileOptions from '../ProfileOptions/ProfileOptions';
+import SearchField from 'react-search-field';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { profileToggle, profileToggleReset } from '../../actions/userActions';
+import SearchProfile from '../SearchProfile/SearchProfile';
 
 function Header() {
 
@@ -18,15 +21,56 @@ function Header() {
 
     return (
         <div className='container header'>
+
             <div className="header-container">
+                
                 <Link to='/'><h3 className="title">Recommend.me</h3></Link>
+
+
+                <div className="search-bar"
+                  
+                >
+                    <input type="text"
+                        placeholder="search"
+                        onChange={(change) => {
+                            console.log(change.target.value);
+                        }}
+                    />
+
+                    <div className="search-result">
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+                        <SearchProfile />
+
+                    </div>
+                </div>
+
+                
+
                 <div className="options-container" style={{
                     position:"relative"
                 }}>
-                    <div className="options">
-                        <Link to='/' className='link'>
+
+
+                 <div className="options">
+                        
+                        {/* <Link to='/' className='link'>
                             <RiSearchLine className='header-icon' />
-                        </Link>
+                        </Link> */}
+
+                        <div className="link">
+                            <RiNotification2Line
+                             className='header-icon'
+                             />
+                        </div>
+
+                        
                         <Link to='/create' className='link'>
                             <CgAddR className='header-icon' />
                         </Link>
