@@ -4,7 +4,9 @@ import dateFormat from 'dateformat';
 import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation } from '../../actions/recommendActions';
+import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
+
 
 const PostItem = ({item}) => {
 
@@ -12,6 +14,7 @@ const PostItem = ({item}) => {
     const {user} = useSelector(state => state.mySession);
     const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
+    const isUpvoted = user ? item.upvotes.includes(user._id) : false;
 
     const colors = item.tags.map(tag => {
         return tag.color;
@@ -45,21 +48,30 @@ const PostItem = ({item}) => {
                         <div className="section-icons">
 
                             {
-                                item.upvotes.includes(user._id) || tempUpvote ?
+                               isUpvoted || tempUpvote ?
                                 <IoIosArrowDropupCircle 
                                 className="upvoted-icon"
                                 onClick={() => {
+
+                                    if(user){
                                     setTempUpvote(false);
                                     setUpvoteCount(upvoteCount-1);
                                     dispatch(removeUpvoteRecommendation(item._id));
+                                    }else{
+                                        dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
+                                    }
                                 }}
                                 />
                                 :
                                 <IoIosArrowDropup className="upvote-icon"
                                  onClick={() => {
+                                    if(user){
                                     setTempUpvote(true);
                                     setUpvoteCount(upvoteCount+1);
                                     dispatch(upvoteRecommendation(item._id));
+                                    }else{
+                                        dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
+                                    }
                                 }}/>
                               
                             }
