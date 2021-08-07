@@ -2,8 +2,7 @@ import React from 'react';
 import './postItem.scss';
 import dateFormat from 'dateformat';
 import Tags from '../Tags/Tags';
-import { BiUpvote } from 'react-icons/bi';
-import { IoShareSocialOutline } from 'react-icons/io5';
+import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
 
 const PostItem = ({item}) => {
 
@@ -28,10 +27,22 @@ const PostItem = ({item}) => {
                     <div className="list-data">
                             <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
                     </div>
+                    <div className="upvote-count">
+                        <p className="count">500</p>
+                        <p className="name">upvotes</p>
+                    </div>
                     <div className="section">
                         <div className="section-icons">
-                            <BiUpvote className="upvote-icon" />
-                            <IoShareSocialOutline className="share-icon" />
+                            <IoIosArrowDropup className="upvote-icon" onClick={() => {
+                                console.log(`Clicked ${item._id}`);
+                            }}/>
+                            <IoIosArrowDropupCircle 
+                                className="upvoted-icon"
+                                onClick={() => {
+                                    
+                                }}
+                            />
+                        <IoShareSocialOutline className="share-icon" />
                         </div>
                         <div className="list-tags">
                             <Tags tags={item.tags}/>

@@ -15,10 +15,36 @@
     border-bottom-left-radius: 5px;
 
     .list-data{
+        position: relative;
         .html-data  p{
             padding: 0.3rem;
         }
         padding-bottom: 0.5rem;
+    }
+
+   
+    .upvote-count{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .count{
+            color: #576574;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .name{
+            font-size: 0.7rem;
+            padding-top: 0rem;
+            margin-top: -0.4rem;
+            color: #bbb;
+
+        }
     }
     
     .hr{
@@ -38,10 +64,15 @@
 
         .upvote-icon{
             margin-left: 0.2rem;
+            width: 1.1rem;
         }
 
         .share-icon{
             margin-left: 0.4rem;
+        }
+
+        .upvoted-icon{
+            color: #0984e3;
         }
 
     }
