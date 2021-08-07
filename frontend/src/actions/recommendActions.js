@@ -11,6 +11,14 @@ import {
     FETCH_USER_RECOMMEND_LIST_SUCCESS,
     FETCH_USER_RECOMMEND_LIST_FAIL,
 
+    UPVOTE_RECOMMEND_LIST_REQUEST,
+    UPVOTE_RECOMMEND_LIST_SUCCESS,
+    UPVOTE_RECOMMEND_LIST_FAIL,
+
+    DOWNVOTE_RECOMMEND_LIST_REQUEST,
+    DOWNVOTE_RECOMMEND_LIST_SUCCESS,
+    DOWNVOTE_RECOMMEND_LIST_FAIL,
+
 } from '../constants/recommendConstants';
 
 import { mySession } from './userActions';
@@ -41,7 +49,7 @@ export const addRecommendAction = (body) => async (dispatch) => {
             type: ADD_RECOMMEND_LIST_SUCCESS,
             payload: data,
         });
-        
+
         dispatch(loadingEndAction());
         dispatch(mySession());
 
@@ -105,6 +113,75 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: FETCH_USER_RECOMMEND_LIST_FAIL,
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+    }
+
+}
+
+export const upvoteRecommendation = (id) => async (dispatch) => {
+
+    // PUT /api/recommend/list/upvote/:id
+
+    try {
+
+        dispatch({
+            type: UPVOTE_RECOMMEND_LIST_REQUEST
+        });
+
+
+        await axios.put(
+            ` /api/recommend/list/upvote/${id}`,
+        );
+
+        dispatch({
+            type: UPVOTE_RECOMMEND_LIST_SUCCESS,
+            payload: {
+                upvote: true,
+                downvote: false,
+            },
+        });
+
+    } catch (err) {
+        dispatch({
+            type: UPVOTE_RECOMMEND_LIST_FAIL,
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+    }
+
+}
+export const removeUpvoteRecommendation = (id) => async (dispatch) => {
+
+    // PUT /api/recommend/list/upvote/:id
+
+    try {
+
+        dispatch({
+            type: DOWNVOTE_RECOMMEND_LIST_REQUEST
+        });
+
+
+        await axios.put(
+            ` /api/recommend/list/upvote/${id}`,
+        );
+
+        dispatch({
+            type: DOWNVOTE_RECOMMEND_LIST_SUCCESS,
+            payload: {
+                downvote: true,
+                upvote: false
+            },
+        });
+
+    } catch (err) {
+        dispatch({
+            type: DOWNVOTE_RECOMMEND_LIST_FAIL,
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message

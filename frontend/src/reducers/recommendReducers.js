@@ -14,6 +14,16 @@ import {
     FETCH_USER_RECOMMEND_LIST_FAIL,
     FETCH_USER_RECOMMEND_LIST_RESET,
 
+    UPVOTE_RECOMMEND_LIST_REQUEST,
+    UPVOTE_RECOMMEND_LIST_SUCCESS,
+    UPVOTE_RECOMMEND_LIST_FAIL,
+    UPVOTE_RECOMMEND_LIST_RESET,
+
+    DOWNVOTE_RECOMMEND_LIST_REQUEST,
+    DOWNVOTE_RECOMMEND_LIST_SUCCESS,
+    DOWNVOTE_RECOMMEND_LIST_FAIL,
+    DOWNVOTE_RECOMMEND_LIST_RESET,
+
 } from '../constants/recommendConstants';
 
 const INIT_STATE = {
@@ -121,6 +131,81 @@ export const fetchUserRecommendListReducer = (state = INIT_STATE, action) => {
 
         default: return state;
 
+
+    }
+
+}
+
+
+export const upvoteRecommendListsReducer = (state = { result: null, error: null, loading: null }, action) => {
+
+    switch (action.type) {
+
+        case UPVOTE_RECOMMEND_LIST_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case UPVOTE_RECOMMEND_LIST_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                result: action.payload,
+            }
+        }
+
+
+        case UPVOTE_RECOMMEND_LIST_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                result: null,
+                error: action.payload,
+            }
+        }
+
+        case UPVOTE_RECOMMEND_LIST_RESET: return { result: null, error: null, loading: null };
+
+        default: return state;
+
+    }
+
+}
+
+export const downvoteRecommendListsReducer = (state = { result: null, error: null, loading: null }, action) => {
+
+    switch (action.type) {
+
+        case DOWNVOTE_RECOMMEND_LIST_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case DOWNVOTE_RECOMMEND_LIST_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                result: action.payload,
+            }
+        }
+
+
+        case DOWNVOTE_RECOMMEND_LIST_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                result: null,
+                error: action.payload,
+            }
+        }
+
+        case DOWNVOTE_RECOMMEND_LIST_RESET: return { result: null, error: null, loading: null };
+
+        default: return state;
 
     }
 

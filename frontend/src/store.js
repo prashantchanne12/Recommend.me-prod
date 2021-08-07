@@ -14,8 +14,10 @@ import {
 } from './reducers/userReducers';
 import {
     addRecommendationReducer,
+    downvoteRecommendListsReducer,
     fetchMyRecommendListsReducer,
     fetchUserRecommendListReducer,
+    upvoteRecommendListsReducer,
 } from './reducers/recommendReducers';
 import { searchProfileReducer } from './reducers/searchReducers';
 import { loadingReducer } from './reducers/loadingReducer';
@@ -39,6 +41,9 @@ const reducer = combineReducers({
 
     searchUsers: searchProfileReducer,
     inboxToggle: inboxToggleReducer,
+
+    recommendListUpvote: upvoteRecommendListsReducer,
+    recommendLisDownvote: downvoteRecommendListsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
