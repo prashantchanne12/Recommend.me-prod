@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './postItem.scss';
 import dateFormat from 'dateformat';
 import Tags from '../Tags/Tags';
+import {useSelector, useDispatch} from 'react-redux';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
 
 const PostItem = ({item}) => {
 
+    const {user} = useSelector(state => state.mySession);
+
     const colors = item.tags.map(tag => {
         return tag.color;
     });
+
+    useEffect(() => {
+    }, []);
 
     return (
         <>
@@ -28,20 +34,26 @@ const PostItem = ({item}) => {
                             <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
                     </div>
                     <div className="upvote-count">
-                        <p className="count">500</p>
+                        <p className="count">{item.upvotes.length}</p>
                         <p className="name">upvotes</p>
                     </div>
                     <div className="section">
                         <div className="section-icons">
-                            <IoIosArrowDropup className="upvote-icon" onClick={() => {
-                                console.log(`Clicked ${item._id}`);
-                            }}/>
-                            <IoIosArrowDropupCircle 
+
+                            {
+                                item.upvotes.includes(user._id) ?
+                                <IoIosArrowDropupCircle 
                                 className="upvoted-icon"
                                 onClick={() => {
-                                    
                                 }}
-                            />
+                                />
+                                :
+                                <IoIosArrowDropup className="upvote-icon" onClick={() => {
+                                    console.log(``);
+                                }}/>
+                              
+                            }
+
                         <IoShareSocialOutline className="share-icon" />
                         </div>
                         <div className="list-tags">
