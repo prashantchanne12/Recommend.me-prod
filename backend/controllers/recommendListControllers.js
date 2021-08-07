@@ -144,7 +144,6 @@ export const upvoteRecommendationList = asyncHandlers(async (req, res) => {
         const newRecommendList = await recommendList.save();
 
         if (newRecommendList) {
-            s
 
             // update user's upvoted recommendations array
             const user = await User.findById(userId);

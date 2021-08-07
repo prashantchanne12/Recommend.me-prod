@@ -168,7 +168,7 @@ export const removeUpvoteRecommendation = (id) => async (dispatch) => {
 
 
         await axios.put(
-            ` /api/recommend/list/upvote/${id}`,
+            ` /api/recommend/list/removeUpvote/${id}`,
         );
 
         dispatch({
