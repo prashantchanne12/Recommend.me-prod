@@ -16,6 +16,7 @@ import searchRoutes from './routes/searchRoutes.js';
 
 // Middlewares
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
+import timelineRoutes from './routes/timelineRoutes.js';
 
 // Configuring environment variables with .dotenv
 dotenv.config();
@@ -42,6 +43,7 @@ app.use('/auth', authRouter);
 app.use('/api/recommend', recommendListRouter);
 app.use('/api/user', userRoutes);
 app.use('/api/search', searchRoutes);
+app.use('/api/timeline', timelineRoutes);
 
 // import './streams/feed.js';
 

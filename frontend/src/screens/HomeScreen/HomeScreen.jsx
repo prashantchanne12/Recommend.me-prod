@@ -18,7 +18,6 @@ function HomeScreen() {
     return (
         <>
             <div className="container-md">
-                <h3>Home</h3>
             </div>
         </>
     )
