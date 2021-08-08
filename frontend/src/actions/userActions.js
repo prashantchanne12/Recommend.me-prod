@@ -169,6 +169,7 @@ export const followUser = (id) => async (dispatch) => {
 
 
     } catch (err) {
+        dispatch(loadingEndAction());
         dispatch({
             type: USER_FOLLOW_FAIL,
             payload: err.response && err.response.data.message
@@ -199,6 +200,7 @@ export const unfollowUser = (id) => async (dispatch) => {
 
 
     } catch (err) {
+        dispatch(loadingEndAction());
         dispatch({
             type: USER_UNFOLLOW_FAIL,
             payload: err.response && err.response.data.message

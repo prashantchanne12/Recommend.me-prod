@@ -54,6 +54,7 @@ export const addRecommendAction = (body) => async (dispatch) => {
         dispatch(mySession());
 
     } catch (err) {
+        dispatch(loadingEndAction());
         dispatch({
             type: ADD_RECOMMEND_LIST_FAIL,
             payload:
@@ -82,6 +83,7 @@ export const fetchMyRecommendations = () => async (dispatch) => {
         dispatch(loadingEndAction());
 
     } catch (err) {
+        dispatch(loadingEndAction());
         dispatch({
             type: FETCH_MY_RECOMMEND_LIST_FAIL,
             payload:
@@ -111,6 +113,7 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
         dispatch(loadingEndAction());
 
     } catch (err) {
+        dispatch(loadingEndAction());
         dispatch({
             type: FETCH_USER_RECOMMEND_LIST_FAIL,
             payload:

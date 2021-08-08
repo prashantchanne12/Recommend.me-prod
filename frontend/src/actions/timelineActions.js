@@ -17,7 +17,7 @@ export const myTimeline = () => async (dispatch) => {
         dispatch(loadingStartAction());
 
         dispatch({
-            MY_TIMELINE_REQUEST
+            type: MY_TIMELINE_REQUEST
         });
 
         const { data } = await axios.get(`/api/timeline`);
@@ -25,13 +25,13 @@ export const myTimeline = () => async (dispatch) => {
         dispatch(loadingEndAction());
 
         dispatch({
-            MY_TIMELINE_SUCCESS,
+            type: MY_TIMELINE_SUCCESS,
             payload: data,
         });
 
 
     } catch (err) {
-
+        dispatch(loadingEndAction());
         dispatch({
             type: MY_TIMELINE_FAIL,
             payload: err.response && err.response.data.message

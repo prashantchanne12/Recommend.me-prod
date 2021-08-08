@@ -14,7 +14,7 @@ const UserProfile = ({match, history}) => {
     const {loading: unfollowLoading} = useSelector(state => state.userUnfollow);
     const mySession = useSelector(state => state.mySession);
     const currentUser = mySession.user;
-    const {lists} = useSelector(state => state.userRecommendations)
+    const {lists, loading} = useSelector(state => state.userRecommendations);
 
     if(user && currentUser){    
       if(currentUser._id === match.params.userId){
@@ -44,7 +44,7 @@ const UserProfile = ({match, history}) => {
         <div className="container">
            <div className="row">
              <div className="column tab-container">
-              <ProfileTabs lists={lists}/>
+              <ProfileTabs lists={lists} loading={loading}/>
              </div>
              <div className="column profile-container">
               <Profile user={user} followLoading={followLoading} unfollowLoading={unfollowLoading} />

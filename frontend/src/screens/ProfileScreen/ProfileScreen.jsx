@@ -11,7 +11,7 @@ const ProfileScreen = ({history}) => {
     const dispatch = useDispatch();
 
     const {user} = useSelector(state => state.mySession);
-    const {lists} = useSelector(state => state.myRecommendations);
+    const {lists, loading} = useSelector(state => state.myRecommendations);
 
     useEffect(() => {
     
@@ -31,7 +31,7 @@ const ProfileScreen = ({history}) => {
            <div className="container">
               <div className="row">
                 <div className="column tab-container">
-                 <ProfileTabs lists={lists}/>
+                 <ProfileTabs lists={lists} loading={loading}/>
                 </div>
                 <div className="column profile-container">
                  <Profile user={user} />

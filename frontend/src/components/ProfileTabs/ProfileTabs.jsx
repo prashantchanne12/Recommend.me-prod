@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import './profileTabs.scss';
 import Posts from '../Posts/Posts';
 
-const ProfileTabs = ({lists}) => {
-
+const ProfileTabs = ({lists, loading}) => {
 
     let props = {};
 
@@ -29,7 +28,7 @@ const ProfileTabs = ({lists}) => {
                 <div className={tab==='bucket'? 'tab active': 'tab' } onClick={() => selectTab('bucket')}>Bucket</div>
             </div>
 
-            <Posts  props = {lists ? props : null} />
+            <Posts  props = {lists ? props : null} loading={loading}/>
 
         </>
     )

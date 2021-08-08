@@ -5,13 +5,14 @@ import './posts.scss';
 import StackGrid from "react-stack-grid";
 import useWindowDimensions from "../window-dimensions/window-dimension";
 
-const Posts = ({props}) => {
+const Posts = ({props, loading}) => {
 
+    console.log('props:',props);
     const { width } = useWindowDimensions();
 
-    return props ? (
+    return  (
         <>
-            <div className="posts-container">
+            { props && <div className="posts-container">
                 <StackGrid
                       gutterHeight={10}
                       gutterWidth={10}
@@ -23,8 +24,20 @@ const Posts = ({props}) => {
                     }
                 </StackGrid>
             </div>
+            }
+
+            {
+                loading && <p>Loading...</p>
+            }
+
+            {
+                loading === false && props==null && <p>No posts for now</p>
+            }
+            {
+                loading === false && props && props.length === 0 && <p>No posts for now</p>
+            }
         </>
-    ) : <div>Loading...</div>
+    ) 
 }
 
 export default Posts;
