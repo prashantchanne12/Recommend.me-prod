@@ -22,6 +22,7 @@ import {
 import { searchProfileReducer } from './reducers/searchReducers';
 import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
+import { myTimelineReducer } from './reducers/timelineReducers';
 
 // Combine reducers
 const reducer = combineReducers({
@@ -44,6 +45,8 @@ const reducer = combineReducers({
 
     recommendListUpvote: upvoteRecommendListsReducer,
     recommendLisDownvote: downvoteRecommendListsReducer,
+
+    myTimeline: myTimelineReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
