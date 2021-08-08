@@ -19,6 +19,9 @@ import {
     DOWNVOTE_RECOMMEND_LIST_SUCCESS,
     DOWNVOTE_RECOMMEND_LIST_FAIL,
 
+    SHARE_REQUEST,
+    SHARE_RESET,
+
 } from '../constants/recommendConstants';
 
 import { mySession } from './userActions';
@@ -192,4 +195,19 @@ export const removeUpvoteRecommendation = (id) => async (dispatch) => {
         });
     }
 
+}
+
+
+export const shareAction = () => async (dispatch) => {
+
+    dispatch({
+        type: SHARE_REQUEST,
+    });
+}
+
+export const shareResetAction = () => async (dispatch) => {
+
+    dispatch({
+        type: SHARE_RESET,
+    });
 }

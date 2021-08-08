@@ -17,6 +17,7 @@ import {
     downvoteRecommendListsReducer,
     fetchMyRecommendListsReducer,
     fetchUserRecommendListReducer,
+    shareListReducer,
     upvoteRecommendListsReducer,
 } from './reducers/recommendReducers';
 import { searchProfileReducer } from './reducers/searchReducers';
@@ -42,6 +43,7 @@ const reducer = combineReducers({
 
     searchUsers: searchProfileReducer,
     inboxToggle: inboxToggleReducer,
+    shareToggle: shareListReducer,
 
     recommendListUpvote: upvoteRecommendListsReducer,
     recommendLisDownvote: downvoteRecommendListsReducer,

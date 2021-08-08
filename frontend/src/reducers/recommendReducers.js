@@ -24,6 +24,9 @@ import {
     DOWNVOTE_RECOMMEND_LIST_FAIL,
     DOWNVOTE_RECOMMEND_LIST_RESET,
 
+    SHARE_REQUEST,
+    SHARE_RESET,
+
 } from '../constants/recommendConstants';
 
 const INIT_STATE = {
@@ -204,6 +207,31 @@ export const downvoteRecommendListsReducer = (state = { result: null, error: nul
         }
 
         case DOWNVOTE_RECOMMEND_LIST_RESET: return { result: null, error: null, loading: null };
+
+        default: return state;
+
+    }
+
+}
+
+export const shareListReducer = (state = { show: null }, action) => {
+
+    switch (action.type) {
+
+
+        case SHARE_REQUEST: {
+            return {
+                ...state,
+                show: true
+            }
+        }
+
+        case SHARE_RESET: {
+            return {
+                ...state,
+                show: false
+            }
+        }
 
         default: return state;
 
