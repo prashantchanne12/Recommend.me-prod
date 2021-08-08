@@ -9,7 +9,7 @@ import UserProfile from './screens/UserProfile/UserProfile';
 
 import { mySession } from './actions/userActions';
 import { useDispatch } from 'react-redux';
-
+import Share from './components/Share/Share';
 
 function App() {
 
@@ -21,13 +21,16 @@ function App() {
 
   return (
     <Router>
-      <Layout>
-        <Route exact path='/' component={HomeScreen} />
-        <Route exact path='/login' component={LoginScreen} />
-        <Route exact path='/create' component={CreateRecommendationScreen} />
-        <Route exact path='/profile' component={ProfileScreen} />
-        <Route path='/profile/:userId' component={UserProfile} />
-      </Layout>
+      <Share />
+      <div className='overlay'>
+        <Layout>
+          <Route exact path='/' component={HomeScreen} />
+          <Route exact path='/login' component={LoginScreen} />
+          <Route exact path='/create' component={CreateRecommendationScreen} />
+          <Route exact path='/profile' component={ProfileScreen} />
+          <Route path='/profile/:userId' component={UserProfile} />
+        </Layout>
+      </div>
     </Router>
   );
 }

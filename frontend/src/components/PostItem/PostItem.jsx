@@ -8,6 +8,7 @@ import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
 
 
+
 const PostItem = ({item}) => {
 
     const dispatch = useDispatch();
@@ -36,6 +37,8 @@ const PostItem = ({item}) => {
                 borderImage: `linear-gradient(to right, ${colors[0]} 50%, ${colors[1] ? colors[1] : colors[0]} 50%) 5`,
             }}
            >
+
+
             <div className="list-container" id={item._id} >
                     <div className="list-data">
                             <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />

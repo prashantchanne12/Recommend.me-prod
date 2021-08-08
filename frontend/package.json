@@ -26,6 +26,7 @@
     "react-scripts": "4.0.3",
     "react-search-field": "^2.0.1",
     "react-select": "^4.3.0",
+    "react-share-social": "^0.1.48",
     "react-stack-grid": "^0.7.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
