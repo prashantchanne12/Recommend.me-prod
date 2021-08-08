@@ -3,14 +3,13 @@ import './postItem.scss';
 import dateFormat from 'dateformat';
 import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
-import { upvoteRecommendation, removeUpvoteRecommendation } from '../../actions/recommendActions';
+import { upvoteRecommendation, removeUpvoteRecommendation, shareAction } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
 
 
-
 const PostItem = ({item}) => {
-
+    
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
     const [tempUpvote, setTempUpvote] = useState(false)
@@ -79,7 +78,9 @@ const PostItem = ({item}) => {
                               
                             }
 
-                        <IoShareSocialOutline className="share-icon" />
+                        <IoShareSocialOutline className="share-icon"
+                            onClick={() => dispatch(shareAction())}
+                        />
                         </div>
                         <div className="list-tags">
                             <Tags tags={item.tags}/>

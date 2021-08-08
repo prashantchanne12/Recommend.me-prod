@@ -8,12 +8,14 @@ import CreateRecommendationScreen from './screens/CreateRecommendationScreen/Cre
 import UserProfile from './screens/UserProfile/UserProfile';
 
 import { mySession } from './actions/userActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Share from './components/Share/Share';
 
 function App() {
 
   const dispatch = useDispatch();
+
+  const { show } = useSelector(state => state.shareToggle);
 
   useEffect(() => {
     dispatch(mySession());
@@ -21,8 +23,19 @@ function App() {
 
   return (
     <Router>
-      <Share />
-      <div className='overlay'>
+      {
+        show && <Share />
+      }
+      <div className='overlay'
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          opacity: `${show ? 0.6 : 1}`,
+        }}
+      >
         <Layout>
           <Route exact path='/' component={HomeScreen} />
           <Route exact path='/login' component={LoginScreen} />
