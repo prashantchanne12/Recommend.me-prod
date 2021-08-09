@@ -10,6 +10,7 @@ import UserProfile from './screens/UserProfile/UserProfile';
 import { mySession } from './actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Share from './components/Share/Share';
+import ListScreen from './screens/ListScreen/ListScreen';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           <Route exact path='/create' component={CreateRecommendationScreen} />
           <Route exact path='/profile' component={ProfileScreen} />
           <Route path='/profile/:userId' component={UserProfile} />
+          <Route path='/list/:listId' component={ListScreen} />
         </Layout>
       </div>
     </Router>

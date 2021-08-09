@@ -6,6 +6,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation, shareAction } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
+import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
+import { useHistory } from 'react-router-dom'; 
 
 
 
@@ -16,11 +18,12 @@ const PostItem = ({item}) => {
     const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
     const isUpvoted = user ? item.upvotes.includes(user._id) : false;
+    const history = useHistory();
 
     const handleSharing = () => {
         let re = new RegExp(/^.*\//);
         let share_link = re.exec(window.location.href)[0];
-        share_link += `post/${item._id}`;
+        share_link += `list/${item._id}`;
     
         if (navigator.share) {
           navigator
@@ -43,9 +46,6 @@ const PostItem = ({item}) => {
         return tag.color;
     });
 
-    useEffect(() => {
-    }, []);
-
     return (
         <>
            <div className="list-wrapper" 
@@ -61,7 +61,18 @@ const PostItem = ({item}) => {
            >
 
 
-            <div className="list-container" id={item._id} >
+            <div className="list-container" id={item._id} 
+                style={{
+                    cursor: 'pointer',
+                }}
+                onClick={() => {
+                    dispatch({
+                        type: FETCH_LIST_SUCCESS,
+                        payload: item,
+                    });
+                    history.push(`/list/${item._id}`);
+                }}
+            >
                     <div className="list-data">
                             <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
                     </div>
