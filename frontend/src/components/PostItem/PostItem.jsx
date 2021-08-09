@@ -8,6 +8,7 @@ import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
 
 
+
 const PostItem = ({item}) => {
     
     const dispatch = useDispatch();
@@ -15,6 +16,28 @@ const PostItem = ({item}) => {
     const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
     const isUpvoted = user ? item.upvotes.includes(user._id) : false;
+
+    const handleSharing = () => {
+        let re = new RegExp(/^.*\//);
+        let share_link = re.exec(window.location.href)[0];
+        share_link += `post/${item._id}`;
+    
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "Check out my recommendation",
+              url: share_link,
+            })
+            .then(() => {
+              // console.log("Thanks for sharing");
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        } else {
+          dispatch(shareAction(share_link));
+        }
+      };
 
     const colors = item.tags.map(tag => {
         return tag.color;
@@ -79,7 +102,9 @@ const PostItem = ({item}) => {
                             }
 
                         <IoShareSocialOutline className="share-icon"
-                            onClick={() => dispatch(shareAction())}
+                            onClick={() => {
+                                handleSharing();
+                            }}
                         />
                         </div>
                         <div className="list-tags">

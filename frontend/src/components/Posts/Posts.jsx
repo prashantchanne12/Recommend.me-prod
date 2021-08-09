@@ -7,7 +7,6 @@ import useWindowDimensions from "../window-dimensions/window-dimension";
 
 const Posts = ({props, loading}) => {
 
-    console.log('props:',props);
     const { width } = useWindowDimensions();
 
     return  (

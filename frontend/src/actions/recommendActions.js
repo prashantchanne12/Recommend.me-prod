@@ -198,10 +198,11 @@ export const removeUpvoteRecommendation = (id) => async (dispatch) => {
 }
 
 
-export const shareAction = () => async (dispatch) => {
+export const shareAction = (url) => async (dispatch) => {
 
     dispatch({
         type: SHARE_REQUEST,
+        payload: url,
     });
 }
 

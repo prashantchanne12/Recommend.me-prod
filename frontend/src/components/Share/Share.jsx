@@ -1,6 +1,6 @@
 import React from 'react';
 import {ShareSocial} from 'react-share-social';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { shareResetAction } from '../../actions/recommendActions';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import './Share.scss';
@@ -21,13 +21,14 @@ const style = {
 const Share = () => {
 
     const dispatch = useDispatch();
+    const { url } = useSelector(state => state.shareToggle);
 
     return (
         <div className="share-card">
             <ShareSocial
                 className='share'
                 style={style}
-                url ="url_to_share.com"
+                url = {url ? url : ''}
                 socialTypes={['facebook','twitter','reddit','linkedin']}
            />
           <AiOutlineCloseCircle

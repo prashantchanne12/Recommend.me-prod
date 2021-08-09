@@ -23,6 +23,7 @@ import {
     USER_UNFOLLOW_REQUEST,
     USER_UNFOLLOW_SUCCESS,
     USER_UNFOLLOW_FAIL,
+    USER_PROFILE_RESET,
 
     INBOX_TOGGLE_REQUEST,
     INBOX_TOGGLE_RESET,
@@ -30,6 +31,7 @@ import {
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
+import { MY_TIMELINE_RESET } from '../constants/timelineConstants';
 import { loadingStartAction, loadingEndAction } from '../actions/loadingActions';
 
 import axios from 'axios';
@@ -105,6 +107,14 @@ export const userLogout = () => async (dispatch) => {
 
         dispatch({
             type: FETCH_MY_RECOMMEND_LIST_RESET,
+        });
+
+        dispatch({
+            type: MY_TIMELINE_RESET,
+        });
+
+        dispatch({
+            type: USER_PROFILE_RESET,
         })
 
         dispatch({
@@ -117,7 +127,7 @@ export const userLogout = () => async (dispatch) => {
             payload: err.response && err.response.data.message
                 ? err.response.data.message
                 : err.message
-        })
+        });
     }
 }
 

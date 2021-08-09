@@ -214,7 +214,7 @@ export const downvoteRecommendListsReducer = (state = { result: null, error: nul
 
 }
 
-export const shareListReducer = (state = { show: null }, action) => {
+export const shareListReducer = (state = { show: null, url: null }, action) => {
 
     switch (action.type) {
 
@@ -222,14 +222,16 @@ export const shareListReducer = (state = { show: null }, action) => {
         case SHARE_REQUEST: {
             return {
                 ...state,
-                show: true
+                show: true,
+                url: action.payload,
             }
         }
 
         case SHARE_RESET: {
             return {
                 ...state,
-                show: false
+                show: false,
+                url: null,
             }
         }
 
