@@ -27,7 +27,11 @@ const ListScreen = ({match}) => {
                 position: 'relative',
             }}
         >
-            <PostItem item={post} isSinglePost={true} />
+            {
+
+                loading || !post ? <p>Loading...</p> : <PostItem item={post} isSinglePost={true} />
+
+            }
         </div>
     );
    
