@@ -10,13 +10,14 @@ import { loadingStartAction, loadingEndAction } from './loadingActions';
 
 import axios from 'axios';
 
-export const fetchListRequest = (id) => async (dispatch) => {
+export const getPost = (id) => async (dispatch) => {
 
     try {
 
         dispatch({
             type: FETCH_LIST_REQUEST
         });
+
         dispatch(loadingStartAction());
 
         const { data } = await axios.get(`/api/recommend/list/${id}`);

@@ -51,7 +51,7 @@ const reducer = combineReducers({
 
     myTimeline: myTimelineReducer,
 
-    post: postReducer,
+    singlePost: postReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

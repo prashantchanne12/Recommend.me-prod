@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './postItem.scss';
 import dateFormat from 'dateformat';
 import Tags from '../Tags/Tags';
@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const PostItem = ({item}) => {
+const PostItem = ({item, isSinglePost}) => {
     
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
@@ -23,7 +23,7 @@ const PostItem = ({item}) => {
     const handleSharing = () => {
         let re = new RegExp(/^.*\//);
         let share_link = re.exec(window.location.href)[0];
-        share_link += `list/${item._id}`;
+        share_link += isSinglePost ? `${item._id}`  : `list/${item._id}`;
     
         if (navigator.share) {
           navigator
@@ -61,19 +61,21 @@ const PostItem = ({item}) => {
            >
 
 
-            <div className="list-container" id={item._id} 
-                style={{
-                    cursor: 'pointer',
-                }}
-                onClick={() => {
-                    dispatch({
-                        type: FETCH_LIST_SUCCESS,
-                        payload: item,
-                    });
-                    history.push(`/list/${item._id}`);
-                }}
-            >
-                    <div className="list-data">
+            <div className="list-container" id={item._id} >
+                    <div className="list-data"
+                          style={{
+                            cursor: !isSinglePost && 'pointer',
+                        }}
+                        onClick={() => {
+                            if(!isSinglePost){
+                                dispatch({
+                                    type: FETCH_LIST_SUCCESS,
+                                    payload: item,
+                                });
+                                history.push(`/list/${item._id}`);
+                            }
+                        }}
+                    >
                             <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
                     </div>
                     <div className="upvote-count">
@@ -122,13 +124,29 @@ const PostItem = ({item}) => {
                             <Tags tags={item.tags}/>
                         </div>
                     </div>    
-                    <div className="hr"></div>
-                    <div className="list-footer">
-                        <div className="list-img">
+                    <div className="hr"
+                        style={{
+                            marginTop: '1rem'
+                        }}
+                    ></div>
+                    <div className="list-footer"
+                        onClick={() => {
+                            history.push(`/profile/${item.owner}`);
+                        }}
+                    >
+                        <div className="list-img"
+                            style={{
+                                cursor: 'pointer',
+                            }}
+                        >
                             <img src={item.ownerPhotoUrl} alt=""/>
                         </div>
                        <div className="section-2">
-                            <div className="list-username">
+                            <div className="list-username"
+                                style={{
+                                    cursor: 'pointer',
+                                }}
+                            >
                                 <p>{item.ownerUserName.split(' ')[0].length <= 9 ? item.ownerUserName.split(' ')[0] : item.ownerUserName.split(' ')[0].substr(0,9).toString()+'..'}</p>
                             </div>
                             <div className="list-date">

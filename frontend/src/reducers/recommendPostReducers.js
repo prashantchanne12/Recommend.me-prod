@@ -43,7 +43,7 @@ export const postReducer = (state = INIT_STATE, action) => {
 
         case FETCH_LIST_RESET: return INIT_STATE;
 
-        default: return INIT_STATE;
+        default: return state;
     }
 
 }
