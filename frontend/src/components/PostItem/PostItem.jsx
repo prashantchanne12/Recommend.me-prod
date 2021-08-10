@@ -50,13 +50,13 @@ const PostItem = ({item, isSinglePost}) => {
         <>
            <div className="list-wrapper" 
               style={{
-                borderTop: colors[0],
+                borderTop: colors && colors[0],
                 borderTopWidth: 2,
                 borderLeftWidth: 0,
                 borderBottomWidth: 0,
                 borderRightWidth: 0,
                 borderStyle: 'solid',
-                borderImage: `linear-gradient(to right, ${colors[0]} 50%, ${colors[1] ? colors[1] : colors[0]} 50%) 5`,
+                borderImage: colors && `linear-gradient(to right, ${colors[0]} 50%, ${colors[1] ? colors[1] : colors[0]} 50%) 5`,
             }}
            >
 
