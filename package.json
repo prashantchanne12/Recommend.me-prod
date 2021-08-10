@@ -4,6 +4,9 @@
   "description": "Backend code for Recommend.me",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "v14.15.3"
+  },
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
