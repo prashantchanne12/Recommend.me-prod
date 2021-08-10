@@ -17,7 +17,7 @@ import {
 } from '../controllers/recommendListControllers.js';
 
 recommendListRouter.post('/create', protect, createRecommendList);
-recommendListRouter.get('/list/:id', protect, getRecommendationList);
+recommendListRouter.get('/list/:id', getRecommendationList);
 recommendListRouter.get('/lists', getUsersRecommendationLists);
 recommendListRouter.get('/lists/u/:id', getUsersRecommendationListsById);
 recommendListRouter.put('/list/upvote/:id', protect, upvoteRecommendationList);
