@@ -16,8 +16,6 @@ const ListScreen = ({match}) => {
         }
 
     }, [post, match, dispatch, loading]);
-
-    console.log(post);
   
     return (
         <div

@@ -42,7 +42,7 @@ const PostItem = ({item, isSinglePost}) => {
         }
       };
 
-    const colors = item.tags.map(tag => {
+    const colors = item && item.tags.map(tag => {
         return tag.color;
     });
 
