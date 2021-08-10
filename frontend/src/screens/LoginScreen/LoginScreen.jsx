@@ -29,12 +29,12 @@ function LoginScreen({history}) {
                                 <p>Login with Google</p>
                             </div> 
                        </a>
-                        <a href="/auth/twitter">
+                        {/* <a href="/auth/twitter">
                             <div className="twitter-button">
                                 <FaTwitter className='icon'/>
                                 <p>Login with Twitter</p>
                             </div>
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </div>
