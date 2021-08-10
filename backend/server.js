@@ -45,24 +45,21 @@ app.use('/api/user', userRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/timeline', timelineRoutes);
 
-// import './streams/feed.js';
-
 // Serving static files
 const __dirname = path.resolve();
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/frontend/build')))
 
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '/frontend/build')))
+    app.get('*', (req, res, next) => {
+        res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+    });
 
-//     app.get('*', (req, res, next) => {
-//         res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
-//     });
-
-// } else {
-//     app.get('/', (req, res, next) => {
-//         res.send('API is running');
-//     });
-// }
+} else {
+    app.get('/', (req, res, next) => {
+        res.send('API is running');
+    });
+}
 
 // Middlewares
 app.use(notFound);

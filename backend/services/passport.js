@@ -14,7 +14,7 @@ passport.serializeUser((user, done) => {
 // Taking info out from the cookie i.e. userId
 // Called everytime user hits endpoint
 passport.deserializeUser(async (id, done) => {
-    console.log('de-serializing');
+    // console.log('de-serializing');
     const user = await User.findById(id);
     if (user) {
         // this adds user to req.user everytime user requests endpoint 
