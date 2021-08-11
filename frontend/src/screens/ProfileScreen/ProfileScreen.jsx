@@ -4,27 +4,31 @@ import ProfileTabs from '../../components/ProfileTabs/ProfileTabs';
 import Profile from '../../components/Profile/Profile';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { mySession } from '../../actions/userActions';
 import { fetchMyRecommendations } from '../../actions/recommendActions';
 
 const ProfileScreen = ({history}) => {
 
     const dispatch = useDispatch();
 
-    const {user} = useSelector(state => state.mySession);
+    const {user, error} = useSelector(state => state.mySession);
     const {lists, loading} = useSelector(state => state.myRecommendations);
 
     useEffect(() => {
     
       if(!user){
-        history.push('/login');
+        dispatch(mySession());
       }else{
         if(!lists){
           dispatch(fetchMyRecommendations());
         }
       }
 
-    }, [user, history, dispatch, lists]);
+    }, [user, history, dispatch, lists, loading]);
 
+    if(error){
+      history.push('/login');
+    }
 
     return (
         <>
