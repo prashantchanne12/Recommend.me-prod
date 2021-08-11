@@ -38,6 +38,9 @@ app.use(coockieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serving static files
+const __dirname = path.resolve();
+
 // Routes
 app.use('/auth', authRouter);
 app.use('/api/recommend', recommendListRouter);
@@ -45,8 +48,6 @@ app.use('/api/user', userRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/timeline', timelineRoutes);
 
-// Serving static files
-const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))
@@ -61,7 +62,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+
 // Middlewares
+app.get("/google37eb144521711fe3.html", (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'google37eb144521711fe3.html'));
+});
 app.use(notFound);
 app.use(errorHandler);
 

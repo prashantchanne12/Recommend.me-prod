@@ -28,7 +28,7 @@ export const alertMessageReducer = (state = INIT_STATE, action) => {
             }
         }
 
-        default: return INIT_STATE
+        default: return state;
     }
 
 }

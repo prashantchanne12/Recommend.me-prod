@@ -39,7 +39,7 @@ export const loadingReducer = (state = INIT_STATE, action) => {
             }
         }
 
-        default: return state
+        default: return state;
 
     }
 

@@ -44,7 +44,7 @@ export const searchProfileReducer = (state = INIT_STATE, action) => {
 
         case SEARCH_PROFILE_RESET: return INIT_STATE;
 
-        default: return state
+        default: return state;
 
     }
 

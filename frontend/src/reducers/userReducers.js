@@ -95,7 +95,7 @@ export const profileToggleReducer = (state = { toggle: null }, action) => {
             }
         }
 
-        default: return state
+        default: return state;
 
     }
 
@@ -153,7 +153,7 @@ export const userLogoutReducer = (state = { error: null, loading: null }, action
             }
         }
 
-        default: return state
+        default: return state;
     }
 
 }
