@@ -2,7 +2,7 @@
   "name": "recommendme",
   "version": "1.0.0",
   "description": "Backend code for Recommend.me",
-  "main": "index.js",
+  "main": "backend/server.js",
   "type": "module",
   "engines": {
     "node": "v14.15.3"
