@@ -39,6 +39,8 @@ app.use(coockieSession({
 // To tell passport make use of cookies
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Forcing https
 app.use(redirect);
 
 // Serving static files
