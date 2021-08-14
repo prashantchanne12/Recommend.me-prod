@@ -18,6 +18,7 @@ import searchRoutes from './routes/searchRoutes.js';
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 import timelineRoutes from './routes/timelineRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
+import { redirect } from './middlewares/redirect.js';
 
 // Configuring environment variables with .dotenv
 dotenv.config();
@@ -38,6 +39,7 @@ app.use(coockieSession({
 // To tell passport make use of cookies
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(redirect);
 
 // Serving static files
 const __dirname = path.resolve();
