@@ -17,6 +17,7 @@ import searchRoutes from './routes/searchRoutes.js';
 // Middlewares
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 import timelineRoutes from './routes/timelineRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
 
 // Configuring environment variables with .dotenv
 dotenv.config();
@@ -47,6 +48,7 @@ app.use('/api/recommend', recommendListRouter);
 app.use('/api/user', userRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/timeline', timelineRoutes);
+app.use('/api/notification', notificationRoutes);
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -21,7 +21,8 @@ const notificationSchema = new mongoose.Schema({
     userId: userRef,
     data: {
         type: String
-    }
+    },
+    ownerId: userRef,
 
 }, {
     timestamps: true,
