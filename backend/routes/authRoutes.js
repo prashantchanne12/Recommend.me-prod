@@ -1,6 +1,5 @@
 import express from 'express';
 import passport from 'passport';
-import User from '../models/userModel.js';
 import { protect } from '../middlewares/authMiddleware.js';
 const authRouter = express.Router();
 
@@ -48,7 +47,9 @@ authRouter.get('/currentUser', protect, (req, res) => {
 // @route GET auth/logout
 authRouter.get('/logout', (req, res) => {
     req.logOut();
-    res.send(req.user);
+    delete req.session;
+    delete req.user;
+    res.send('Logged out!');
 });
 
 export default authRouter;
