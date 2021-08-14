@@ -48,11 +48,15 @@ export const mySession = () => async (dispatch) => {
         // const { data } = await axios.get('/api/user/currentUser');
         const { data } = await axios.get('/auth/currentUser');
 
-        localStorage.setItem('userInfo', JSON.stringify(data));
+        // localStorage.setItem('userInfo', JSON.stringify(data));
 
         dispatch({
             type: MY_SESSION_SUCCESS,
             payload: data,
+        });
+
+        dispatch({
+            type: 'MAKE_LOGOUT_FALSE',
         });
 
     } catch (err) {
@@ -97,29 +101,38 @@ export const userLogout = () => async (dispatch) => {
         dispatch({
             type: USER_LOGOUT_REQUEST,
         });
+        dispatch(loadingStartAction());
 
-        await axios.get('/auth/logout');
+        const { data } = await axios.get('/auth/logout');
+        console.log(data);
         localStorage.removeItem('userInfo');
 
-        dispatch({
-            type: MY_SESSION_RESET,
-        });
+        if (data) {
+            dispatch(loadingEndAction());
 
-        dispatch({
-            type: FETCH_MY_RECOMMEND_LIST_RESET,
-        });
+            dispatch({
+                type: MY_SESSION_RESET,
+            });
 
-        dispatch({
-            type: MY_TIMELINE_RESET,
-        });
+            dispatch({
+                type: FETCH_MY_RECOMMEND_LIST_RESET,
+            });
 
-        dispatch({
-            type: USER_PROFILE_RESET,
-        })
+            dispatch({
+                type: MY_TIMELINE_RESET,
+            });
 
-        dispatch({
-            type: USER_LOGOUT_SUCCESS,
-        });
+            dispatch({
+                type: USER_PROFILE_RESET,
+            })
+
+            dispatch({
+                type: USER_LOGOUT_SUCCESS,
+            });
+        } else {
+            dispatch(loadingEndAction());
+        }
+
 
     } catch (err) {
         dispatch({

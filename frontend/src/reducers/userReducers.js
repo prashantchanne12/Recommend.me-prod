@@ -126,7 +126,7 @@ export const inboxToggleReducer = (state = { toggle: null }, action) => {
 
 }
 
-export const userLogoutReducer = (state = { error: null, loading: null }, action) => {
+export const userLogoutReducer = (state = { error: null, loading: null, logout: false }, action) => {
 
     switch (action.type) {
 
@@ -142,6 +142,15 @@ export const userLogoutReducer = (state = { error: null, loading: null }, action
                 ...state,
                 error: null,
                 loading: null,
+                logout: true,
+            }
+        }
+
+        case 'MAKE_LOGOUT_FALSE': {
+            return {
+                error: null,
+                loading: null,
+                logout: false,
             }
         }
 
@@ -150,6 +159,7 @@ export const userLogoutReducer = (state = { error: null, loading: null }, action
                 ...state,
                 error: action.payload,
                 loading: null,
+                logout: false,
             }
         }
 

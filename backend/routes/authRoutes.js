@@ -35,21 +35,25 @@ authRouter.get(
 
 // @desc Current logged in user
 // @route GET auth/currentUser
-authRouter.get('/currentUser', protect, (req, res) => {
+authRouter.get('/currentUser', (req, res) => {
     if (!req.user) {
         res.status(404);
         throw new Error('User not found!');
+    } else {
+        res.send(req.user);
     }
-    res.send(req.user);
 });
 
 // @desc Log out user
 // @route GET auth/logout
 authRouter.get('/logout', (req, res) => {
-    req.logOut();
-    delete req.session;
+    req.logout();
     delete req.user;
-    res.send('Logged out!');
+    delete req.session;
+    req.session = null;
+    req.user = null;
+    res.send('Logged out');
+
 });
 
 export default authRouter;
