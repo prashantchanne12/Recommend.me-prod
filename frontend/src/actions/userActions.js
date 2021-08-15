@@ -31,6 +31,10 @@ import {
     CHANGE_USERNAME_CARD_REQUEST,
     CHANGE_USERNAME_CARD_RESET,
 
+    CHANGE_USERNAME_REQUEST,
+    CHANGE_USERNAME_SUCCESS,
+    CHANGE_USERNAME_FAIL,
+
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
@@ -109,6 +113,39 @@ export const changeUserNameCardReset = () => async (dispatch) => {
     });
 }
 
+export const changeUserName = (userName) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type: CHANGE_USERNAME_REQUEST,
+        });
+
+        dispatch(loadingStartAction());
+
+        const { data } = await axios.put(`/api/user/changeUserName/${userName}`);
+
+        if (data) {
+            dispatch(loadingEndAction());
+
+            dispatch({
+                type: CHANGE_USERNAME_SUCCESS,
+            });
+
+        } else {
+            dispatch(loadingEndAction());
+        }
+
+
+    } catch (err) {
+        dispatch({
+            type: CHANGE_USERNAME_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        });
+    }
+}
+
 export const userLogout = () => async (dispatch) => {
 
     try {
@@ -119,8 +156,7 @@ export const userLogout = () => async (dispatch) => {
         dispatch(loadingStartAction());
 
         const { data } = await axios.get('/auth/logout');
-        console.log(data);
-        localStorage.removeItem('userInfo');
+        // localStorage.removeItem('userInfo');
 
         if (data) {
             dispatch(loadingEndAction());
@@ -150,6 +186,7 @@ export const userLogout = () => async (dispatch) => {
 
 
     } catch (err) {
+        dispatch(loadingEndAction());
         dispatch({
             type: USER_LOGOUT_FAIL,
             payload: err.response && err.response.data.message

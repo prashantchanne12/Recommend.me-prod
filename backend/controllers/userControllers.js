@@ -177,7 +177,6 @@ export const changeUserName = asyncHandler(async (req, res) => {
             throw new Error('Error while updating user name');
         }
 
-
     } else {
         throw new Error('Username is already taken!');
     }

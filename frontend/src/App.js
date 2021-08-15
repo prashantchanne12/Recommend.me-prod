@@ -32,6 +32,14 @@ function App() {
       {
         show && <Share />
       }
+      <Layout>
+        <Route exact path='/' component={HomeScreen} />
+        <Route exact path='/login' component={LoginScreen} />
+        <Route exact path='/create' component={CreateRecommendationScreen} />
+        <Route exact path='/profile' component={ProfileScreen} />
+        <Route path='/profile/:userId' component={UserProfile} />
+        <Route path='/list/:listId' component={ListScreen} />
+      </Layout>
       <div className='overlay'
         style={{
           position: 'absolute',
@@ -42,15 +50,6 @@ function App() {
           opacity: `${toggle || show ? 0.4 : 1}`,
         }}
       >
-
-        <Layout>
-          <Route exact path='/' component={HomeScreen} />
-          <Route exact path='/login' component={LoginScreen} />
-          <Route exact path='/create' component={CreateRecommendationScreen} />
-          <Route exact path='/profile' component={ProfileScreen} />
-          <Route path='/profile/:userId' component={UserProfile} />
-          <Route path='/list/:listId' component={ListScreen} />
-        </Layout>
       </div>
     </Router>
   );

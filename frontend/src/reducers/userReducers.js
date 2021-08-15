@@ -32,6 +32,10 @@ import {
     CHANGE_USERNAME_CARD_REQUEST,
     CHANGE_USERNAME_CARD_RESET,
 
+    CHANGE_USERNAME_REQUEST,
+    CHANGE_USERNAME_SUCCESS,
+    CHANGE_USERNAME_FAIL,
+
 } from '../constants/userConstants';
 
 const INIT_STATE = {
@@ -143,6 +147,39 @@ export const changeUserNameToggleReducer = (state = { toggle: null }, action) =>
             return {
                 ...state,
                 toggle: false,
+            }
+        }
+
+        default: return state;
+
+    }
+
+}
+
+export const changeUserNameReducer = (state = { loading: null, error: null }, action) => {
+
+    switch (action.type) {
+
+        case CHANGE_USERNAME_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case CHANGE_USERNAME_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: null,
+            }
+        }
+
+        case CHANGE_USERNAME_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
             }
         }
 
