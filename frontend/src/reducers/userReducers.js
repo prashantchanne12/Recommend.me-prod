@@ -29,6 +29,8 @@ import {
     INBOX_TOGGLE_REQUEST,
     INBOX_TOGGLE_RESET,
 
+    CHANGE_USERNAME_CARD_REQUEST,
+    CHANGE_USERNAME_CARD_RESET,
 
 } from '../constants/userConstants';
 
@@ -117,6 +119,30 @@ export const inboxToggleReducer = (state = { toggle: null }, action) => {
             return {
                 ...state,
                 toggle: false
+            }
+        }
+
+        default: return state;
+
+    }
+
+}
+
+export const changeUserNameToggleReducer = (state = { toggle: null }, action) => {
+
+    switch (action.type) {
+
+        case CHANGE_USERNAME_CARD_REQUEST: {
+            return {
+                ...state,
+                toggle: true,
+            }
+        }
+
+        case CHANGE_USERNAME_CARD_RESET: {
+            return {
+                ...state,
+                toggle: false,
             }
         }
 

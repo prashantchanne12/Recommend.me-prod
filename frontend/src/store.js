@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import {
+    changeUserNameToggleReducer,
     followUserReducer,
     inboxToggleReducer,
     mySessionReducer,
@@ -45,6 +46,7 @@ const reducer = combineReducers({
     searchUsers: searchProfileReducer,
     inboxToggle: inboxToggleReducer,
     shareToggle: shareListReducer,
+    changeUserNameToggle: changeUserNameToggleReducer,
 
     recommendListUpvote: upvoteRecommendListsReducer,
     recommendLisDownvote: downvoteRecommendListsReducer,

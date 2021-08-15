@@ -28,6 +28,9 @@ import {
     INBOX_TOGGLE_REQUEST,
     INBOX_TOGGLE_RESET,
 
+    CHANGE_USERNAME_CARD_REQUEST,
+    CHANGE_USERNAME_CARD_RESET,
+
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';
@@ -91,6 +94,18 @@ export const inboxToggleReset = () => async (dispatch) => {
 export const profileToggleReset = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_RESET,
+    });
+}
+
+export const changeUserNameCard = () => async (dispatch) => {
+    dispatch({
+        type: CHANGE_USERNAME_CARD_REQUEST,
+    });
+}
+
+export const changeUserNameCardReset = () => async (dispatch) => {
+    dispatch({
+        type: CHANGE_USERNAME_CARD_RESET,
     });
 }
 

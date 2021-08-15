@@ -18,6 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   const { show } = useSelector(state => state.shareToggle);
+  const { toggle } = useSelector(state => state.changeUserNameToggle);
 
   useEffect(() => {
     dispatch(mySession());
@@ -25,7 +26,9 @@ function App() {
 
   return (
     <Router>
-      <ChangeUserName />
+      {
+        toggle && <ChangeUserName />
+      }
       {
         show && <Share />
       }
@@ -36,7 +39,7 @@ function App() {
           left: 0,
           width: '100%',
           height: '100%',
-          opacity: `${true ? 0.4 : 1}`,
+          opacity: `${toggle || show ? 0.4 : 1}`,
         }}
       >
 
