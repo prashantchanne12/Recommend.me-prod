@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+    changeUserName,
     followUser,
     getUserProfile,
     getUserProfileById,
@@ -13,6 +14,6 @@ userRoutes.get('/profile', protect, getUserProfile);
 userRoutes.get('/profile/u/:id', getUserProfileById);
 userRoutes.put('/follow/:id', protect, followUser);
 userRoutes.put('/unfollow/:id', protect, unfollowUser);
-
+userRoutes.put('/changeUserName/:userName', protect, changeUserName);
 
 export default userRoutes;

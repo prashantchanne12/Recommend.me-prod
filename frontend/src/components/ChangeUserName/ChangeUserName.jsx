@@ -10,7 +10,7 @@ const ChangeUserName = () => {
 
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
-    const [userName, setUserName] = useState('userName');
+    const [userName, setUserName] = useState(user.userName);
 
     const changeUserName = (name) => {
         setUserName(name);

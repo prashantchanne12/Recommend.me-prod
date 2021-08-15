@@ -156,3 +156,33 @@ export const unfollowUser = asyncHandler(async (req, res) => {
         throw new Error('User not found!');
     }
 });
+
+// @desc Change Username
+// @route /api/user/changeUsername
+// @access Private
+export const changeUserName = asyncHandler(async (req, res) => {
+
+    const id = req.user._id;
+    const userName = req.params.userName;
+
+    // check if the provided username already exists
+    const user = await User.findOne({ userName });
+
+    if (!user) {
+        const updatedUser = await User.findByIdAndUpdate(id, { userName });
+
+        if (updatedUser) {
+            res.send(updatedUser);
+        } else {
+            throw new Error('Error while updating user name');
+        }
+
+
+    } else {
+        throw new Error('Username is already taken!');
+    }
+
+
+    res.send(user);
+
+});
