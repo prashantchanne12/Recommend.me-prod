@@ -169,10 +169,12 @@ export const changeUserName = asyncHandler(async (req, res) => {
     const user = await User.findOne({ userName });
 
     if (!user) {
-        const updatedUser = await User.findByIdAndUpdate(id, { userName });
+        const user = await User.findById(req.user._id);
+        user.userName = userName;
+        const updatedUser = await user.save();
 
         if (updatedUser) {
-            res.send(updatedUser);
+            return res.send(updatedUser.userName);
         } else {
             throw new Error('Error while updating user name');
         }
@@ -180,8 +182,4 @@ export const changeUserName = asyncHandler(async (req, res) => {
     } else {
         throw new Error('Username is already taken!');
     }
-
-
-    res.send(user);
-
 });

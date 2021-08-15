@@ -35,6 +35,7 @@ import {
     CHANGE_USERNAME_REQUEST,
     CHANGE_USERNAME_SUCCESS,
     CHANGE_USERNAME_FAIL,
+    CHANGE_USERNAME_RESET,
 
 } from '../constants/userConstants';
 
@@ -156,7 +157,7 @@ export const changeUserNameToggleReducer = (state = { toggle: null }, action) =>
 
 }
 
-export const changeUserNameReducer = (state = { loading: null, error: null }, action) => {
+export const changeUserNameReducer = (state = { loading: null, error: null, userName: null }, action) => {
 
     switch (action.type) {
 
@@ -164,6 +165,7 @@ export const changeUserNameReducer = (state = { loading: null, error: null }, ac
             return {
                 ...state,
                 loading: true,
+                userName: null,
             }
         }
 
@@ -172,6 +174,7 @@ export const changeUserNameReducer = (state = { loading: null, error: null }, ac
                 ...state,
                 loading: false,
                 error: null,
+                userName: action.payload,
             }
         }
 
@@ -180,6 +183,15 @@ export const changeUserNameReducer = (state = { loading: null, error: null }, ac
                 ...state,
                 loading: false,
                 error: action.payload,
+            }
+        }
+
+        case CHANGE_USERNAME_RESET: {
+            return {
+                ...state,
+                loading: null,
+                error: null,
+                userName: null
             }
         }
 

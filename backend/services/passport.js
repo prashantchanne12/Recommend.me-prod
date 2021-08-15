@@ -13,9 +13,6 @@ const getUserName = () => {
         separator: '',
     });
 }
-
-console.log(getUserName())
-
 // this is called after adding or fetching the user from Mongo and passed it into done(null, user) 
 // this will take the user which is logged in and will make the cookie out of user._id
 // Called only once

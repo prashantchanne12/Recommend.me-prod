@@ -34,6 +34,7 @@ import {
     CHANGE_USERNAME_REQUEST,
     CHANGE_USERNAME_SUCCESS,
     CHANGE_USERNAME_FAIL,
+    CHANGE_USERNAME_RESET,
 
 } from '../constants/userConstants';
 
@@ -102,6 +103,11 @@ export const profileToggleReset = () => async (dispatch) => {
 }
 
 export const changeUserNameCard = () => async (dispatch) => {
+
+    dispatch({
+        type: CHANGE_USERNAME_RESET,
+    })
+
     dispatch({
         type: CHANGE_USERNAME_CARD_REQUEST,
     });
@@ -120,7 +126,7 @@ export const changeUserName = (userName) => async (dispatch) => {
             type: CHANGE_USERNAME_REQUEST,
         });
 
-        dispatch(loadingStartAction());
+        // dispatch(loadingStartAction());
 
         const { data } = await axios.put(`/api/user/changeUserName/${userName}`);
 
@@ -129,14 +135,18 @@ export const changeUserName = (userName) => async (dispatch) => {
 
             dispatch({
                 type: CHANGE_USERNAME_SUCCESS,
+                payload: data,
             });
 
+            dispatch(mySession());
+
         } else {
-            dispatch(loadingEndAction());
+            // dispatch(loadingEndAction());
         }
 
 
     } catch (err) {
+        // dispatch(loadingEndAction());
         dispatch({
             type: CHANGE_USERNAME_FAIL,
             payload: err.response && err.response.data.message
