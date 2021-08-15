@@ -18,6 +18,7 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
         amIFollowing = user.followers.find(id => id === currentUser._id);
     }
 
+
     return user ? (
         <>
             <div className="profile-box">

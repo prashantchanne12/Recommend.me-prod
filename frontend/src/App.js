@@ -11,6 +11,7 @@ import { mySession } from './actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Share from './components/Share/Share';
 import ListScreen from './screens/ListScreen/ListScreen';
+import ChangeUserName from './components/ChangeUserName/ChangeUserName';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <Router>
+      <ChangeUserName />
       {
         show && <Share />
       }
@@ -34,9 +36,10 @@ function App() {
           left: 0,
           width: '100%',
           height: '100%',
-          opacity: `${show ? 0.4 : 1}`,
+          opacity: `${true ? 0.4 : 1}`,
         }}
       >
+
         <Layout>
           <Route exact path='/' component={HomeScreen} />
           <Route exact path='/login' component={LoginScreen} />
