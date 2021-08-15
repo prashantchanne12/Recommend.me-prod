@@ -4,6 +4,18 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import TwitterStrategy from 'passport-twitter';
 import User from '../models/userModel.js';
 
+import { uniqueNamesGenerator, adjectives, starWars, colors, animals } from 'unique-names-generator';
+
+const getUserName = () => {
+    return uniqueNamesGenerator({
+        dictionaries: [adjectives, animals],
+        style: 'capital',
+        separator: '',
+    });
+}
+
+console.log(getUserName())
+
 // this is called after adding or fetching the user from Mongo and passed it into done(null, user) 
 // this will take the user which is logged in and will make the cookie out of user._id
 // Called only once
@@ -36,7 +48,21 @@ passport.use(new GoogleStrategy({
         // we already have a record
         done(null, user);
     } else {
-        // don't have a record, create a new one
+
+        let userName, user;
+
+        while (true) {
+            // get a user name  
+            userName = getUserName();
+
+            // check if userName is already taken
+            user = await User.find({ userName });
+            if (user.length == 0) {
+                break;
+            }
+        }
+
+
         const newUser = await new User({
             userId: profile.id,
             displayName: profile.displayName,
@@ -44,6 +70,7 @@ passport.use(new GoogleStrategy({
             lastName: profile.name.familyName,
             image: profile.photos[0].value,
             loginMethod: 'Google',
+            userName,
         }).save();
 
         if (newUser) {
@@ -66,6 +93,23 @@ passport.use(new TwitterStrategy({
         done(null, user);
     } else {
         // don't have a record, create a new one
+
+        let userName, user;
+
+        while (true) {
+
+            // get a user name  
+            userName = getUserName();
+
+            // check if userName is already taken
+            user = await User.find({ userName });
+
+            if (user.length == 0) {
+                break
+            }
+        }
+
+
         const newUser = await new User({
             userId: profile.id,
             displayName: profile.displayName,
@@ -73,6 +117,7 @@ passport.use(new TwitterStrategy({
             lastName: profile.displayName.split(' ')[1],
             image: profile.photos[0].value,
             loginMethod: 'Twitter',
+            userName,
         }).save();
 
         if (newUser) {

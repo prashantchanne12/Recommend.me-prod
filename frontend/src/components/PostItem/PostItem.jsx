@@ -17,7 +17,7 @@ const PostItem = ({item, isSinglePost}) => {
     const {user} = useSelector(state => state.mySession);
     const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
-    const isUpvoted = user ? item.upvotes.includes(user._id) : false;
+    let isUpvoted = user ? item.upvotes.includes(user._id) : false;
     const history = useHistory();
 
     const handleSharing = () => {
@@ -93,6 +93,7 @@ const PostItem = ({item, isSinglePost}) => {
 
                                     if(user){
                                     setTempUpvote(false);
+                                    isUpvoted = false
                                     setUpvoteCount(upvoteCount-1);
                                     dispatch(removeUpvoteRecommendation(item._id));
                                     }else{
@@ -105,6 +106,7 @@ const PostItem = ({item, isSinglePost}) => {
                                  onClick={() => {
                                     if(user){
                                     setTempUpvote(true);
+                                    isUpvoted = true;
                                     setUpvoteCount(upvoteCount+1);
                                     dispatch(upvoteRecommendation(item._id));
                                     }else{

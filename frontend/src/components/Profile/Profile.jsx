@@ -25,9 +25,16 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
                     <div className="profile-image">
                         <img src={user.image} alt='' />
                     </div>
-                    <div className="display-name">
-                        <p className='f-name'>{user.firstName}</p>
-                        <p className='l-name'>{user.lastName}</p>
+                    <div className="name-section">
+                        
+                        <div className="display-name">
+                            <p className='f-name'>{user.firstName}</p>
+                            <p className='l-name'>{user.lastName}</p>
+                        </div>
+
+                        <div className="user-name">
+                            <p>{user.userName}</p>
+                        </div>
                     </div>
                </div>
                <div className='hr' />

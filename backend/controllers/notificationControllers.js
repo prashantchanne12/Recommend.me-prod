@@ -4,7 +4,7 @@ import Notification from '../models/notificationModel.js';
 // @desc Add recommendation list in database
 // @route POST /api/recommend/create
 // @access PRIVATE
-export const upvoteRecommendList = asyncHandlers(async (req, res) => {
+export const upvoteNotification = asyncHandlers(async (req, res) => {
 
     const { postId, ownerId, userName } = req.body;
 
@@ -15,5 +15,11 @@ export const upvoteRecommendList = asyncHandlers(async (req, res) => {
         ownerId,
         userName,
     }).save();
+
+    if (notification) {
+        return res.send(notification);
+    }
+
+    throw new Error('Error saving the Notification');
 
 });
