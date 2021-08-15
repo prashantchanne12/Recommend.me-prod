@@ -1,7 +1,7 @@
 import React from 'react';
 import './profile.scss';
 import {BiLink, BiUnlink} from 'react-icons/bi';
-
+import {AiOutlineEdit} from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 import { followUser, unfollowUser } from '../../actions/userActions';
 
@@ -21,6 +21,7 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
     return user ? (
         <>
             <div className="profile-box">
+              <AiOutlineEdit className="edit"/>
                <div className="profile-header">
                     <div className="profile-image">
                         <img src={user.image} alt='' />
