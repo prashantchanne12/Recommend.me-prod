@@ -23,6 +23,15 @@ const notificationSchema = new mongoose.Schema({
         type: String
     },
     ownerId: userRef,
+    userName: {
+        type: String,
+        required: true,
+    },
+    seen: {
+        type: Boolean,
+        required: true,
+        default: false,
+    }
 
 }, {
     timestamps: true,

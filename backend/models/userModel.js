@@ -12,6 +12,7 @@ const recommendationRef = {
     required: true,
 };
 
+
 const UserSchema = new mongoose.Schema({
     userId: {
         type: String,
@@ -45,7 +46,7 @@ const UserSchema = new mongoose.Schema({
     followings: [userRef],
     recommendations: [recommendationRef],
     upvotedRecommendations: [recommendationRef],
-    bucket: [recommendationRef]
+    bucket: [recommendationRef],
 }, {
     timestamps: true,
 });
