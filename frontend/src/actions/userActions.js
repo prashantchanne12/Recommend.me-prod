@@ -36,6 +36,11 @@ import {
     CHANGE_USERNAME_FAIL,
     CHANGE_USERNAME_RESET,
 
+    MY_NOTIFICATIONS_REQUEST,
+    MY_NOTIFICATIONS_SUCCESS,
+    MY_NOTIFICATIONS_FAIL,
+    MY_NOTIFICATIONS_RESET,
+
 } from '../constants/userConstants';
 
 import { FETCH_MY_RECOMMEND_LIST_RESET } from '../constants/recommendConstants';

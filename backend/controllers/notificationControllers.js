@@ -1,5 +1,6 @@
 import asyncHandlers from 'express-async-handler';
 import Notification from '../models/notificationModel.js';
+import UserNotification from '../models/userNotificationModel.js';
 
 // @desc Add notification in database
 // @route POST /api/notification/upvote
@@ -37,6 +38,21 @@ export const removeUpvoteNotification = asyncHandlers(async (req, res) => {
         return res.send('deleted!')
     } else {
         throw new Error('Error while deleting notification');
+    }
+
+});
+
+// @desc Get all notifications
+// @route GET api/notification
+// @access PRIVATE
+export const getAllNotifications = asyncHandlers(async (req, res) => {
+
+    const notifications = await UserNotification.findOne({
+        userId: req.user._id
+    }).populate('notifications');
+
+    if (notitfication) {
+        res.send(notifications);
     }
 
 });

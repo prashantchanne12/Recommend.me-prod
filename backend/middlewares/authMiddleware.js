@@ -8,7 +8,7 @@ export const protect = asyncHandler(async (req, res, next) => {
     //     throw new Error('Not Auhtorized');
     // }
     // POSTMAN TESTING
-    const user = await User.findById('610d58036553ee50706ee7ad');
+    const user = await User.findById('610cee69fde2ab07bc1cb405');
     req.user = user;
 
     next();
