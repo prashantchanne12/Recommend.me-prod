@@ -55,3 +55,11 @@ export const getAllNotifications = asyncHandlers(async (req, res) => {
 
 
 });
+
+// @desc Read all notifications
+// @route PUT api/notification/readAll
+// @access PRIVATE
+export const readAllNotifications = asyncHandlers(async (req, res) => {
+    const notifications = await Notification.updateMany({ ownerId: req.user._id, seen: false }, { seen: true });
+    res.send(notifications);
+});
