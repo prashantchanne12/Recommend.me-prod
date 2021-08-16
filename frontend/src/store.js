@@ -8,6 +8,7 @@ import {
     changeUserNameToggleReducer,
     followUserReducer,
     inboxToggleReducer,
+    myNotificationReducer,
     mySessionReducer,
     profileToggleReducer,
     unfollowUserReducer,
@@ -39,6 +40,7 @@ const reducer = combineReducers({
     profileToggle: profileToggleReducer,
     userLogout: userLogoutReducer,
     changeUserName: changeUserNameReducer,
+    notifications: myNotificationReducer,
 
     userProfile: userProfileReducer,
     userRecommendations: fetchUserRecommendListReducer,

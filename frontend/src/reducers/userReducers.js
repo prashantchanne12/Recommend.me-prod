@@ -37,6 +37,11 @@ import {
     CHANGE_USERNAME_FAIL,
     CHANGE_USERNAME_RESET,
 
+    MY_NOTIFICATIONS_REQUEST,
+    MY_NOTIFICATIONS_SUCCESS,
+    MY_NOTIFICATIONS_FAIL,
+    MY_NOTIFICATIONS_RESET,
+
 } from '../constants/userConstants';
 
 const INIT_STATE = {
@@ -75,6 +80,48 @@ export const mySessionReducer = (state = INIT_STATE, action) => {
 
         case MY_SESSION_RESET: {
             return { user: null }
+        }
+
+        default: return state;
+
+    }
+
+}
+
+export const myNotificationReducer = (state = { loading: null, notifications: null, error: null }, action) => {
+
+    switch (action.type) {
+
+
+        case MY_NOTIFICATIONS_REQUEST: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case MY_NOTIFICATIONS_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                notifications: action.payload
+            }
+        }
+
+        case MY_NOTIFICATIONS_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        case MY_NOTIFICATIONS_RESET: {
+            return {
+                loading: null,
+                notifications: null,
+                error: null
+            }
         }
 
         default: return state;

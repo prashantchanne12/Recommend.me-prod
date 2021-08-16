@@ -83,6 +83,32 @@ export const mySession = () => async (dispatch) => {
 
 }
 
+export const myNotification = () => async (dispatch) => {
+
+    try {
+
+        dispatch({
+            type: MY_NOTIFICATIONS_REQUEST,
+        });
+
+        const { data } = await axios.get('/api/notification');
+
+        dispatch({
+            type: MY_NOTIFICATIONS_SUCCESS,
+            payload: data,
+        });
+
+
+    } catch (err) {
+        dispatch({
+            type: MY_NOTIFICATIONS_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        })
+    }
+}
+
 export const profileToggle = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_REQUEST,
