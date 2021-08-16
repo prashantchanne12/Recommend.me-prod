@@ -38,9 +38,14 @@ function Header() {
                         </Link> */}
 
                         <div className="link">
-                            <RiNotification2Line
-                             className='header-icon'
-                             />
+                            <div className='notification'>
+                                <RiNotification2Line
+                                className='header-icon'
+                                />
+                            </div>
+                             <div className='notification-count'>
+                                10
+                             </div>
                         </div>
 
                         

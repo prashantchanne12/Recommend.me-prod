@@ -7,7 +7,7 @@ import Layout from './components/Layout/Layout';
 import CreateRecommendationScreen from './screens/CreateRecommendationScreen/CreateRecommendationScreen';
 import UserProfile from './screens/UserProfile/UserProfile';
 
-import { mySession } from './actions/userActions';
+import { myNotification, mySession } from './actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Share from './components/Share/Share';
 import ListScreen from './screens/ListScreen/ListScreen';
@@ -22,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(mySession());
+    dispatch(myNotification());
   }, [dispatch]);
 
   return (

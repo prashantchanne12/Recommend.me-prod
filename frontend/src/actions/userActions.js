@@ -216,7 +216,11 @@ export const userLogout = () => async (dispatch) => {
 
             dispatch({
                 type: USER_PROFILE_RESET,
-            })
+            });
+
+            dispatch({
+                type: MY_NOTIFICATIONS_RESET,
+            });
 
             dispatch({
                 type: USER_LOGOUT_SUCCESS,

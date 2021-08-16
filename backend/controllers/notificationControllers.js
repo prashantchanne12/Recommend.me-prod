@@ -51,8 +51,7 @@ export const getAllNotifications = asyncHandlers(async (req, res) => {
         userId: req.user._id
     }).populate('notifications');
 
-    if (notitfication) {
-        res.send(notifications);
-    }
+    res.send(notifications);
+
 
 });
