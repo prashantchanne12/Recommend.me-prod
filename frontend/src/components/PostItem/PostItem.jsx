@@ -20,6 +20,13 @@ const PostItem = ({item, isSinglePost}) => {
     let isUpvoted = user ? item.upvotes.includes(user._id) : false;
     const history = useHistory();
 
+    const notification = {
+        postId: item._id,
+        ownerId: item.owner,
+        userName: user.userName,
+        userProfileImg: user.image,
+    }
+
     const handleSharing = () => {
         let re = new RegExp(/^.*\//);
         let share_link = re.exec(window.location.href)[0];
@@ -108,7 +115,7 @@ const PostItem = ({item, isSinglePost}) => {
                                     setTempUpvote(true);
                                     isUpvoted = true;
                                     setUpvoteCount(upvoteCount+1);
-                                    dispatch(upvoteRecommendation(item._id));
+                                    dispatch(upvoteRecommendation(item._id, notification));
                                     }else{
                                         dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
                                     }

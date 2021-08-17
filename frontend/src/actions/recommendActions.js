@@ -29,6 +29,7 @@ import { mySession } from './userActions';
 import { loadingStartAction, loadingEndAction } from './loadingActions';
 
 import axios from 'axios';
+import { sendUpvoteNotification } from './notificationActions';
 
 export const addRecommendAction = (body) => async (dispatch) => {
     try {
@@ -129,7 +130,7 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
 
 }
 
-export const upvoteRecommendation = (id) => async (dispatch) => {
+export const upvoteRecommendation = (id, body) => async (dispatch) => {
 
     // PUT /api/recommend/list/upvote/:id
 
@@ -139,10 +140,11 @@ export const upvoteRecommendation = (id) => async (dispatch) => {
             type: UPVOTE_RECOMMEND_LIST_REQUEST
         });
 
-
         await axios.put(
             ` /api/recommend/list/upvote/${id}`,
         );
+
+        dispatch(sendUpvoteNotification(body));
 
         dispatch({
             type: UPVOTE_RECOMMEND_LIST_SUCCESS,
