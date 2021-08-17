@@ -9,7 +9,7 @@ notificationRoutes.post('/upvote/', protect, upvoteNotification);
 notificationRoutes.post('/follow/', protect);
 notificationRoutes.post('/comment/', protect);
 
-notificationRoutes.delete('/remove/upvote', protect, removeUpvoteNotification);
+notificationRoutes.put('/remove/upvote', protect, removeUpvoteNotification);
 notificationRoutes.put('/remove/follow/:id', protect);
 notificationRoutes.put('/remove/comment/:id', protect);
 

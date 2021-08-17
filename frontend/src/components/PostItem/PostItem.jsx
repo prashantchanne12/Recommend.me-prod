@@ -102,7 +102,9 @@ const PostItem = ({item, isSinglePost}) => {
                                     setTempUpvote(false);
                                     isUpvoted = false
                                     setUpvoteCount(upvoteCount-1);
-                                    dispatch(removeUpvoteRecommendation(item._id));
+                                    dispatch(removeUpvoteRecommendation(item._id, 
+                                        {type: 'upvote', recommendation: item._id}
+                                    ));
                                     }else{
                                         dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
                                     }

@@ -29,7 +29,7 @@ import { mySession } from './userActions';
 import { loadingStartAction, loadingEndAction } from './loadingActions';
 
 import axios from 'axios';
-import { sendUpvoteNotification } from './notificationActions';
+import { removeUpvoteNotification, sendUpvoteNotification } from './notificationActions';
 
 export const addRecommendAction = (body) => async (dispatch) => {
     try {
@@ -165,7 +165,7 @@ export const upvoteRecommendation = (id, body) => async (dispatch) => {
     }
 
 }
-export const removeUpvoteRecommendation = (id) => async (dispatch) => {
+export const removeUpvoteRecommendation = (id, body) => async (dispatch) => {
 
     // PUT /api/recommend/list/upvote/:id
 
@@ -179,6 +179,8 @@ export const removeUpvoteRecommendation = (id) => async (dispatch) => {
         await axios.put(
             ` /api/recommend/list/removeUpvote/${id}`,
         );
+
+        dispatch(removeUpvoteNotification(body));
 
         dispatch({
             type: DOWNVOTE_RECOMMEND_LIST_SUCCESS,

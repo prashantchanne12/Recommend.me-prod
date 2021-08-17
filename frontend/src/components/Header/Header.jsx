@@ -52,12 +52,12 @@ function Header() {
                                 10
                              </div>
                             
-                            <div className="notification-result">
+                            {/* <div className="notification-result">
                                 <div className="notification-details">
                                     
                                     <p> Someone upvoted your recommendation </p>                                  
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
 

@@ -33,6 +33,8 @@ export const removeUpvoteNotification = asyncHandlers(async (req, res) => {
 
     const { type, recommendation } = req.body;
 
+    console.log(type, recommendation);
+
     const notification = await Notification.find({
         type,
         recommendation,

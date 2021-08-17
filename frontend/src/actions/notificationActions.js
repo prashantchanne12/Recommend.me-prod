@@ -49,7 +49,7 @@ export const sendUpvoteNotification = (body) => async (dispatch) => {
 
 }
 
-export const removeUpvoteNotification = (id) => async (dispatch) => {
+export const removeUpvoteNotification = (body) => async (dispatch) => {
 
     try {
 
@@ -57,7 +57,18 @@ export const removeUpvoteNotification = (id) => async (dispatch) => {
             type: REMOVE_UPVOTE_NOTIFICATION_REQUEST,
         });
 
-        const { data } = await axios.delete(`/api/notification/remove/upvote/${id}`);
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
+        const { data } = await axios.put(
+            `/api/notification/remove/upvote`,
+            body,
+            config
+        );
 
         dispatch({
             type: REMOVE_UPVOTE_NOTIFICATION_SUCCESS,
