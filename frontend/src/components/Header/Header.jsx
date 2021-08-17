@@ -8,6 +8,7 @@ import {RiNotification2Line} from 'react-icons/all';
 import ProfileOptions from '../ProfileOptions/ProfileOptions';
 import { useDispatch, useSelector } from 'react-redux';
 import { profileToggle, profileToggleReset } from '../../actions/userActions';
+import { NOTIFICATION_TOGGLE_REQUEST, NOTIFICATION_TOGGLE_RESET } from '../../constants/userConstants';
 import SearchBar from '../SearchBar/SearchBar';
 
 function Header() {
@@ -38,14 +39,26 @@ function Header() {
                         </Link> */}
 
                         <div className="link">
-                            <div className='notification'>
+                            <div className='notification'
+                                onClick={() => {
+                                    console.log('click!');
+                                }}
+                            >
                                 <RiNotification2Line
                                 className='header-icon'
-                                />
+                               />
                             </div>
                              <div className='notification-count'>
                                 10
                              </div>
+                            
+                            <div className="notification-result">
+                                <div className="notification-details">
+                                    
+                                    <p> Someone upvoted your recommendation </p>                                  
+                                </div>
+                            </div>
+
                         </div>
 
                         

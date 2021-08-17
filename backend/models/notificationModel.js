@@ -27,6 +27,10 @@ const notificationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userProfileImg: {
+        type: String,
+        required: false,
+    },
     seen: {
         type: Boolean,
         required: true,

@@ -7,7 +7,7 @@ import UserNotification from '../models/userNotificationModel.js';
 // @access PRIVATE
 export const upvoteNotification = asyncHandlers(async (req, res) => {
 
-    const { postId, ownerId, userName } = req.body;
+    const { postId, ownerId, userName, userProfileImg } = req.body;
 
     const notification = await new Notification({
         type: 'upvote',
@@ -15,6 +15,7 @@ export const upvoteNotification = asyncHandlers(async (req, res) => {
         userId: req.user.id,
         ownerId,
         userName,
+        userProfileImg,
     }).save();
 
     if (notification) {

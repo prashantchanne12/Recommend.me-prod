@@ -1,6 +1,7 @@
 .list-wrapper{
     background-origin: border-box;
     background-clip: padding-box, border-box;
+    z-index: -10;
 }
 
 .list-container{
@@ -13,6 +14,7 @@
     border-bottom-right-radius: 0px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    z-index: -10;
 
     .list-data{
         position: relative;

@@ -29,6 +29,7 @@ import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
 import { myTimelineReducer } from './reducers/timelineReducers';
 import { postReducer } from './reducers/recommendPostReducers';
+import { sendUpvoteNotificationReducer } from './reducers/notificationReducers';
 
 // Combine reducers
 const reducer = combineReducers({
@@ -41,7 +42,9 @@ const reducer = combineReducers({
     profileToggle: profileToggleReducer,
     userLogout: userLogoutReducer,
     changeUserName: changeUserNameReducer,
+
     notifications: myNotificationReducer,
+    sendUpvoteNotification: sendUpvoteNotificationReducer,
 
     userProfile: userProfileReducer,
     userRecommendations: fetchUserRecommendListReducer,

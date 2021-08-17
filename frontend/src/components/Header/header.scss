@@ -3,7 +3,7 @@
 .header{
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 50;
     background: $light-grey-1;
 }
 
@@ -44,6 +44,22 @@
             color: white;
         }
 
+
+        .notification-result{
+            position: absolute;
+            overflow: scroll;
+            height: 270px;
+            width: 280px;
+            top: 30px;
+            right: 20px;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background-color: white;
+            border: 1px solid #c9c9c94f;
+            border-radius: 2px;
+            margin-left: -15px;
+            z-index: 30;
+        }
 
       
     }
