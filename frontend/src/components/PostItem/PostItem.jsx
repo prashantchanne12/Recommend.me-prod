@@ -15,9 +15,9 @@ const PostItem = ({item, isSinglePost}) => {
     
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
-    const [tempUpvote, setTempUpvote] = useState(false)
+    // const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
-    let isUpvoted = user ? item.upvotes.includes(user._id) : false;
+    let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
     const history = useHistory();
 
     const notification = {
@@ -93,14 +93,13 @@ const PostItem = ({item, isSinglePost}) => {
                         <div className="section-icons">
 
                             {
-                               isUpvoted || tempUpvote ?
+                               isUpvoted ?
                                 <IoIosArrowDropupCircle 
                                 className="upvoted-icon"
                                 onClick={() => {
 
                                     if(user){
-                                    setTempUpvote(false);
-                                    isUpvoted = false
+                                    setIsUpvoted(false);
                                     setUpvoteCount(upvoteCount-1);
                                     dispatch(removeUpvoteRecommendation(item._id, 
                                         {type: 'upvote', recommendation: item._id}
@@ -114,8 +113,7 @@ const PostItem = ({item, isSinglePost}) => {
                                 <IoIosArrowDropup className="upvote-icon"
                                  onClick={() => {
                                     if(user){
-                                    setTempUpvote(true);
-                                    isUpvoted = true;
+                                    setIsUpvoted(true);
                                     setUpvoteCount(upvoteCount+1);
                                     dispatch(upvoteRecommendation(item._id, notification));
                                     }else{
