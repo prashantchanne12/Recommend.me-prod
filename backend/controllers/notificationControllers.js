@@ -31,15 +31,21 @@ export const upvoteNotification = asyncHandlers(async (req, res) => {
 // @access PRIVATE
 export const removeUpvoteNotification = asyncHandlers(async (req, res) => {
 
-    const id = req.params.id;
+    const { type, recommendation } = req.body;
 
-    const notification = await Notification.findByIdAndDelete(id);
+    const notification = await Notification.find({
+        type,
+        recommendation,
+        userId: req.user._id,
+    }).remove();
 
-    if (notification) {
-        return res.send('deleted!')
-    } else {
-        throw new Error('Error while deleting notification');
-    }
+    res.send(notification);
+
+    // if (notification) {
+    //     return res.send('deleted!')
+    // } else {
+    //     throw new Error('Error while deleting notification');
+    // }
 
 });
 
