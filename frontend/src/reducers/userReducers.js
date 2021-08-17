@@ -41,6 +41,8 @@ import {
     MY_NOTIFICATIONS_SUCCESS,
     MY_NOTIFICATIONS_FAIL,
     MY_NOTIFICATIONS_RESET,
+    NOTIFICATION_TOGGLE_REQUEST,
+    NOTIFICATION_TOGGLE_RESET,
 
 } from '../constants/userConstants';
 
@@ -168,6 +170,31 @@ export const inboxToggleReducer = (state = { toggle: null }, action) => {
         }
 
         case INBOX_TOGGLE_RESET: {
+            return {
+                ...state,
+                toggle: false
+            }
+        }
+
+        default: return state;
+
+    }
+
+}
+
+export const notificationToggleReducer = (state = { toggle: null }, action) => {
+
+    switch (action.type) {
+
+
+        case NOTIFICATION_TOGGLE_REQUEST: {
+            return {
+                ...state,
+                toggle: true
+            }
+        }
+
+        case NOTIFICATION_TOGGLE_RESET: {
             return {
                 ...state,
                 toggle: false

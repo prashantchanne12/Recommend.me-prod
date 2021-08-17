@@ -10,6 +10,7 @@ import {
     inboxToggleReducer,
     myNotificationReducer,
     mySessionReducer,
+    notificationToggleReducer,
     profileToggleReducer,
     unfollowUserReducer,
     userLogoutReducer,
@@ -51,6 +52,7 @@ const reducer = combineReducers({
     inboxToggle: inboxToggleReducer,
     shareToggle: shareListReducer,
     changeUserNameToggle: changeUserNameToggleReducer,
+    notificationToggle: notificationToggleReducer,
 
     recommendListUpvote: upvoteRecommendListsReducer,
     recommendLisDownvote: downvoteRecommendListsReducer,
