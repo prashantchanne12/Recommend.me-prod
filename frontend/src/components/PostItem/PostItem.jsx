@@ -23,8 +23,8 @@ const PostItem = ({item, isSinglePost}) => {
     const notification = {
         postId: item._id,
         ownerId: item.owner,
-        userName: user.userName,
-        userProfileImg: user.image,
+        userName: user && user.userName,
+        userProfileImg: user && user.image,
     }
 
     const handleSharing = () => {

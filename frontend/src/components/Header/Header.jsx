@@ -18,6 +18,13 @@ function Header() {
 
     const {toggle} = useSelector(state => state.profileToggle);
     const {toggle: notificationToggle} = useSelector(state => state.notificationToggle);
+    const {notifications : userNotifications} = useSelector(state => state.notifications);
+    
+    let notifications = null;
+
+    if(userNotifications){
+        notifications = userNotifications.notifications;
+    }
 
     return (
         <div className='container header'>
@@ -56,10 +63,17 @@ function Header() {
                                 
                             {
                                 notificationToggle && 
-                                <div className="notification-result">
-                                    <Notification />
-                                    <Notification />
-                                    <Notification />
+                                <div className="notification-result"
+                                    onBlur={(e) => {
+                                        dispatch({type: NOTIFICATION_TOGGLE_RESET});
+                                    }}
+                                >
+                                    {
+                                        notifications ?
+                                        notifications.map(notification => <Notification notification = {notification} key={notification._id} />) 
+                                        :
+                                        <div>No Notifications for now</div>
+                                    }
                                 </div>
                             }
 
