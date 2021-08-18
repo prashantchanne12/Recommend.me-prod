@@ -11,6 +11,7 @@ import { profileToggle, profileToggleReset } from '../../actions/userActions';
 import { NOTIFICATION_TOGGLE_REQUEST, NOTIFICATION_TOGGLE_RESET } from '../../constants/userConstants';
 import SearchBar from '../SearchBar/SearchBar';
 import Notification from '../Notification/Notification';
+import { readAllNotifications } from '../../actions/notificationActions';
 
 function Header() {
 
@@ -26,7 +27,7 @@ function Header() {
         notifications = userNotifications.notifications;
     }
     
-    let notificationCount = notifications ? notifications.map(item => item.seen === false).length : 0;
+    let notificationCount = notifications ? notifications.filter(item => item.seen === false).length : 0;
     const [tempShow, setTempShow] = useState(true);
 
     return (
@@ -58,6 +59,7 @@ function Header() {
                                     }else{ 
                                         setTempShow(false);
                                         dispatch({type: NOTIFICATION_TOGGLE_REQUEST});
+                                        dispatch(readAllNotifications());
                                     }
                                 
                                 }}
