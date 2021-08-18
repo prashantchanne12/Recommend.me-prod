@@ -1,0 +1,37 @@
+
+
+.notification-details{
+    padding-top: 0.4rem;
+    padding-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+
+    img{
+        height: 50px;
+        width: 50px;
+        border-radius: 3px;
+    }
+
+    .details{
+        padding-left: 0.75rem;
+        font-size: 13px;
+        color: #b1b1b1;
+
+        .notification-username{
+            font-weight: 600;
+            cursor: pointer;
+            color: #333;
+            padding-right: 5px;
+            font-size: 14px;
+
+        }
+
+    }
+
+}
+
+.line{
+    margin-top: 0.3rem;
+    margin-bottom: 0.2rem;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}

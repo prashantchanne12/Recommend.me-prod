@@ -10,13 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { profileToggle, profileToggleReset } from '../../actions/userActions';
 import { NOTIFICATION_TOGGLE_REQUEST, NOTIFICATION_TOGGLE_RESET } from '../../constants/userConstants';
 import SearchBar from '../SearchBar/SearchBar';
+import Notification from '../Notification/Notification';
 
 function Header() {
 
     const dispatch = useDispatch();
 
     const {toggle} = useSelector(state => state.profileToggle);
-
+    const {toggle: notificationToggle} = useSelector(state => state.notificationToggle);
 
     return (
         <div className='container header'>
@@ -41,7 +42,8 @@ function Header() {
                         <div className="link">
                             <div className='notification'
                                 onClick={() => {
-                                    console.log('click!');
+                                    notificationToggle ? dispatch({ type: NOTIFICATION_TOGGLE_RESET }) : dispatch({type: NOTIFICATION_TOGGLE_REQUEST});
+                                
                                 }}
                             >
                                 <RiNotification2Line
@@ -51,13 +53,15 @@ function Header() {
                              <div className='notification-count'>
                                 10
                              </div>
-                            
-                            {/* <div className="notification-result">
-                                <div className="notification-details">
-                                    
-                                    <p> Someone upvoted your recommendation </p>                                  
+                                
+                            {
+                                notificationToggle && 
+                                <div className="notification-result">
+                                    <Notification />
+                                    <Notification />
+                                    <Notification />
                                 </div>
-                            </div> */}
+                            }
 
                         </div>
 
