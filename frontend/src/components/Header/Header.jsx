@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CgAddR } from 'react-icons/cg';
 import {VscAccount} from 'react-icons/vsc';
@@ -25,6 +25,9 @@ function Header() {
     if(userNotifications){
         notifications = userNotifications.notifications;
     }
+    
+    let notificationCount = notifications ? notifications.map(item => item.seen === false).length : 0;
+    const [tempShow, setTempShow] = useState(true);
 
     return (
         <div className='container header'>
@@ -49,7 +52,13 @@ function Header() {
                         <div className="link">
                             <div className='notification'
                                 onClick={() => {
-                                    notificationToggle ? dispatch({ type: NOTIFICATION_TOGGLE_RESET }) : dispatch({type: NOTIFICATION_TOGGLE_REQUEST});
+                                    if(notificationToggle) 
+                                    {
+                                        dispatch({ type: NOTIFICATION_TOGGLE_RESET });
+                                    }else{ 
+                                        setTempShow(false);
+                                        dispatch({type: NOTIFICATION_TOGGLE_REQUEST});
+                                    }
                                 
                                 }}
                             >
@@ -57,16 +66,18 @@ function Header() {
                                 className='header-icon'
                                />
                             </div>
-                             <div className='notification-count'>
-                                10
+                             <div className='notification-count'
+                                style={{
+                                    padding: `${String(notificationCount).length > 1 ? '2px 4px' : '0px 7px'} `,
+                                }}
+                             >
+                             
+                             { notificationCount > 0 && tempShow && notificationCount}
                              </div>
                                 
                             {
                                 notificationToggle && 
                                 <div className="notification-result"
-                                    onBlur={(e) => {
-                                        dispatch({type: NOTIFICATION_TOGGLE_RESET});
-                                    }}
                                 >
                                     {
                                         notifications ?

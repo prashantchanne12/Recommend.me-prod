@@ -6,11 +6,16 @@ import {
 
     REMOVE_UPVOTE_NOTIFICATION_REQUEST,
     REMOVE_UPVOTE_NOTIFICATION_SUCCESS,
-    REMOVE_UPVOTE_NOTIFICATION_FAIL
+    REMOVE_UPVOTE_NOTIFICATION_FAIL,
+
+    READ_ALL_NOTIFICATION_REQUEST,
+    READ_ALL_NOTIFICATION_SUCCESS,
+    READ_ALL_NOTIFICATION_FAIL,
 
 } from '../constants/notificationConstants'
 
 import axios from 'axios';
+import { myNotification } from './userActions';
 
 export const sendUpvoteNotification = (body) => async (dispatch) => {
 
@@ -79,6 +84,39 @@ export const removeUpvoteNotification = (body) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: REMOVE_UPVOTE_NOTIFICATION_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        });
+    }
+
+}
+
+export const readAllNotifications = () => async (dispatch) => {
+
+
+    try {
+
+        dispatch({
+            type: READ_ALL_NOTIFICATION_REQUEST,
+        });
+
+
+        const { data } = await axios.put(
+            `/api/notification/readAll`,
+        );
+
+        dispatch({
+            type: READ_ALL_NOTIFICATION_SUCCESS,
+            payload: data,
+        });
+
+        dispatch(myNotification());
+
+
+    } catch (err) {
+        dispatch({
+            type: READ_ALL_NOTIFICATION_FAIL,
             payload: err.response && err.response.data.message
                 ? err.response.data.message
                 : err.message
