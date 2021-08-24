@@ -264,9 +264,9 @@ class CreateRecommendationScreen extends React.Component{
     
         return (
           <div className="editor-container">
-            <div className="title">
+            {/* <div className="title">
               <h2>Recommend Something</h2>
-            </div>
+            </div> */}
             <div className="RichEditor-root">
               <BlockStyleControls
                 editorState={editorState}

@@ -53,20 +53,10 @@ export const followUser = asyncHandler(async (req, res) => {
             followUser.followers.push(currentUserId);
             await followUser.save();
 
-            const userFollowers = await UserFollowers.findOne({ userId: id });
-
-            if (!userFollowers) {
-
-                await new UserFollowers({
-                    userId: id,
-                    followers: [currentUserId]
-                }).save();
-
-            } else {
-                userFollowers.followers.push(currentUserId);
-                await userFollowers.save();
-
-            }
+            await new UserFollowers({
+                owner: id,
+                followerUserId: currentUserId
+            }).save();
 
 
         } else {
@@ -79,22 +69,10 @@ export const followUser = asyncHandler(async (req, res) => {
             currentUser.followings.push(id);
             const newUser = await currentUser.save();
 
-
-            const userFollowings = await UserFollowings.findOne({ userId: id });
-
-            if (!userFollowings) {
-
-                await new UserFollowings({
-                    userId: currentUserId,
-                    followings: [id]
-                }).save();
-
-            } else {
-
-                userFollowings.followings.push(id)
-                await userFollowings.save();
-
-            }
+            await new UserFollowings({
+                owner: currentUserId,
+                followingUserId: id
+            }).save();
 
             if (newUser) {
                 res.send(newUser);
@@ -102,7 +80,6 @@ export const followUser = asyncHandler(async (req, res) => {
                 res.status(500);
                 throw new Error('Error while updating follow')
             }
-
 
         } else {
             throw new Error('User has already been followed!');
@@ -125,24 +102,17 @@ export const unfollowUser = asyncHandler(async (req, res) => {
     const unfollowUser = await User.findById(id);
     const currentUser = await User.findById(currentUserId);
 
-    const unfollow1 = await UserFollowings.findOne({ userId: currentUserId });
-    const unfollow2 = await UserFollowers.findOne({ userId: id });
-
     if (unfollowUser && currentUser) {
 
         // remove current user's id from the follow user's followers
         unfollowUser.followers.splice(currentUserId, 1);
         await unfollowUser.save();
-
-        unfollow2.followers.splice(currentUserId, 1);
-        await unfollow2.save();
+        await UserFollowers.findOneAndRemove({ owner: id, followerUserId: currentUserId });
 
         // remove follow user's id from the current user's followings
         currentUser.followings.splice(id, 1);
         const newUser = await currentUser.save();
-
-        unfollow1.followings.splice(id, 1);
-        await unfollow1.save();
+        await UserFollowings.findOneAndRemove({ owner: currentUserId, followingUserId: id });
 
         if (newUser) {
             res.send(newUser);

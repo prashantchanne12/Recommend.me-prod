@@ -40,6 +40,7 @@ import {
     MY_NOTIFICATIONS_SUCCESS,
     MY_NOTIFICATIONS_FAIL,
     MY_NOTIFICATIONS_RESET,
+    NOTIFICATION_TOGGLE_RESET,
 
 } from '../constants/userConstants';
 
@@ -112,6 +113,9 @@ export const myNotification = () => async (dispatch) => {
 export const profileToggle = () => async (dispatch) => {
     dispatch({
         type: USER_PROFILE_TOGGLE_REQUEST,
+    });
+    dispatch({
+        type: NOTIFICATION_TOGGLE_RESET,
     });
 }
 

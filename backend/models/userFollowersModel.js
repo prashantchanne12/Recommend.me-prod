@@ -7,8 +7,8 @@ const userRef = {
 };
 
 const UserFollowerSchema = new mongoose.Schema({
-    userId: userRef,
-    followers: [userRef],
+    owner: userRef,
+    followerUserId: userRef,
 }, {
     timestamps: true,
 });

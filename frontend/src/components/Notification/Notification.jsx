@@ -18,7 +18,7 @@ const Notification = ({notification}) => {
         <>   
             <div className="notification-details" >
                 <img src={notification.userProfileImg} 
-                    alt={notification.userName}
+                    alt=""
                     onClick={() => {gotoProfilePage()}}
                 />
                 <p className="details">
