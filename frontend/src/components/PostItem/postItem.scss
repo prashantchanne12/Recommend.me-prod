@@ -19,11 +19,24 @@
     .list-data{
         position: relative;
         .html-data  p{
-            padding: 0.3rem;
+            padding: 0.2rem;
+        }
+        .html-data{
+            margin-top: 0.7rem;
+
+        
         }
         padding-bottom: 0.5rem;
     }
 
+    // .post-title{
+    //     font-weight: 700;
+
+    //     &:hover{
+    //         color: #2e86de;
+    //         transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
+    //     }
+    // }
    
     .upvote-count{
         position: absolute;
@@ -85,7 +98,6 @@
         padding-top: 0.75rem;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
 
         .list-img{
             img{
@@ -97,6 +109,7 @@
 
         .section-2{
             display: flex;
+            width: 100%;
             align-items: center;
             justify-content: space-between;
 

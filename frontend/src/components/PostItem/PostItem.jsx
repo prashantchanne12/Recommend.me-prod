@@ -18,6 +18,7 @@ const PostItem = ({item, isSinglePost}) => {
     // const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
     let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
+    const [isHover, setHover] = useState(false);
     const history = useHistory();
 
     const notification = {
@@ -53,6 +54,16 @@ const PostItem = ({item, isSinglePost}) => {
         return tag.color;
     });
 
+    const onClickPost = () => {
+        if(!isSinglePost){
+            dispatch({
+                type: FETCH_LIST_SUCCESS,
+                payload: item,
+            });
+            history.push(`/list/${item._id}`);
+        }
+    }
+
     return (
         <>
            <div className="list-wrapper" 
@@ -70,19 +81,25 @@ const PostItem = ({item, isSinglePost}) => {
 
             <div className="list-container" id={item._id} >
                     <div className="list-data"
-                          style={{
-                            cursor: !isSinglePost && 'pointer',
-                        }}
-                        onClick={() => {
-                            if(!isSinglePost){
-                                dispatch({
-                                    type: FETCH_LIST_SUCCESS,
-                                    payload: item,
-                                });
-                                history.push(`/list/${item._id}`);
-                            }
-                        }}
+                        //   style={{
+                        //     cursor: !isSinglePost && 'pointer',
+                        // }}
+                        // onClick={() => { onClickPost(); }}
                     >
+                        <span 
+                         className="post-title"
+                         onMouseEnter={() => setHover(true)}
+                         onMouseLeave={() => setHover(false)}
+                         style={{
+                            fontWeight: 700,
+                            cursor: !isSinglePost && 'pointer',
+                            color: isHover && !isSinglePost && '#2e86de',
+                         }}
+                         onClick={() => { onClickPost();
+    
+                        }}
+                        >{item.title}</span>
+                    
                             <div className="html-data" dangerouslySetInnerHTML={{ __html: `${item.data}` }} />
                     </div>
                     <div className="upvote-count">
@@ -159,7 +176,7 @@ const PostItem = ({item, isSinglePost}) => {
                                 <p>{item.ownerUserName.split(' ')[0].length <= 9 ? item.ownerUserName.split(' ')[0] : item.ownerUserName.split(' ')[0].substr(0,9).toString()+'..'}</p>
                             </div>
                             <div className="list-date">
-                                <p>{dateFormat(item.createdAt, "mmmm dS, yyyy")}</p>
+                                <p>{dateFormat(item.createdAt, "mmm dS, yyyy")}</p>
                             </div>
                        </div>
                     </div>
