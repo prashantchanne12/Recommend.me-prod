@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Editor,
     EditorState,
     getDefaultKeyBinding,
     RichUtils,
@@ -17,14 +16,27 @@ import Button from '../../components/Button/Button';
 import { connect } from 'react-redux';
 import { addRecommendAction } from '../../actions/recommendActions';
 import { alertMessageAction } from '../../actions/alertActions';
+import createLinkPlugin from '@draft-js-plugins/anchor';
+import Editor from '@draft-js-plugins/editor';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+} from '@draft-js-plugins/buttons';
 
 const MAX_LENGTH = 450;
+const linkPlugin = createLinkPlugin();
+const inlineToolbarPlugin = createInlineToolbarPlugin();
+const { InlineToolbar } = inlineToolbarPlugin;
+const plugins = [linkPlugin, inlineToolbarPlugin];
+
 
 class CreateRecommendationScreen extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = { editorState: EditorState.createEmpty(), options: [] };
+        this.state = { editorState: EditorState.createEmpty(), options: [], title: '' };
     
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => this.setState({ editorState });
@@ -87,7 +99,6 @@ class CreateRecommendationScreen extends React.Component{
         this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
         this.toggleBlockType = this._toggleBlockType.bind(this);
         this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
-
       }
     
       _handleKeyCommand(command, editorState) {
@@ -191,6 +202,10 @@ class CreateRecommendationScreen extends React.Component{
           return "handled";
         }
       };
+
+      handleTitle = (e) => {
+        this.setState({title: e.target.value});
+      }
     
       handleSubmit = () => {
 
@@ -202,7 +217,7 @@ class CreateRecommendationScreen extends React.Component{
           addRecommendAction,
           alertMessageAction } = this.props;
 
-        const { options } = this.state;
+        const { options, title } = this.state;
     
         const blocks = convertToRaw(this.state.editorState.getCurrentContent())
           .blocks;
@@ -212,16 +227,22 @@ class CreateRecommendationScreen extends React.Component{
           return alertMessageAction({message: "Please add recommendation!", type: "failure"});
   
         } else {
-          if (options.length === 0) {
+          
+          
+          if(title.length === 0){
+            return alertMessageAction({message: "Title is required!", type: "failure"});
+          }
+          else if (options.length === 0) {
             // return alert("Please select Tags!");
             return alertMessageAction({message: "Please select Tags!", type: "failure"});
 
           } else if (options.length > 2) {
             // return alert("You can select max 3 Tags!");
             return alertMessageAction({message: "You can select max 2 Tags!", type: "failure"});
-
+            
           }
-    
+
+
           let finalData = stateToHTML(this.state.editorState.getCurrentContent());
           
           finalData = finalData
@@ -237,13 +258,14 @@ class CreateRecommendationScreen extends React.Component{
             .join("");
     
 
-          addRecommendAction({data: finalData, tags: options});
+          addRecommendAction({data: finalData, tags: options, title: title});
           alertMessageAction({message: "Recommendation created successfully", type: "success"});
 
 
           this.setState({
             editorState: EditorState.createEmpty(),
             buttonClicked: false,
+            title: '',
           });
         }
       };
@@ -264,9 +286,18 @@ class CreateRecommendationScreen extends React.Component{
     
         return (
           <div className="editor-container">
-            {/* <div className="title">
-              <h2>Recommend Something</h2>
-            </div> */}
+
+          <div className="title-recommendation" >
+                <span>Title</span>
+                <input 
+                required
+                type="text" 
+                placeholder="ex. My top 10 Fav books..."
+                onChange={this.handleTitle}
+                value={this.state.title}
+          />
+              </div>
+
             <div className="RichEditor-root">
               <BlockStyleControls
                 editorState={editorState}
@@ -279,17 +310,34 @@ class CreateRecommendationScreen extends React.Component{
               <div className={className} onClick={this.focus}>
                 <Editor
                   blockStyleFn={getBlockStyle}
+                  plugins={plugins}
                   customStyleMap={styleMap}
                   editorState={editorState}
                   handleKeyCommand={this.handleKeyCommand}
                   keyBindingFn={this.mapKeyToEditorCommand}
                   onChange={this.onChange}
-                  placeholder="ex. My top 10 Fav books..."
+                  placeholder="1. Sapiens: A Brief History of Humankind"
                   ref="editor"
                   spellCheck={true}
                   handleBeforeInput={this._handleBeforeInput}
                   handlePastedText={this._handlePastedText}
                 />
+
+
+        {/* <InlineToolbar>
+          {
+            // may be use React.Fragment instead of div to improve perfomance after React 16
+            (externalProps) => (
+              <div>
+                <BoldButton {...externalProps} />
+                <ItalicButton {...externalProps} />
+                <UnderlineButton {...externalProps} />
+                <linkPlugin.LinkButton {...externalProps} />
+              </div>
+            )
+          }
+        </InlineToolbar> */}
+
               </div>
             </div>
             <div className="tags">
@@ -359,12 +407,12 @@ class CreateRecommendationScreen extends React.Component{
     }
     
     const BLOCK_TYPES = [
-      { label: "H1", style: "header-one" },
-      { label: "H2", style: "header-two" },
-      { label: "H3", style: "header-three" },
-      { label: "H4", style: "header-four" },
-      { label: "H5", style: "header-five" },
-      { label: "H6", style: "header-six" },
+      // { label: "H1", style: "header-one" },
+      // { label: "H2", style: "header-two" },
+      // { label: "H3", style: "header-three" },
+      // { label: "H4", style: "header-four" },
+      // { label: "H5", style: "header-five" },
+      // { label: "H6", style: "header-six" },
       { label: "Blockquote", style: "blockquote" },
       { label: "UL", style: "unordered-list-item" },
       { label: "OL", style: "ordered-list-item" },

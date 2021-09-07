@@ -5,9 +5,10 @@ import User from '../models/userModel.js';
 // @desc Add recommendation list in database
 // @route POST /api/recommend/create
 export const createRecommendList = asyncHandlers(async (req, res) => {
-    const { data, tags } = req.body;
+    const { data, tags, title } = req.body;
 
     const recommendList = await new RecommendList({
+        title,
         data,
         owner: req.user._id,
         ownerUserName: req.user.displayName,
