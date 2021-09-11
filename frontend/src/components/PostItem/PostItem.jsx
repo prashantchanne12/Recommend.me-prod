@@ -6,8 +6,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation, shareAction } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
-import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { useHistory } from 'react-router-dom'; 
+import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 
 
 
@@ -54,11 +54,16 @@ const PostItem = ({item, isSinglePost}) => {
         return tag.color;
     });
 
+
     const onClickPost = () => {
+        
+        if(isUpvoted) { item.upvotes.push(user._id) }
+
+
         if(!isSinglePost){
             dispatch({
                 type: FETCH_LIST_SUCCESS,
-                payload: item,
+                payload: {...item, upvotes: item.upvotes},
             });
             history.push(`/list/${item._id}`);
         }
