@@ -1,9 +1,10 @@
 import React from 'react';
 import './profile.scss';
-import {BiLink, BiUnlink} from 'react-icons/bi';
+// import {BiLink, BiUnlink} from 'react-icons/bi';
 import {AiOutlineEdit} from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 import { followUser, unfollowUser, changeUserNameCard } from '../../actions/userActions';
+import { sendFollowNotification } from '../../actions/notificationActions';
 
 const Profile = ({user, followLoading, unfollowLoading}) => {
 
@@ -16,6 +17,12 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
     if (currentUser && user){
         isUserProfile =  currentUser._id !== user._id;
         amIFollowing = user.followers.find(id => id === currentUser._id);
+    }
+
+    const body = {
+        ownerId: user._id,
+        userName: currentUser.displayName,
+        userProfileImg: currentUser.image,
     }
 
 
@@ -71,14 +78,26 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
                             amIFollowing ? (
                                 <div className="connect" style={{
                                     color: '#d63031'
-                                }} onClick={() => dispatch(unfollowUser(user._id))}>
+                                }} onClick={() => {
+
+                                    dispatch(unfollowUser(user._id));
+
+                                }}>
                                     <p>Unfollow</p>
                                     {/* <BiUnlink className='icon' /> */}
                                 </div>
                             ): (
                                 <div className="connect" style={{
                                     color: '#0985e3'
-                                }} onClick={() => dispatch(followUser(user._id))}>
+                                }} onClick={() => {
+
+                                    dispatch(followUser(user._id))
+                                    dispatch(sendFollowNotification(body));
+
+                                }
+                                    
+                                }
+                                    >
                                     <p>Follow</p>
                                     {/* <BiLink className='icon' /> */}
                                 </div>
