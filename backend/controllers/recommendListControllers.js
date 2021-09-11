@@ -284,8 +284,7 @@ export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
 
 });
 
-// TEMP CHECK
-
+// PRIVATE
 // @desc Delete the recommend list
 // @route DELETE /api/recommend/list/delete/:id 
 export const deleteRecommendList = asyncHandlers(async (req, res, next) => {
