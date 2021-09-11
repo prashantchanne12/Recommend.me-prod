@@ -4,7 +4,7 @@ import './profile.scss';
 import {AiOutlineEdit} from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 import { followUser, unfollowUser, changeUserNameCard } from '../../actions/userActions';
-import { sendFollowNotification } from '../../actions/notificationActions';
+import { removeFollowNotification, sendFollowNotification } from '../../actions/notificationActions';
 
 const Profile = ({user, followLoading, unfollowLoading}) => {
 
@@ -81,6 +81,7 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
                                 }} onClick={() => {
 
                                     dispatch(unfollowUser(user._id));
+                                    dispatch(removeFollowNotification({ownerId: user._id}));
 
                                 }}>
                                     <p>Unfollow</p>
