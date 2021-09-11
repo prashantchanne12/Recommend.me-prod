@@ -82,7 +82,7 @@ function Header() {
                                 <div className="notification-result"
                                 >
                                     {
-                                        notifications ?
+                                        notifications.length > 0 ?
                                         notifications.map(notification => <Notification notification = {notification} key={notification._id} />) 
                                         :
                                         <div>No Notifications for now</div>

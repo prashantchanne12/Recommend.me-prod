@@ -27,6 +27,16 @@
 
         }
 
+        .noti-post-title{
+            color: #a1a1a1;
+            font-weight: 600;
+
+            &:hover{
+                cursor: pointer;
+                color: #0984e3;
+            }
+        }
+
     }
 
 }

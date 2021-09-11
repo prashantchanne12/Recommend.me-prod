@@ -19,6 +19,7 @@ const PostItem = ({item, isSinglePost}) => {
     let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
     const [isHover, setHover] = useState(false);
     const history = useHistory();
+    const isMyPost = new Set(user.recommendations).has(item._id);
     let upvoteSet = new Set(item.upvotes);
 
 
@@ -27,6 +28,7 @@ const PostItem = ({item, isSinglePost}) => {
         ownerId: item.owner,
         userName: user && user.userName,
         userProfileImg: user && user.image,
+        title: item.title,
     }
 
     const handleSharing = () => {
@@ -166,7 +168,8 @@ const PostItem = ({item, isSinglePost}) => {
                                         setIsUpvoted(true);
                                         setUpvoteCount(upvoteCount+1);
                                         upvoteDownvoteLocal();
-                                        dispatch(upvoteRecommendation(item._id, notification));
+                                        dispatch(upvoteRecommendation(item._id, notification, isMyPost));
+                                        
                                     }else{
                                         dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
                                     }

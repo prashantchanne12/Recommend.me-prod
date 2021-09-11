@@ -72,15 +72,15 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
                                 <div className="connect" style={{
                                     color: '#d63031'
                                 }} onClick={() => dispatch(unfollowUser(user._id))}>
-                                    <p>Disconnect</p>
-                                    <BiUnlink className='icon' />
+                                    <p>Unfollow</p>
+                                    {/* <BiUnlink className='icon' /> */}
                                 </div>
                             ): (
                                 <div className="connect" style={{
                                     color: '#0985e3'
                                 }} onClick={() => dispatch(followUser(user._id))}>
-                                    <p>Connect</p>
-                                    <BiLink className='icon' />
+                                    <p>Follow</p>
+                                    {/* <BiLink className='icon' /> */}
                                 </div>
                             )
 

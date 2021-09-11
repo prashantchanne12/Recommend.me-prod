@@ -130,7 +130,7 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
 
 }
 
-export const upvoteRecommendation = (id, body) => async (dispatch) => {
+export const upvoteRecommendation = (id, body, isMyPost) => async (dispatch) => {
 
     // PUT /api/recommend/list/upvote/:id
 
@@ -144,7 +144,7 @@ export const upvoteRecommendation = (id, body) => async (dispatch) => {
             ` /api/recommend/list/upvote/${id}`,
         );
 
-        dispatch(sendUpvoteNotification(body));
+        if (!isMyPost) { dispatch(sendUpvoteNotification(body)); }
 
         dispatch({
             type: UPVOTE_RECOMMEND_LIST_SUCCESS,

@@ -14,6 +14,35 @@ const Notification = ({notification}) => {
         dispatch({type: NOTIFICATION_TOGGLE_RESET});
     }
 
+    const gotoPost = () => {
+        history.push(`/list/${notification.recommendation}`);
+        dispatch({type: NOTIFICATION_TOGGLE_RESET});
+
+    }
+
+    const notificationTemplate = () => {
+
+        switch(notification.type){
+
+            case 'upvote': {
+                return <p>upvoted <span 
+                onClick={() => {gotoPost()}}
+                className="noti-post-title">{notification.title}</span></p>
+            }
+
+            case 'comment': {
+                return <p>commented ...something on <span className="noti-post-title">{notification.title}</span></p>
+            }
+
+            case 'follow': {
+                return <p>started following you</p>
+            }
+
+            default: break;
+        }
+
+    }
+
     return (
         <>   
             <div className="notification-details" >
@@ -21,12 +50,14 @@ const Notification = ({notification}) => {
                     alt=""
                     onClick={() => {gotoProfilePage()}}
                 />
-                <p className="details">
-                <span className="notification-username"
-                    onClick={() => {gotoProfilePage()}}
-                >{notification.userName}</span>    
-                upvoted your recommendation
-                </p>                                  
+                <div className="details">
+                    <span className="notification-username"
+                        onClick={() => {gotoProfilePage()}}
+                    >{notification.userName}</span>    
+
+                    {notificationTemplate()}
+
+                </div>                                  
             </div>
             {/* <div className="line"> */}
             {/* </div> */}

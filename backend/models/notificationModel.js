@@ -17,6 +17,9 @@ const notificationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    title: {
+        type: String,
+    },
     recommendation: recommendationRef,
     userId: userRef,
     data: {
