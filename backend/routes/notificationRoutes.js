@@ -1,12 +1,12 @@
 import express from 'express';
-import { getAllNotifications, readAllNotifications, removeUpvoteNotification, upvoteNotification } from '../controllers/notificationControllers.js';
+import { followNotification, getAllNotifications, readAllNotifications, removeUpvoteNotification, upvoteNotification } from '../controllers/notificationControllers.js';
 import { protect } from '../middlewares/authMiddleware.js';
 
 const notificationRoutes = express.Router();
 
 // @route /api/notification
 notificationRoutes.post('/upvote/', protect, upvoteNotification);
-notificationRoutes.post('/follow/', protect);
+notificationRoutes.post('/follow/', protect, followNotification);
 notificationRoutes.post('/comment/', protect);
 
 notificationRoutes.put('/remove/upvote', protect, removeUpvoteNotification);

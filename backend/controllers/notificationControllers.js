@@ -73,3 +73,26 @@ export const readAllNotifications = asyncHandlers(async (req, res) => {
     const notifications = await Notification.updateMany({ ownerId: req.user._id, seen: false }, { seen: true });
     res.send(notifications);
 });
+
+// @desc Follow notification
+// @route PUT api/notification/follow
+// @access PRIVATE
+export const followNotification = asyncHandlers(async (req, res) => {
+
+    const { ownerId, userName, userProfileImg } = req.body;
+
+    const notification = await new Notification({
+        type: 'follow',
+        userId: req.user.id,
+        ownerId,
+        userName,
+        userProfileImg,
+    }).save();
+
+    if (notification) {
+        return res.send(notification);
+    }
+
+    throw new Error('Error saving the Notification');
+
+})
