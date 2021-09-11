@@ -291,14 +291,13 @@ export const deleteRecommendList = asyncHandlers(async (req, res, next) => {
 
     const id = req.params.id;
     const user = await User.findById(req.user._id);
+    const index = user.recommendations.indexOf(id);
 
-    const isMyList = user.recommendations.includes(id);
-
-    if (isMyList) {
+    if (index > -1) {
 
         if (user) {
 
-            user.recommendations.splice(id, 1);
+            user.recommendations.splice(index, 1);
             var deleted = await user.save();
 
         } else {

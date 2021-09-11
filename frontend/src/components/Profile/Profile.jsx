@@ -20,9 +20,9 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
     }
 
     const body = {
-        ownerId: user._id,
-        userName: currentUser.displayName,
-        userProfileImg: currentUser.image,
+        ownerId: user && user._id,
+        userName: currentUser && currentUser.displayName,
+        userProfileImg: currentUser && currentUser.image,
     }
 
 
