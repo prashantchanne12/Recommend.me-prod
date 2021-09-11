@@ -16,6 +16,10 @@ import {
     SEND_FOLLOW_NOTIFICATION_SUCCESS,
     SEND_FOLLOW_NOTIFICATION_FAIL,
 
+    REMOVE_FOLLOW_NOTIFICATION_REQUEST,
+    REMOVE_FOLLOW_NOTIFICATION_SUCCESS,
+    REMOVE_FOLLOW_NOTIFICATION_FAIL,
+
 } from '../constants/notificationConstants'
 
 import axios from 'axios';
@@ -125,6 +129,44 @@ export const removeUpvoteNotification = (body) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: REMOVE_UPVOTE_NOTIFICATION_FAIL,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        });
+    }
+
+}
+
+export const removeFollowNotification = (body) => async (dispatch) => {
+
+    try {
+
+        dispatch({
+            type: REMOVE_FOLLOW_NOTIFICATION_REQUEST,
+        });
+
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
+        const { data } = await axios.put(
+            `/api/notification/remove/follow`,
+            body,
+            config
+        );
+
+        dispatch({
+            type: REMOVE_FOLLOW_NOTIFICATION_SUCCESS,
+            payload: data
+        });
+
+
+    } catch (err) {
+        dispatch({
+            type: REMOVE_FOLLOW_NOTIFICATION_FAIL,
             payload: err.response && err.response.data.message
                 ? err.response.data.message
                 : err.message

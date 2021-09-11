@@ -20,6 +20,11 @@ import {
     SEND_FOLLOW_NOTIFICATION_FAIL,
     SEND_FOLLOW_NOTIFICATION_RESET,
 
+    REMOVE_FOLLOW_NOTIFICATION_REQUEST,
+    REMOVE_FOLLOW_NOTIFICATION_SUCCESS,
+    REMOVE_FOLLOW_NOTIFICATION_FAIL,
+    REMOVE_FOLLOW_NOTIFICATION_RESET,
+
 } from '../constants/notificationConstants';
 
 export const sendUpvoteNotificationReducer = (state = { loading: null, error: null, data: null }, action) => {
@@ -132,6 +137,47 @@ export const removeUpvoteNotificationReducer = (state = { loading: null, error: 
         }
 
         case REMOVE_UPVOTE_NOTIFICATION_RESET: {
+            return {
+                loading: null,
+                error: null,
+                data: null
+            }
+        }
+
+        default: return state;
+
+    }
+
+}
+
+export const removeFollowNotificationReducer = (state = { loading: null, error: null, data: null }, action) => {
+
+    switch (action.type) {
+
+        case REMOVE_FOLLOW_NOTIFICATION_REQUEST: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case REMOVE_FOLLOW_NOTIFICATION_SUCCESS: {
+            return {
+                ...state,
+                loading: true,
+                data: action.payload,
+            }
+        }
+
+        case REMOVE_FOLLOW_NOTIFICATION_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        case REMOVE_FOLLOW_NOTIFICATION_RESET: {
             return {
                 loading: null,
                 error: null,

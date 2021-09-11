@@ -28,17 +28,39 @@ export const upvoteNotification = asyncHandlers(async (req, res) => {
 });
 
 // @desc Delete recommendation list in database
-// @route POST api/notification/remove/upvote/:id
+// @route PUT api/notification/remove/upvote/:id
 // @access PRIVATE
 export const removeUpvoteNotification = asyncHandlers(async (req, res) => {
 
     const { type, recommendation } = req.body;
 
-    console.log(type, recommendation);
-
     const notification = await Notification.find({
         type,
         recommendation,
+        userId: req.user._id,
+    }).remove();
+
+    res.send(notification);
+
+    // if (notification) {
+    //     return res.send('deleted!')
+    // } else {
+    //     throw new Error('Error while deleting notification');
+    // }
+
+});
+
+// @desc Delete follow notification
+// @route PUT api/notification/remove/follow
+// @access PRIVATE
+export const removeFollowNotification = asyncHandlers(async (req, res) => {
+
+    const { ownerId } = req.body;
+
+
+    const notification = await Notification.find({
+        type: 'follow',
+        ownerId,
         userId: req.user._id,
     }).remove();
 

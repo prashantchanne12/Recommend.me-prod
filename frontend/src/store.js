@@ -29,7 +29,7 @@ import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
 import { myTimelineReducer } from './reducers/timelineReducers';
 import { postReducer } from './reducers/recommendPostReducers';
-import { readAllNotificationReducer, removeUpvoteNotificationReducer, sendFollowNotificationReducer, sendUpvoteNotificationReducer } from './reducers/notificationReducers';
+import { readAllNotificationReducer, removeFollowNotificationReducer, removeUpvoteNotificationReducer, sendFollowNotificationReducer, sendUpvoteNotificationReducer } from './reducers/notificationReducers';
 
 // Combine reducers
 const reducer = combineReducers({
@@ -48,6 +48,7 @@ const reducer = combineReducers({
     removeUpvoteNotification: removeUpvoteNotificationReducer,
     readAllNotification: readAllNotificationReducer,
     sendFollowNotification: sendFollowNotificationReducer,
+    removeFollowNotification: removeFollowNotificationReducer,
 
     userProfile: userProfileReducer,
     userRecommendations: fetchUserRecommendListReducer,
