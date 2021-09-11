@@ -15,11 +15,12 @@ const PostItem = ({item, isSinglePost}) => {
     
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
-    // const [tempUpvote, setTempUpvote] = useState(false)
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
     let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
     const [isHover, setHover] = useState(false);
     const history = useHistory();
+    let upvoteSet = new Set(item.upvotes);
+
 
     const notification = {
         postId: item._id,
@@ -55,9 +56,35 @@ const PostItem = ({item, isSinglePost}) => {
     });
 
 
+    const upvoteDownvoteLocal = () => {
+
+        if (isUpvoted){
+
+            upvoteSet.delete(user._id);
+            item.upvotes = Array.from(upvoteSet);
+
+        }else{
+
+            upvoteSet.add(user._id);
+            item.upvotes = Array.from(upvoteSet);
+
+        }
+
+    }
+
+
     const onClickPost = () => {
         
-        if(isUpvoted) { item.upvotes.push(user._id) }
+        // if(isUpvoted) { 
+
+        //     if(!upvoteSet.has(user._id)){
+        //         item.upvotes.push(user._id);
+        //     }
+
+        // }else{
+        //     upvoteSet.delete(user._id);
+        //     item.upvotes = Array.from(upvoteSet);
+        // }
 
 
         if(!isSinglePost){
@@ -121,11 +148,12 @@ const PostItem = ({item, isSinglePost}) => {
                                 onClick={() => {
 
                                     if(user){
-                                    setIsUpvoted(false);
-                                    setUpvoteCount(upvoteCount-1);
-                                    dispatch(removeUpvoteRecommendation(item._id, 
-                                        {type: 'upvote', recommendation: item._id}
-                                    ));
+                                        setIsUpvoted(false);
+                                        setUpvoteCount(upvoteCount-1);
+                                        upvoteDownvoteLocal();
+                                        dispatch(removeUpvoteRecommendation(item._id, 
+                                            {type: 'upvote', recommendation: item._id}
+                                        ));
                                     }else{
                                         dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
                                     }
@@ -135,9 +163,10 @@ const PostItem = ({item, isSinglePost}) => {
                                 <IoIosArrowDropup className="upvote-icon"
                                  onClick={() => {
                                     if(user){
-                                    setIsUpvoted(true);
-                                    setUpvoteCount(upvoteCount+1);
-                                    dispatch(upvoteRecommendation(item._id, notification));
+                                        setIsUpvoted(true);
+                                        setUpvoteCount(upvoteCount+1);
+                                        upvoteDownvoteLocal();
+                                        dispatch(upvoteRecommendation(item._id, notification));
                                     }else{
                                         dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
                                     }
