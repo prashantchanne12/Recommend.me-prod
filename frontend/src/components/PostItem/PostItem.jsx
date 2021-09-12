@@ -5,7 +5,7 @@ import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation, shareAction } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
-import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup } from 'react-icons/all';
+import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete } from 'react-icons/all';
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 
@@ -114,6 +114,7 @@ const PostItem = ({item, isSinglePost}) => {
 
 
             <div className="list-container" id={item._id} >
+                  
                     <div className="list-data"
                         //   style={{
                         //     cursor: !isSinglePost && 'pointer',
@@ -182,6 +183,14 @@ const PostItem = ({item, isSinglePost}) => {
                                 handleSharing();
                             }}
                         />
+
+                    {
+                        isSinglePost && isMyPost && <AiOutlineDelete
+                        onClick={() => {
+                            
+                        }}
+                        className="delete-icon" />
+                    }
                         </div>
                         <div className="list-tags">
                             <Tags tags={item.tags}/>

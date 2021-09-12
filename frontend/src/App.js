@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Share from './components/Share/Share';
 import ListScreen from './screens/ListScreen/ListScreen';
 import ChangeUserName from './components/ChangeUserName/ChangeUserName';
+import Warning from './components/Warning/Warning';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <Router>
+      <Warning />
       {
         toggle && <ChangeUserName />
       }

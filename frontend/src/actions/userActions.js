@@ -141,7 +141,7 @@ export const changeUserNameCard = () => async (dispatch) => {
 
     dispatch({
         type: CHANGE_USERNAME_RESET,
-    })
+    });
 
     dispatch({
         type: CHANGE_USERNAME_CARD_REQUEST,

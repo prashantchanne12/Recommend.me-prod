@@ -74,6 +74,7 @@
 
         .upvote-icon,
         .upvoted-icon,
+        .delete-icon,
         .share-icon{
             cursor: pointer;
         }
@@ -90,6 +91,10 @@
 
         .upvoted-icon{
             color: #0984e3;
+        }
+
+        .delete-icon{
+            margin-left: 0.5rem;
         }
 
     }
