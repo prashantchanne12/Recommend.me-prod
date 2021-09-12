@@ -30,11 +30,14 @@ import { alertMessageReducer } from './reducers/alertReducer';
 import { myTimelineReducer } from './reducers/timelineReducers';
 import { postReducer } from './reducers/recommendPostReducers';
 import { readAllNotificationReducer, removeFollowNotificationReducer, removeUpvoteNotificationReducer, sendFollowNotificationReducer, sendUpvoteNotificationReducer } from './reducers/notificationReducers';
+import { warningCardReducer } from './reducers/warningReducers';
+
 
 // Combine reducers
 const reducer = combineReducers({
     loader: loadingReducer,
     alertMessage: alertMessageReducer,
+    warningCard: warningCardReducer,
 
     mySession: mySessionReducer,
     myRecommendations: fetchMyRecommendListsReducer,
