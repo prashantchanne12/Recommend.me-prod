@@ -5,18 +5,18 @@ import {
     WARNING_CARD_SUCCESS,
 
 } from '../constants/warningConstants';
+import { deleteMyRecommendation } from '../actions/recommendActions';
 
-export const warningCardRequestAction = () => async (dispatch) => {
+export const warningCardRequestAction = (id) => async (dispatch) => {
     dispatch({
         type: WARNING_CARD_REQUEST,
+        payload: id,
     });
 }
 
-export const warningCardSuccessAction = () => async (dispatch) => {
-
-
-
-
+export const warningCardSuccessAction = (id) => async (dispatch) => {
+    dispatch({ type: WARNING_CARD_SUCCESS });
+    dispatch(deleteMyRecommendation(id));
 }
 
 export const warningCardResetAction = () => async (dispatch) => {

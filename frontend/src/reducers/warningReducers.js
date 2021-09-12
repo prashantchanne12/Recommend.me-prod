@@ -6,21 +6,29 @@ import {
 
 } from '../constants/warningConstants';
 
-export const warningCardReducer = (state = { toggle: null, res: null }, action) => {
+export const warningCardReducer = (state = { toggle: null, res: null, loading: null, id: null, profile: null }, action) => {
 
     switch (action.type) {
 
         case WARNING_CARD_REQUEST: {
             return {
                 ...state,
-                toggle: true
+                toggle: true,
+                id: action.payload,
             }
         }
 
         case WARNING_CARD_SUCCESS: {
             return {
                 ...state,
-                res: action.payload
+                loading: true,
+            }
+        }
+
+        case 'GO_TO_PROFILE': {
+            return {
+                ...state,
+                profile: true
             }
         }
 
@@ -28,6 +36,9 @@ export const warningCardReducer = (state = { toggle: null, res: null }, action) 
             return {
                 toggle: null,
                 res: null,
+                id: null,
+                loading: null,
+                profile: null,
             }
         }
 

@@ -34,6 +34,7 @@ import { loadingStartAction, loadingEndAction } from './loadingActions';
 
 import axios from 'axios';
 import { removeUpvoteNotification, sendUpvoteNotification } from './notificationActions';
+import { WARNING_CARD_RESET } from '../constants/warningConstants';
 
 export const addRecommendAction = (body) => async (dispatch) => {
     try {
@@ -108,12 +109,24 @@ export const deleteMyRecommendation = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: DELETE_RECOMMEND_LIST_REQUEST });
+        dispatch(loadingStartAction());
+
 
         const { data } = await axios.delete(`/api/recommend/list/delete/${id}`);
 
         dispatch({
             type: DELETE_RECOMMEND_LIST_SUCCESS,
             payload: data
+        });
+
+        dispatch(loadingEndAction());
+
+        dispatch({
+            type: 'GO_TO_PROFILE'
+        });
+
+        dispatch({
+            type: WARNING_CARD_RESET,
         });
 
     } catch (err) {
