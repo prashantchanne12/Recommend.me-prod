@@ -22,12 +22,11 @@ export const createRecommendList = asyncHandlers(async (req, res) => {
         const user = await User.findById(req.user._id);
         if (user) {
 
-            user.recommendations = [...user.recommendations, recommendList._id];
-
+            user.recommendations.push(recommendList._id);
             const updatedUser = await user.save();
 
             if (updatedUser) {
-                res.send(updatedUser);
+                res.send(recommendList);
             } else {
                 res.status(500);
                 throw new Error('Error while adding post to user profile!');

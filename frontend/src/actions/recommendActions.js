@@ -36,11 +36,15 @@ import axios from 'axios';
 import { removeUpvoteNotification, sendUpvoteNotification } from './notificationActions';
 import { WARNING_CARD_RESET } from '../constants/warningConstants';
 
-export const addRecommendAction = (body) => async (dispatch) => {
+export const addRecommendAction = (body) => async (dispatch, getState) => {
     try {
+
+        const state = getState();
+
         dispatch({
             type: ADD_RECOMMEND_LIST_REQUEST
         });
+
         dispatch(loadingStartAction());
 
         const config = {
@@ -54,6 +58,8 @@ export const addRecommendAction = (body) => async (dispatch) => {
             body,
             config,
         );
+
+        state.myRecommendations.lists.uploadedRecommendations.push(data);
 
         dispatch({
             type: ADD_RECOMMEND_LIST_SUCCESS,
