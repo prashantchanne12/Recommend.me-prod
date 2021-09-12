@@ -12,11 +12,11 @@ export const warningCardRequestAction = () => async (dispatch) => {
     });
 }
 
-export const warningCardSuccessAction = (res) => async (dispatch) => {
-    dispatch({
-        type: WARNING_CARD_SUCCESS,
-        payload: res
-    });
+export const warningCardSuccessAction = () => async (dispatch) => {
+
+
+
+
 }
 
 export const warningCardResetAction = () => async (dispatch) => {

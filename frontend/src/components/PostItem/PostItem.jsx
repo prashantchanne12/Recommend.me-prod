@@ -8,6 +8,7 @@ import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete } from 'react-icons/all';
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
+import { warningCardRequestAction } from '../../actions/warningActions';
 
 
 
@@ -187,7 +188,7 @@ const PostItem = ({item, isSinglePost}) => {
                     {
                         isSinglePost && isMyPost && <AiOutlineDelete
                         onClick={() => {
-                            
+                            dispatch(warningCardRequestAction());
                         }}
                         className="delete-icon" />
                     }

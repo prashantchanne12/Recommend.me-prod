@@ -23,6 +23,10 @@ import {
     SHARE_REQUEST,
     SHARE_RESET,
 
+    DELETE_RECOMMEND_LIST_REQUEST,
+    DELETE_RECOMMEND_LIST_SUCCESS,
+    DELETE_RECOMMEND_LIST_FAIL,
+
 } from '../constants/recommendConstants';
 
 import { mySession } from './userActions';
@@ -98,6 +102,29 @@ export const fetchMyRecommendations = () => async (dispatch) => {
         })
     }
 
+}
+
+export const deleteMyRecommendation = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: DELETE_RECOMMEND_LIST_REQUEST });
+
+        const { data } = await axios.delete(`/api/recommend/list/delete/${id}`);
+
+        dispatch({
+            type: DELETE_RECOMMEND_LIST_SUCCESS,
+            payload: data
+        });
+
+    } catch (err) {
+        dispatch({
+            type: DELETE_RECOMMEND_LIST_FAIL,
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+    }
 }
 
 export const fetchUserRecommendations = (id) => async (dispatch) => {

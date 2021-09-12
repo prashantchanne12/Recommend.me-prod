@@ -18,6 +18,7 @@ import {
 } from './reducers/userReducers';
 import {
     addRecommendationReducer,
+    deleteRecommendationReducer,
     downvoteRecommendListsReducer,
     fetchMyRecommendListsReducer,
     fetchUserRecommendListReducer,
@@ -42,6 +43,7 @@ const reducer = combineReducers({
     mySession: mySessionReducer,
     myRecommendations: fetchMyRecommendListsReducer,
     addRecommendation: addRecommendationReducer,
+    deleteRecommendation: deleteRecommendationReducer,
     profileToggle: profileToggleReducer,
     userLogout: userLogoutReducer,
     changeUserName: changeUserNameReducer,

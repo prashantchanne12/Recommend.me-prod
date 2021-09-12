@@ -20,6 +20,7 @@ function App() {
 
   const { show } = useSelector(state => state.shareToggle);
   const { toggle } = useSelector(state => state.changeUserNameToggle);
+  const { toggle: warning } = useSelector(state => state.warningCard);
 
   useEffect(() => {
     dispatch(mySession());
@@ -28,12 +29,14 @@ function App() {
 
   return (
     <Router>
-      <Warning />
       {
         toggle && <ChangeUserName />
       }
       {
         show && <Share />
+      }
+      {
+        warning && <Warning />
       }
       <div className='overlay'
         style={{
@@ -42,7 +45,8 @@ function App() {
           left: 0,
           width: '100%',
           height: '100%',
-          opacity: `${show || toggle ? 0.4 : 1}`,
+          // background: 'rgba(0, 0, 0, 0.6)',
+          opacity: `${show || toggle || warning ? 0.4 : 1}`,
         }}
       >
         <Layout>

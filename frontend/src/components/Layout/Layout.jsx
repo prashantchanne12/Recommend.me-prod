@@ -7,7 +7,9 @@ import Alert from '../Alert/Alert';
 function Layout({children}) {
 
     return (
-        <div>
+        <div
+        
+        >
            <Loader />
             <Header />
             {children}

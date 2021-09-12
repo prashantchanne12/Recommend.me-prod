@@ -4,6 +4,10 @@ import {
     ADD_RECOMMEND_LIST_SUCCESS,
     ADD_RECOMMEND_LIST_FAIL,
 
+    DELETE_RECOMMEND_LIST_REQUEST,
+    DELETE_RECOMMEND_LIST_SUCCESS,
+    DELETE_RECOMMEND_LIST_FAIL,
+
     FETCH_MY_RECOMMEND_LIST_REQUEST,
     FETCH_MY_RECOMMEND_LIST_SUCCESS,
     FETCH_MY_RECOMMEND_LIST_FAIL,
@@ -55,6 +59,38 @@ export const addRecommendationReducer = (state = INIT_STATE, action) => {
         }
 
         case ADD_RECOMMEND_LIST_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
+    }
+}
+
+export const deleteRecommendationReducer = (state = { loading: null, error: null, result: null }, action) => {
+    switch (action.type) {
+
+
+        case DELETE_RECOMMEND_LIST_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case DELETE_RECOMMEND_LIST_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                result: action.payload,
+                error: null,
+            }
+        }
+
+        case DELETE_RECOMMEND_LIST_FAIL: {
             return {
                 ...state,
                 loading: false,
