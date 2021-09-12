@@ -14,8 +14,13 @@ export const warningCardRequestAction = (id) => async (dispatch) => {
     });
 }
 
-export const warningCardSuccessAction = (id) => async (dispatch) => {
+export const warningCardSuccessAction = () => async (dispatch, getState) => {
+
     dispatch({ type: WARNING_CARD_SUCCESS });
+
+    const state = getState();
+    const id = state.warningCard.id;
+
     dispatch(deleteMyRecommendation(id));
 }
 

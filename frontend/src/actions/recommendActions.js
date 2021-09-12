@@ -105,7 +105,7 @@ export const fetchMyRecommendations = () => async (dispatch) => {
 
 }
 
-export const deleteMyRecommendation = (id) => async (dispatch) => {
+export const deleteMyRecommendation = (id) => async (dispatch, getState) => {
     try {
 
         dispatch({ type: DELETE_RECOMMEND_LIST_REQUEST });
@@ -113,6 +113,17 @@ export const deleteMyRecommendation = (id) => async (dispatch) => {
 
 
         const { data } = await axios.delete(`/api/recommend/list/delete/${id}`);
+        const state = getState();
+
+        state.myRecommendations.lists.uploadedRecommendations =
+            state.myRecommendations.lists.uploadedRecommendations.filter(item => {
+                if (item) {
+                    if (item._id !== id) {
+                        return true;
+                    }
+                }
+                return false;
+            });
 
         dispatch({
             type: DELETE_RECOMMEND_LIST_SUCCESS,
@@ -120,6 +131,8 @@ export const deleteMyRecommendation = (id) => async (dispatch) => {
         });
 
         dispatch(loadingEndAction());
+
+
 
         dispatch({
             type: 'GO_TO_PROFILE'

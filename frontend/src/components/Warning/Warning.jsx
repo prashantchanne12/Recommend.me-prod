@@ -10,7 +10,7 @@ const Warning = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const {id, loading, profile} = useSelector(state => state.warningCard)
+    const {loading, profile} = useSelector(state => state.warningCard);
 
     useEffect(() => {
 
@@ -27,13 +27,29 @@ const Warning = () => {
                 <div className="warning-card">
                     <p>Are you sure?</p>
                     <div className="yes-cancel-buttons">
-                        <input type="button" value="Yes" className="yes-button"
+                        <input 
+                            type="button" 
+                            value="Yes" 
+                            className="yes-button"
+                            disabled={loading}
                             onClick={() => {
-                                dispatch(warningCardSuccessAction(id));
+                                dispatch(warningCardSuccessAction());
+                            }}
+
+                            style={{
+                                cursor: loading ? 'not-allowed' : 'pointer'
                             }}
                         />
-                        <input type="button" value="Cancel" className="cancel-button"
+                        <input 
+                            type="button" 
+                            value="Cancel" className="cancel-button"
+                            disabled={loading}
                             onClick={() => { dispatch(warningCardResetAction()) }}
+
+                            
+                            style={{
+                                cursor: loading ? 'not-allowed' : 'pointer'
+                            }}
                         />
 
                         {
@@ -41,6 +57,7 @@ const Warning = () => {
                             <div
                                 style={{
                                     paddingLeft: '0.5rem',
+                                    marginTop: '5px'
                                 }}
                             >
                                 <Loader

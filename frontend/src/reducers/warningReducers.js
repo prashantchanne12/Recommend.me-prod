@@ -28,7 +28,8 @@ export const warningCardReducer = (state = { toggle: null, res: null, loading: n
         case 'GO_TO_PROFILE': {
             return {
                 ...state,
-                profile: true
+                loading: false,
+                profile: true,
             }
         }
 
