@@ -5,7 +5,7 @@ import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation, shareAction } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
-import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete } from 'react-icons/all';
+import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete, BsBucket, BsBucketFill } from 'react-icons/all';
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
@@ -16,13 +16,14 @@ const PostItem = ({item, isSinglePost}) => {
     
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
+    const {lists} = useSelector(state => state.myRecommendations);
     const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
     let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
     const [isHover, setHover] = useState(false);
     const history = useHistory();
     const isMyPost = new Set(user.recommendations).has(item._id);
     let upvoteSet = new Set(item.upvotes);
-
+    const haveIBucketed = new Set(lists.bucketRecommendations).has(item._id);
 
     const notification = {
         postId: item._id,
@@ -184,6 +185,24 @@ const PostItem = ({item, isSinglePost}) => {
                                 handleSharing();
                             }}
                         />
+
+                    {
+                        !isMyPost && !haveIBucketed && 
+                        <BsBucket 
+                            className="bucket-icon"
+                            onClick={() => {
+                                
+                            }}
+                        />
+
+                    }
+                   
+                    {
+                        !isMyPost && haveIBucketed && 
+                        <BsBucketFill
+                            className="bucketed-icon"
+                        />
+                    }
 
                     {
                         isSinglePost && isMyPost && <AiOutlineDelete

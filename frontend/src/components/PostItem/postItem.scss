@@ -75,6 +75,7 @@
         .upvote-icon,
         .upvoted-icon,
         .delete-icon,
+        .bucket-icon,
         .share-icon{
             cursor: pointer;
         }
@@ -97,6 +98,14 @@
             margin-left: 0.5rem;
         }
 
+        .bucket-icon{
+            margin-left: 0.5rem;
+        }
+
+        .bucketed-icon{
+            margin-left: 0.5rem;
+            color: #e84393;
+        }
     }
 
     .list-footer{
