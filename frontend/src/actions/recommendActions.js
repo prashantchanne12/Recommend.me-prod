@@ -87,7 +87,7 @@ export const addRecommendAction = (body) => async (dispatch, getState) => {
 }
 
 export const addRecommendToBucketAction = (body) => async (dispatch, getState) => {
-try {
+    try {
 
         const state = getState();
 
@@ -107,6 +107,7 @@ try {
         );
 
         state.myRecommendations.lists.bucketRecommendations.push(body);
+        state.mySession.user.bucket.push(body._id);
 
         dispatch({
             type: ADD_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
@@ -115,7 +116,6 @@ try {
 
 
     } catch (err) {
-        dispatch(loadingEndAction());
         dispatch({
             type: ADD_RECOMMEND_LIST_TO_BUCKET_FAIL,
             payload:

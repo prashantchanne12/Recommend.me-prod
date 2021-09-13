@@ -315,3 +315,41 @@ export const deleteRecommendList = asyncHandlers(async (req, res, next) => {
         throw new Error('PostId is incorrect');
     }
 });
+
+// PRIVATE
+// @desc Delete the recommend list from bucket
+// @route DELETE /api/recommend/list/bucket/:id
+export const deleteRecommendListFromBucket = asyncHandlers(async (req, res, next) => {
+
+    const id = req.params.id;
+    const user = await User.findById(req.user._id);
+    const recommendList = await RecommendList.findById(id);
+    const index = user.bucket.indexOf(id);
+
+    if (index > -1) {
+
+        if (user) {
+
+            user.bucket.splice(index, 1);
+            var deleted = await user.save();
+
+        } else {
+            res.status(404);
+            throw new Error('User not find!');
+        }
+
+        const userIndex = recommendList.addedInBucket.indexOf(req.user._id);
+        if (userIndex > -1) {
+            recommendList.addedInBucket.splice(userIndex, 1);
+            await recommendList.save();  
+        }
+
+        if (deleted) {
+            res.send('deleted');
+        }
+
+    } else {
+        res.status(404);
+        throw new Error('PostId is incorrect');
+    }
+});
