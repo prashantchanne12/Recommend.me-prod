@@ -7,6 +7,10 @@ import {
     ADD_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
     ADD_RECOMMEND_LIST_TO_BUCKET_FAIL,
 
+    DELETE_RECOMMEND_LIST_TO_BUCKET_REQUEST,
+    DELETE_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
+    DELETE_RECOMMEND_LIST_TO_BUCKET_FAIL,
+
     FETCH_MY_RECOMMEND_LIST_REQUEST,
     FETCH_MY_RECOMMEND_LIST_SUCCESS,
     FETCH_MY_RECOMMEND_LIST_FAIL,
@@ -196,6 +200,49 @@ export const deleteMyRecommendation = (id) => async (dispatch, getState) => {
     } catch (err) {
         dispatch({
             type: DELETE_RECOMMEND_LIST_FAIL,
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+    }
+}
+
+export const deleteBucketRecommendation = (id) => async (dispatch, getState) => {
+    try {
+
+        dispatch({ type: DELETE_RECOMMEND_LIST_TO_BUCKET_REQUEST });
+
+        const { data } = await axios.delete(`/api/recommend/list/bucket/${id}`);
+        const state = getState();
+
+        state.myRecommendations.lists.bucketRecommendations =
+            state.myRecommendations.lists.bucketRecommendations.filter(item => {
+                if (item) {
+                    if (item._id !== id) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+        state.mySession.user.bucket = state.mySession.user.bucket.filter(item => {
+            if (item) {
+                if (item !== id) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        dispatch({
+            type: DELETE_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
+            payload: data
+        });
+
+    } catch (err) {
+        dispatch({
+            type: DELETE_RECOMMEND_LIST_TO_BUCKET_FAIL,
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message

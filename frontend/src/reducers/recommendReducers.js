@@ -34,6 +34,9 @@ import {
 
     SHARE_REQUEST,
     SHARE_RESET,
+    DELETE_RECOMMEND_LIST_TO_BUCKET_REQUEST,
+    DELETE_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
+    DELETE_RECOMMEND_LIST_TO_BUCKET_FAIL,
 
 } from '../constants/recommendConstants';
 
@@ -94,6 +97,37 @@ export const addRecommendationToBucketReducer = (state = INIT_STATE, action) => 
         }
 
         case ADD_RECOMMEND_LIST_TO_BUCKET_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
+    }
+}
+
+export const deleteRecommendationToBucketReducer = (state = INIT_STATE, action) => {
+    switch (action.type) {
+
+
+        case DELETE_RECOMMEND_LIST_TO_BUCKET_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case DELETE_RECOMMEND_LIST_TO_BUCKET_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: null,
+            }
+        }
+
+        case DELETE_RECOMMEND_LIST_TO_BUCKET_FAIL: {
             return {
                 ...state,
                 loading: false,
