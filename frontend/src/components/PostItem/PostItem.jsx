@@ -194,6 +194,7 @@ const PostItem = ({item, isSinglePost}) => {
                             onClick={() => {
                                 dispatch(addRecommendToBucketAction(item))
                                 setHaveIBucketed(true);
+                                dispatch(alertMessageAction({message: `${item.title} added to bucket`, type: 'success'}));
                             }}
                         />
 
@@ -206,6 +207,7 @@ const PostItem = ({item, isSinglePost}) => {
                             onClick={() => {
                                 dispatch(deleteBucketRecommendation(item._id));
                                 setHaveIBucketed(false);
+                                // dispatch(alertMessageAction({message: `${item.title} removed from bucket`, type: 'success'}));
                             }}
                         />
                     }
