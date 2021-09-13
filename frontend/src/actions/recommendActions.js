@@ -3,6 +3,10 @@ import {
     ADD_RECOMMEND_LIST_SUCCESS,
     ADD_RECOMMEND_LIST_FAIL,
 
+    ADD_RECOMMEND_LIST_TO_BUCKET_REQUEST,
+    ADD_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
+    ADD_RECOMMEND_LIST_TO_BUCKET_FAIL,
+
     FETCH_MY_RECOMMEND_LIST_REQUEST,
     FETCH_MY_RECOMMEND_LIST_SUCCESS,
     FETCH_MY_RECOMMEND_LIST_FAIL,
@@ -73,6 +77,47 @@ export const addRecommendAction = (body) => async (dispatch, getState) => {
         dispatch(loadingEndAction());
         dispatch({
             type: ADD_RECOMMEND_LIST_FAIL,
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+
+    }
+}
+
+export const addRecommendToBucketAction = (body) => async (dispatch, getState) => {
+try {
+
+        const state = getState();
+
+        dispatch({
+            type: ADD_RECOMMEND_LIST_TO_BUCKET_REQUEST
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
+        const { data } = await axios.put(
+            `/api/recommend/list/bucket/${body._id}`,
+            config,
+        );
+
+        state.myRecommendations.lists.bucketRecommendations.push(body);
+
+        dispatch({
+            type: ADD_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
+            payload: data,
+        });
+
+
+    } catch (err) {
+        dispatch(loadingEndAction());
+        dispatch({
+            type: ADD_RECOMMEND_LIST_TO_BUCKET_FAIL,
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message

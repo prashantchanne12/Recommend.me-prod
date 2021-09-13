@@ -4,6 +4,10 @@ import {
     ADD_RECOMMEND_LIST_SUCCESS,
     ADD_RECOMMEND_LIST_FAIL,
 
+    ADD_RECOMMEND_LIST_TO_BUCKET_REQUEST,
+    ADD_RECOMMEND_LIST_TO_BUCKET_SUCCESS,
+    ADD_RECOMMEND_LIST_TO_BUCKET_FAIL,
+
     DELETE_RECOMMEND_LIST_REQUEST,
     DELETE_RECOMMEND_LIST_SUCCESS,
     DELETE_RECOMMEND_LIST_FAIL,
@@ -59,6 +63,37 @@ export const addRecommendationReducer = (state = INIT_STATE, action) => {
         }
 
         case ADD_RECOMMEND_LIST_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        }
+
+        default: return state;
+    }
+}
+
+export const addRecommendationToBucketReducer = (state = INIT_STATE, action) => {
+    switch (action.type) {
+
+
+        case ADD_RECOMMEND_LIST_TO_BUCKET_REQUEST: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case ADD_RECOMMEND_LIST_TO_BUCKET_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: null,
+            }
+        }
+
+        case ADD_RECOMMEND_LIST_TO_BUCKET_FAIL: {
             return {
                 ...state,
                 loading: false,

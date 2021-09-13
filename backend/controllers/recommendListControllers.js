@@ -245,7 +245,7 @@ export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
                 throw new Error('Recommendation already in the bucket list');
             }
 
-            user.bucket = [...user.bucket, id];
+            user.bucket.push(id);
             const newUser = await user.save();
 
             if (newUser) {
@@ -259,7 +259,7 @@ export const addRecommendListToBucket = asyncHandlers(async (req, res) => {
                 //     throw new Error('Recommendation already in the bucket list');
                 // }
 
-                recommendList.addedInBucket = [...recommendList.addedInBucket, userId];
+                recommendList.addedInBucket.push(userId);
                 const newRecommendList = await recommendList.save();
 
                 if (newRecommendList) {
