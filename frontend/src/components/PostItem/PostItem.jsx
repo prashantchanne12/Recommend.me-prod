@@ -3,7 +3,7 @@ import './postItem.scss';
 import dateFormat from 'dateformat';
 import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
-import { upvoteRecommendation, removeUpvoteRecommendation, shareAction, addRecommendToBucketAction } from '../../actions/recommendActions';
+import { upvoteRecommendation, removeUpvoteRecommendation, shareAction, addRecommendToBucketAction, deleteBucketRecommendation } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
 import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete, BsBucket, BsBucketFill } from 'react-icons/all';
 import { useHistory } from 'react-router-dom'; 
@@ -21,7 +21,8 @@ const PostItem = ({item, isSinglePost}) => {
     const [isHover, setHover] = useState(false);
     const history = useHistory();
     const isMyPost = new Set(user.recommendations).has(item._id);
-    const haveIBucketed = new Set(user.bucket).has(item._id);
+    const [haveIBucketed, setHaveIBucketed] = useState(new Set(user.bucket).has(item._id));
+
     let upvoteSet = new Set(item.upvotes);
 
 
@@ -192,6 +193,7 @@ const PostItem = ({item, isSinglePost}) => {
                             className="bucket-icon"
                             onClick={() => {
                                 dispatch(addRecommendToBucketAction(item))
+                                setHaveIBucketed(true);
                             }}
                         />
 
@@ -201,6 +203,10 @@ const PostItem = ({item, isSinglePost}) => {
                         !isMyPost && haveIBucketed && 
                         <BsBucketFill
                             className="bucketed-icon"
+                            onClick={() => {
+                                dispatch(deleteBucketRecommendation(item._id));
+                                setHaveIBucketed(false);
+                            }}
                         />
                     }
 

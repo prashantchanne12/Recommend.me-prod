@@ -13,6 +13,7 @@ import Share from './components/Share/Share';
 import ListScreen from './screens/ListScreen/ListScreen';
 import ChangeUserName from './components/ChangeUserName/ChangeUserName';
 import Warning from './components/Warning/Warning';
+import { fetchMyRecommendations } from './actions/recommendActions';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   useEffect(() => {
     dispatch(mySession());
     dispatch(myNotification());
+    dispatch(fetchMyRecommendations());
   }, [dispatch]);
 
   return (
