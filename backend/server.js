@@ -59,6 +59,12 @@ app.use('/api/user', userRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/timeline', timelineRoutes);
 app.use('/api/notification', notificationRoutes);
+app.get('/widgetJs', (req, res) => {
+    res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.js'));
+});
+app.get('/widgetCss', (req, res) => {
+    res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.css'));
+});
 
 
 if (process.env.NODE_ENV === 'production') {
