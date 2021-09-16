@@ -1,6 +1,8 @@
 // Add "type": "module" in package.json to use ES Modules
 import path from 'path';
 import express from 'express';
+import cors from 'cors';
+
 // passport middleware
 import './services/passport.js';
 import passport from 'passport';
@@ -27,6 +29,10 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+
+// cors
+app.use(cors({ origin: '*' }));
 
 // parse json data
 app.use(express.json());
