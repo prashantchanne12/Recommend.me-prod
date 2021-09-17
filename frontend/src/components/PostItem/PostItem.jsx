@@ -5,7 +5,7 @@ import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation, shareAction, addRecommendToBucketAction, deleteBucketRecommendation } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
-import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete, BsBucket, BsBucketFill } from 'react-icons/all';
+import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete, BsBucket, BsBucketFill,ImEmbed2 } from 'react-icons/all';
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
@@ -20,8 +20,8 @@ const PostItem = ({item, isSinglePost}) => {
     let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
     const [isHover, setHover] = useState(false);
     const history = useHistory();
-    const isMyPost = new Set(user.recommendations).has(item._id);
-    const [haveIBucketed, setHaveIBucketed] = useState(new Set(user.bucket).has(item._id));
+    const isMyPost = user && user.recommendations ? new Set(user.recommendations).has(item._id) : false;
+    const [haveIBucketed, setHaveIBucketed] = useState(user && user.bucket ? new Set(user.bucket).has(item._id) : false);
 
     let upvoteSet = new Set(item.upvotes);
 
@@ -219,6 +219,7 @@ const PostItem = ({item, isSinglePost}) => {
                         }}
                         className="delete-icon" />
                     }
+                    <ImEmbed2 className="embed-icon"/>
                         </div>
                         <div className="list-tags">
                             <Tags tags={item.tags}/>
