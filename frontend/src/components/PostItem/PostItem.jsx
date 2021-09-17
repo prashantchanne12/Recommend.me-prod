@@ -60,6 +60,16 @@ const PostItem = ({item, isSinglePost}) => {
         return tag.color;
     });
 
+    const handleEmbed = () => {
+        const links = `<div class="recommendme-widget" data=${item._id}></div>
+        <link rel="stylesheet" href="https://recommendmi.herokuapp.com/widgetCss">
+        <script src="https://recommendmi.herokuapp.com/widgetJs">
+        </script>`
+
+        dispatch(shareAction(links));
+
+    }
+
 
     const upvoteDownvoteLocal = () => {
 
@@ -219,7 +229,11 @@ const PostItem = ({item, isSinglePost}) => {
                         }}
                         className="delete-icon" />
                     }
-                    <ImEmbed2 className="embed-icon"/>
+                    <ImEmbed2 className="embed-icon"
+                        onClick={() => {
+                            handleEmbed();
+                        }}
+                    />
                         </div>
                         <div className="list-tags">
                             <Tags tags={item.tags}/>
