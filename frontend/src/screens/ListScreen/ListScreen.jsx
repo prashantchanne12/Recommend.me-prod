@@ -18,18 +18,20 @@ const ListScreen = ({match}) => {
     }, [post, match, dispatch, loading]);
   
     return (
-        <div
-        
-            style={{
-                width: '360px',
-                margin: '0 auto',
-                marginTop: '2rem',
-                position: 'relative',
-            }}
-        >
+        <div>
             {
 
-                loading || !post ? <p>Loading...</p> : <PostItem item={post} isSinglePost={true} />
+                loading || !post ? <p>Loading...</p> : <div
+                    
+                style={{
+                    width: '360px',
+                    margin: '0 auto',
+                    marginTop: '2rem',
+                    position: 'relative',
+                }}
+                >
+                    <PostItem item={post} isSinglePost={true} />
+                </div>
 
             }
         </div>

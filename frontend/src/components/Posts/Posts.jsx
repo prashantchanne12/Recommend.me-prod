@@ -5,9 +5,9 @@ import './posts.scss';
 import StackGrid from "react-stack-grid";
 import useWindowDimensions from "../window-dimensions/window-dimension";
 
-const Posts = ({props, loading}) => {
+const Posts = ({props, loading, full}) => {
 
-    const { width } = useWindowDimensions();
+    let { width } = useWindowDimensions();
 
     return  (
         <>

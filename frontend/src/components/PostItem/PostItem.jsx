@@ -9,6 +9,7 @@ import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutli
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
+import More from '../More/More';
 
 
 
@@ -111,8 +112,20 @@ const PostItem = ({item, isSinglePost}) => {
         }
     }
 
+    /*
+       style={{
+                    width: '360px',
+                    margin: '0 auto',
+                    marginTop: '2rem',
+                    position: 'relative',
+                }}
+    */
+
     return (
         <>
+           <div
+             style={{}}
+           >
            <div className="list-wrapper" 
               style={{
                 borderTop: colors[0],
@@ -271,6 +284,8 @@ const PostItem = ({item, isSinglePost}) => {
                     </div>
                 </div>
            </div>
+           </div>
+          {/* { isSinglePost && <More userId={item.owner}/>}  */}
         </>
     )
 }
