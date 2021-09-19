@@ -1,7 +1,21 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
+import axios from 'axios';
 import './comment.scss';
 
-const Comment = ({margin}) => {
+const Comment = ({id, margin}) => {
+
+    const [comment, setComment] = useState({});
+
+    useEffect(() => {
+
+        const getComments = async () => {
+            const {data} = await axios.get(`/api/comments/getComment/${id}`);
+            setComment(data);
+        }
+
+        getComments();
+
+    },[id]);
 
     return (
         <>
@@ -14,13 +28,13 @@ const Comment = ({margin}) => {
                 <div className="comment-section">
                     <div className="comment-from">
                         <div className="comment-userimg">
-                            <img src="https://randomuser.me/api/portraits/women/64.jpg" alt="" />
+                            <img src={comment.fromUserImage} alt="" />
                         </div>
-                        <div className="comment-username">maeve.wiley</div>
+                        <div className="comment-username">{comment.fromUserName}</div>
                     </div>
 
                     <div className="comment-body">
-                        <span>This is comment body</span>
+                        <span>{comment.body}</span>
                     </div>
                 </div>
 

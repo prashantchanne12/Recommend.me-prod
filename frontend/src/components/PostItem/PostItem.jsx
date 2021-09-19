@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
 import AddComment from '../AddComment/AddComment';
-// import Comment from '../Comment/Comment';
+import Comment from '../Comment/Comment';
 // import More from '../More/More';
 
 
@@ -295,6 +295,9 @@ const PostItem = ({item, isSinglePost}) => {
           {
               isSinglePost && <AddComment user={user} id={item._id}/>
               
+          }
+          {
+              isSinglePost && item.comments && item.comments.map(id => <Comment id={id}/> )
           }
         </>
     )

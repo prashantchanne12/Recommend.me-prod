@@ -74,6 +74,25 @@ export const createReply = asyncHandlers(async (req, res) => {
         throw new Error('Error while adding reply!');
     }
 
+});
+
+
+// @desc Get a comment
+// @route PUT /api/comments/getComment/:id
+export const getComment = asyncHandlers(async (req, res) => {
+
+    const id = req.params.id;
+
+    const comment = await Comment.findById(id);
+
+    if (comment) {
+
+        res.send(comment);
+
+    } else {
+        res.status(500);
+        throw new Error('Error while getting a comment!');
+    }
 
 });
 

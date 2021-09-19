@@ -50,7 +50,7 @@ export const getRecommendationList = asyncHandlers(async (req, res) => {
 
     const id = req.params.id;
 
-    const recommendationList = await RecommendList.findById(id);
+    const recommendationList = await RecommendList.findById(id).populate('comments');
 
     if (recommendationList) {
 
@@ -341,7 +341,7 @@ export const deleteRecommendListFromBucket = asyncHandlers(async (req, res, next
         const userIndex = recommendList.addedInBucket.indexOf(req.user._id);
         if (userIndex > -1) {
             recommendList.addedInBucket.splice(userIndex, 1);
-            await recommendList.save();  
+            await recommendList.save();
         }
 
         if (deleted) {
