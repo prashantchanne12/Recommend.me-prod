@@ -1,16 +1,21 @@
 import React,{useEffect, useState} from 'react';
 import axios from 'axios';
+import Loader from 'react-loader-spinner';
 import './comment.scss';
 
 const Comment = ({id, margin}) => {
 
     const [comment, setComment] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
 
+        
         const getComments = async () => {
+            setLoading(true)
             const {data} = await axios.get(`/api/comments/getComment/${id}`);
             setComment(data);
+            setLoading(false);
         }
 
         getComments();
@@ -19,30 +24,45 @@ const Comment = ({id, margin}) => {
 
     return (
         <>
-            <div className="comment-wrapper"
+          {
+               loading ? <div
                 style={{
-                    marginLeft: `${margin ? margin : 0}`
+                    textAlign: 'center',
                 }}
-            >
+               >
 
-                <div className="comment-section">
-                    <div className="comment-from">
-                        <div className="comment-userimg">
-                            <img src={comment.fromUserImage} alt="" />
-                        </div>
-                        <div className="comment-username">{comment.fromUserName}</div>
-                    </div>
+                <Loader
+                    type="ThreeDots"
+                    color="#0984e3"
+                    height={30}
+                    width={30}
+                    />
 
-                    <div className="comment-body">
-                        <span>{comment.body}</span>
-                    </div>
-                </div>
+               </div> :  <div className="comment-wrapper"
+               style={{
+                   marginLeft: `${margin ? margin : 0}`
+               }}
+           >
 
-                <div className="comment-buttons">
-                    <span>reply</span>
-                </div>
+               <div className="comment-section">
+                   <div className="comment-from">
+                       <div className="comment-userimg">
+                           <img src={comment.fromUserImage} alt="" />
+                       </div>
+                       <div className="comment-username">{comment.fromUserName}</div>
+                   </div>
 
-            </div>   
+                   <div className="comment-body">
+                       <span>{comment.body}</span>
+                   </div>
+               </div>
+
+               <div className="comment-buttons">
+                   <span>reply</span>
+               </div>
+
+           </div>  
+          }
         </>
     )
 }

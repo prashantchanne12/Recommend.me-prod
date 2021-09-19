@@ -9,7 +9,6 @@ import {
     FETCH_COMMENT_SUCESSS,
     FETCH_COMMENT_FAIL,
 
-
 } from '../constants/commentConstants';
 
 export const addCommentAction = (body) => async (dispatch, getState) => {
@@ -34,7 +33,7 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
             config
         );
 
-        state.singlePost.post.comments.push(data._id);
+        state.singlePost.post.comments.unshift(data._id);
         const payload = state.singlePost.post;
 
         dispatch({
