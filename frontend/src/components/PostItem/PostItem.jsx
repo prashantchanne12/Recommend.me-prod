@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
 import AddComment from '../AddComment/AddComment';
+import Comment from '../Comment/Comment';
 // import More from '../More/More';
 
 
