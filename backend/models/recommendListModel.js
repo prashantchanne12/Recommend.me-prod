@@ -6,13 +6,10 @@ const userRef = {
     required: true,
 }
 
-const comment = {
-    type: String,
+const commentRef = {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment',
     required: true,
-    from: userRef,
-    timestamp: { type: Date, default: Date.now() },
-    upvotes: [userRef],
-    downvotes: [userRef],
 }
 
 
@@ -44,12 +41,7 @@ const RecommendListSchema = new mongoose.Schema({
             required: true,
         }
     ],
-    comments: [
-        {
-            ...comment,
-            replys: [comment]
-        }
-    ],
+    comments: [commentRef],
     addedInBucket: [userRef],
 }, {
     timestamps: true,
