@@ -21,6 +21,7 @@ import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 import timelineRoutes from './routes/timelineRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import { redirect } from './middlewares/redirect.js';
+import commentsRouter from './routes/CommentRoutes.js';
 
 // Configuring environment variables with .dotenv
 dotenv.config();
@@ -59,6 +60,9 @@ app.use('/api/user', userRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/timeline', timelineRoutes);
 app.use('/api/notification', notificationRoutes);
+app.use('/api/comments', commentsRouter);
+
+// Widgets
 app.get('/widgetJs', (req, res) => {
     res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.js'));
 });
