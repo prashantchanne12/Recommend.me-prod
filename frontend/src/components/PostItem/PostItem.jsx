@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
 import AddComment from '../AddComment/AddComment';
-import Comment from '../Comment/Comment';
+import ShowComments from '../ShowComments/ShowComments';
 // import More from '../More/More';
 
 
@@ -19,8 +19,8 @@ const PostItem = ({item, isSinglePost}) => {
     
     const dispatch = useDispatch();
     const {user} = useSelector(state => state.mySession);
-    const [upvoteCount, setUpvoteCount] = useState(item ? item.upvotes.length : 0);
-    let [isUpvoted, setIsUpvoted] = useState(user ? item.upvotes.includes(user._id) : false);
+    const [upvoteCount, setUpvoteCount] = useState(item && item.upvotes ? item.upvotes.length : 0);
+    let [isUpvoted, setIsUpvoted] = useState(item && user && item.upvotes ? item.upvotes.includes(user._id) : false);
     const [isHover, setHover] = useState(false);
     const history = useHistory();
     const isMyPost = user && user.recommendations ? new Set(user.recommendations).has(item._id) : false;
@@ -59,9 +59,9 @@ const PostItem = ({item, isSinglePost}) => {
         }
       };
 
-    const colors = item.tags.map(tag => {
+    const colors = item && item.tags ? item.tags.map(tag => {
         return tag.color;
-    });
+    }) : [];
 
     const handleEmbed = () => {
         const links = `<div class="recommendme-widget" data=${item._id}></div>
@@ -281,7 +281,9 @@ const PostItem = ({item, isSinglePost}) => {
                                     cursor: 'pointer',
                                 }}
                             >
-                                <p>{item.ownerUserName.split(' ')[0].length <= 9 ? item.ownerUserName.split(' ')[0] : item.ownerUserName.split(' ')[0].substr(0,9).toString()+'..'}</p>
+                                {
+                                    item && item.ownerUserName && <p>{item.ownerUserName.split(' ')[0].length <= 9 ? item.ownerUserName.split(' ')[0] : item.ownerUserName.split(' ')[0].substr(0,9).toString()+'..'}</p>
+                                }
                             </div>
                             <div className="list-date">
                                 <p>{dateFormat(item.createdAt, "mmm dS, yyyy")}</p>
@@ -297,7 +299,7 @@ const PostItem = ({item, isSinglePost}) => {
               
           }
           {
-              isSinglePost && item.comments && item.comments.map(id => <Comment id={id}/> )
+              isSinglePost && <ShowComments /> 
           }
         </>
     )

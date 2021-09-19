@@ -12,7 +12,7 @@ import {
 
 } from '../constants/commentConstants';
 
-export const addCommentAction = (body) => async (dispatch) => {
+export const addCommentAction = (body) => async (dispatch, getState) => {
 
     try {
 
@@ -26,11 +26,21 @@ export const addCommentAction = (body) => async (dispatch) => {
             }
         }
 
+        const state = getState();
+
         const { data } = await axios.post(
             `/api/comments/create`,
             body,
             config
         );
+
+        state.singlePost.post.comments.push(data);
+        const payload = state.singlePost.post;
+
+        dispatch({
+            type: 'FETCH_SINGLE_COMMENT',
+            payload,
+        });
 
         dispatch({
             type: ADD_COMMENT_SUCESSS,

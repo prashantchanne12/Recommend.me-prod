@@ -6,7 +6,7 @@ const Tags = ({tags}) => {
         <>
         <div className="tags-container">
          {
-             tags.map(tag => (
+             tags ? tags.map(tag => (
                 <div 
                 key={tag.color}
                 className="tag" style={{backgroundColor: tag.color}}>
@@ -14,7 +14,7 @@ const Tags = ({tags}) => {
                         <p>{tag.label}</p>   
                     </div>
                 </div> 
-             ))
+             )) : <div>...</div>
          }
          </div>
         </>

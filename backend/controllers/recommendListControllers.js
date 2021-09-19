@@ -50,6 +50,7 @@ export const getRecommendationList = asyncHandlers(async (req, res) => {
 
     const id = req.params.id;
 
+    // const recommendationList = await RecommendList.findById(id);
     const recommendationList = await RecommendList.findById(id).populate('comments');
 
     if (recommendationList) {

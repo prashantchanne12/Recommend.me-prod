@@ -32,6 +32,13 @@ export const postReducer = (state = INIT_STATE, action) => {
             }
         }
 
+        case 'FETCH_SINGLE_COMMENT':{
+            return{
+                ...state,
+                post: action.payload
+            }
+        }
+
         case FETCH_LIST_FAIL: {
             return {
                 ...state,
