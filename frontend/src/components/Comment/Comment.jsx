@@ -1,17 +1,20 @@
 import React,{useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
+import { addReplyCommentAction } from '../../actions/commentActions';
 
 const Comment = ({id, margin}) => {
 
     const [comment, setComment] = useState({});
     const [loading, setLoading] = useState(false);
+    const replyLoading = useSelector(state => state.addReplyComment.loading);
     const [reply, setReply] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-
         
         const getComments = async () => {
             setLoading(true)
@@ -24,8 +27,14 @@ const Comment = ({id, margin}) => {
 
     },[id]);
 
-    const addReply = () => {
-        
+    const addReply = (commentBody, setCommentBody) => {
+
+        if(commentBody.length !== 0){
+
+            dispatch(addReplyCommentAction({body: commentBody, commentId: id}))
+            setCommentBody('');
+        }
+
     }
 
     return (
@@ -46,11 +55,12 @@ const Comment = ({id, margin}) => {
 
                </div> :  <div className="comment-wrapper"
                style={{
-                   marginLeft: `${margin ? margin : 0}`
+                   marginLeft: `${margin}rem`
                }}
            >
 
-               <div className="comment-section">
+               <div className="comment-section"
+               >
                    <div className="comment-from">
                        <div className="comment-userimg">
                            <img src={comment.fromUserImage} alt="" />
@@ -59,7 +69,7 @@ const Comment = ({id, margin}) => {
                    </div>
 
                    <div className="comment-body">
-                       <span>{comment.body}</span>
+                       <p>{comment.body}</p>
                    </div>
                </div>
 
@@ -71,12 +81,12 @@ const Comment = ({id, margin}) => {
                             paddingBottom: '0.3rem',
                             marginLeft: `${margin+2.5}rem`
                         }}
-                       ><CommentBox loading={loading} onClickFunction={addReply} /></div>
+                       ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>
+                   }
+                   {
+                      comment.replies && comment.replies.map(id => <Comment id={id} margin={margin + 1.5}/>) 
                    }
                </div>
-
-
-
            </div>  
           }
         </>

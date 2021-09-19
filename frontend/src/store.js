@@ -34,7 +34,7 @@ import { myTimelineReducer } from './reducers/timelineReducers';
 import { postReducer } from './reducers/recommendPostReducers';
 import { readAllNotificationReducer, removeFollowNotificationReducer, removeUpvoteNotificationReducer, sendFollowNotificationReducer, sendUpvoteNotificationReducer } from './reducers/notificationReducers';
 import { warningCardReducer } from './reducers/warningReducers';
-import { addCommentReducer, fetchCommentReducer } from './reducers/commentsReducers';
+import { addCommentReducer, addReplyCommentReducer, fetchCommentReducer } from './reducers/commentsReducers';
 
 
 // Combine reducers
@@ -54,6 +54,7 @@ const reducer = combineReducers({
     changeUserName: changeUserNameReducer,
 
     addComment: addCommentReducer,
+    addReplyComment: addReplyCommentReducer,
     fetchComment: fetchCommentReducer,
 
     notifications: myNotificationReducer,

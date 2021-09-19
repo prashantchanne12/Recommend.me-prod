@@ -5,6 +5,10 @@ import {
     ADD_COMMENT_SUCESSS,
     ADD_COMMENT_FAIL,
 
+    ADD_REPLY_REQUEST,
+    ADD_REPLY_SUCESSS,
+    ADD_REPLY_FAIL,
+
     FETCH_COMMENT_REQUEST,
     FETCH_COMMENT_SUCESSS,
     FETCH_COMMENT_FAIL,
@@ -49,6 +53,45 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
     } catch (err) {
         dispatch({
             type: ADD_COMMENT_FAIL,
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+    }
+
+}
+
+export const addReplyCommentAction = (body) => async (dispatch, getState) => {
+
+    try {
+
+        dispatch({
+            type: ADD_REPLY_REQUEST
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
+        const state = getState();
+
+        const { data } = await axios.put(
+            `/api/comments/reply`,
+            body,
+            config
+        );
+
+        dispatch({
+            type: ADD_REPLY_SUCESSS,
+            payload: data
+        });
+
+    } catch (err) {
+        dispatch({
+            type: ADD_REPLY_FAIL,
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message
