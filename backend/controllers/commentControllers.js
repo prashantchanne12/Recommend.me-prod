@@ -9,7 +9,7 @@ export const createComment = asyncHandlers(async (req, res) => {
 
     const comment = await new Comment({
         body,
-        fromUserName: req.user.UserName,
+        fromUserName: req.user.userName,
         fromUserDisplayName: req.user.displayName,
         fromUserImage: req.user.image,
         fromUserId: req.user._id,

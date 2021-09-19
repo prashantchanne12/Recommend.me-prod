@@ -293,7 +293,7 @@ const PostItem = ({item, isSinglePost}) => {
            </div>
           {/* { isSinglePost && <More userId={item.owner}/>}  */}
           {
-              isSinglePost && <AddComment user={user}/>
+              isSinglePost && <AddComment user={user} id={item._id}/>
               
           }
         </>
