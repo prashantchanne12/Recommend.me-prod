@@ -1,0 +1,32 @@
+.comment-box{
+    position: relative;
+}
+.comment-text-area{
+    margin-top: 0.6rem;
+    resize: none;
+    padding: 0.4rem;
+    border-radius: 3px;
+    position: relative;
+}
+
+.send-comment-icon{
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    font-size: 1rem;
+    right: 5px;
+    z-index: 10;
+    bottom: -25px;
+
+    &:hover{
+        color: #0984e3;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+}
+
+.add-comment-loader{
+    position: absolute;
+    right: 2.4rem;
+    padding-top: 0.1rem;
+}
+

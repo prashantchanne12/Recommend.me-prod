@@ -2,11 +2,13 @@ import React,{useEffect, useState} from 'react';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import './comment.scss';
+import CommentBox from '../CommentBox/CommentBox';
 
 const Comment = ({id, margin}) => {
 
     const [comment, setComment] = useState({});
     const [loading, setLoading] = useState(false);
+    const [reply, setReply] = useState(false);
 
     useEffect(() => {
 
@@ -21,6 +23,10 @@ const Comment = ({id, margin}) => {
         getComments();
 
     },[id]);
+
+    const addReply = () => {
+        
+    }
 
     return (
         <>
@@ -58,8 +64,18 @@ const Comment = ({id, margin}) => {
                </div>
 
                <div className="comment-buttons">
-                   <span>reply</span>
+                   <span onClick={() => setReply(!reply)}>reply</span>
+                   {
+                       reply && <div 
+                        style={{
+                            paddingBottom: '0.3rem',
+                            marginLeft: `${margin+2.5}rem`
+                        }}
+                       ><CommentBox loading={loading} onClickFunction={addReply} /></div>
+                   }
                </div>
+
+
 
            </div>  
           }
