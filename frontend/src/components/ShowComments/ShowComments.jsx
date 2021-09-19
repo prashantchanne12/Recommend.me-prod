@@ -9,7 +9,8 @@ const ShowComments = () => {
     return (
         <>
             {
-                comments && comments.map(comment => <Comment comment={comment} key={comment._id}/>)
+                // comments && comments.map(comment => <Comment comment={comment} key={comment._id}/>)
+                comments && comments.map(id => <Comment id={id} key={id}/>)
             }
         </>
     )

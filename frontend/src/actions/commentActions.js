@@ -34,7 +34,7 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
             config
         );
 
-        state.singlePost.post.comments.push(data);
+        state.singlePost.post.comments.push(data._id);
         const payload = state.singlePost.post;
 
         dispatch({

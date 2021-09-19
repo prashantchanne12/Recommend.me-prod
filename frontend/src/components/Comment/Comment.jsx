@@ -1,7 +1,21 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
+import axios from 'axios';
 import './comment.scss';
 
-const Comment = ({margin, comment}) => {
+const Comment = ({id, margin}) => {
+
+    const [comment, setComment] = useState({});
+
+    useEffect(() => {
+
+        const getComments = async () => {
+            const {data} = await axios.get(`/api/comments/getComment/${id}`);
+            setComment(data);
+        }
+
+        getComments();
+
+    },[id]);
 
     return (
         <>
