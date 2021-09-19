@@ -5,11 +5,12 @@ import Tags from '../Tags/Tags';
 import {useSelector, useDispatch} from 'react-redux';
 import { upvoteRecommendation, removeUpvoteRecommendation, shareAction, addRecommendToBucketAction, deleteBucketRecommendation } from '../../actions/recommendActions';
 import {alertMessageAction} from '../../actions/alertActions';
-import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete, BsBucket, BsBucketFill,ImEmbed2 } from 'react-icons/all';
+import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutlineDelete, BsBucket, BsBucketFill,ImEmbed2, BiComment } from 'react-icons/all';
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
-import More from '../More/More';
+import AddComment from '../AddComment/AddComment';
+// import More from '../More/More';
 
 
 
@@ -204,6 +205,10 @@ const PostItem = ({item, isSinglePost}) => {
                               
                             }
 
+                        <BiComment
+                            className="comment-icon"
+                        />
+
                         <IoShareSocialOutline className="share-icon"
                             onClick={() => {
                                 handleSharing();
@@ -286,6 +291,10 @@ const PostItem = ({item, isSinglePost}) => {
            </div>
            </div>
           {/* { isSinglePost && <More userId={item.owner}/>}  */}
+          {
+              isSinglePost && <AddComment user={user}/>
+              
+          }
         </>
     )
 }

@@ -78,6 +78,7 @@
         .bucket-icon,
         .bucketed-icon,
         .embed-icon,
+        .comment-icon,
         .share-icon{
             cursor: pointer;
         }
@@ -86,6 +87,10 @@
         .upvoted-icon{
             margin-left: 0.2rem;
             width: 1.1rem;
+        }
+
+        .comment-icon{
+            margin-left: 0.5rem;
         }
 
         .share-icon{
