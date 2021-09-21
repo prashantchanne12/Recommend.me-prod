@@ -9,7 +9,7 @@ const ShowComments = () => {
     return (
         <>
             {
-                comments && comments.map((comment, index) => <Comment comment={comment} key={comment._id} margin={0} array={[index, 0, 0]} deep={0}/>)
+                comments && comments.map((comment, index) => <Comment comment={comment} key={comment._id} margin={0} level={index}/>)
                 // comments && comments.map(id => <Comment id={id} key={id} maPrgin={0}/>)
             }
         </>

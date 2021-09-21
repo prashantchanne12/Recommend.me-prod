@@ -63,7 +63,7 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
 
 }
 
-export const addReplyCommentAction = ({ body, commentId, array }) => async (dispatch, getState) => {
+export const addReplyCommentAction = ({ body, commentId, level }) => async (dispatch, getState) => {
 
     try {
 
@@ -92,7 +92,33 @@ export const addReplyCommentAction = ({ body, commentId, array }) => async (disp
         // // state.singlePost.post.comments.unshift(data._id);
         // const payload = state.singlePost.post;
 
-        const comments = state.singlePost.post.comments[array[0]];
+
+
+        const findComment = (comment) => {
+
+            if (comment._id === commentId) {
+                comment.replies.unshift(data);
+                return
+            }
+
+            if (comment.replies.length === 0) {
+                return
+            }
+
+            comment.replies.forEach(com => {
+                findComment(com);
+            })
+
+        }
+
+        findComment(state.singlePost.post.comments[level]);
+
+        const payload = state.singlePost.post;
+
+        dispatch({
+            type: 'FETCH_SINGLE_REPLY',
+            payload,
+        });
 
         dispatch({
             type: ADD_REPLY_SUCESSS,
@@ -139,3 +165,9 @@ export const fetchCommentAction = (id) => async (dispatch) => {
 
 }
 
+export const commentBoxIdAction = (id) => async (dispatch) => {
+    dispatch({
+        type: 'ADD_COMMENT_ID',
+        payload: id
+    });
+}

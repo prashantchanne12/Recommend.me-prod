@@ -5,13 +5,15 @@ import Loader from 'react-loader-spinner';
 import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
-import { addReplyCommentAction } from '../../actions/commentActions';
+import { addReplyCommentAction, commentBoxIdAction } from '../../actions/commentActions';
 
-const Comment = ({comment, margin, array}) => {
+
+const Comment = ({comment, margin, level}) => {
 
     // const [comment, setComment] = useState({});
     // const [loading, setLoading] = useState(false);
     const replyLoading = useSelector(state => state.addReplyComment.loading);
+    const commentBoxId = useSelector(state => state.commentBox.id);
     const [reply, setReply] = useState(false);
     const dispatch = useDispatch();
 
@@ -32,7 +34,7 @@ const Comment = ({comment, margin, array}) => {
 
         if(commentBody.length !== 0){
 
-            dispatch(addReplyCommentAction({body: commentBody, commentId: comment._id, array: array}))
+            dispatch(addReplyCommentAction({body: commentBody, commentId: comment._id, level: level}));
             setCommentBody('');
         }
 
@@ -87,25 +89,28 @@ const Comment = ({comment, margin, array}) => {
 
                <div className="comment-buttons">
                    <span onClick={() => {
-                       setReply(!reply);
-                       console.log(array);
+                      setReply(!reply);                      
+                      dispatch(commentBoxIdAction(comment._id));
+            
+
                    }}>reply</span>
                    {
-                       reply && <div 
+                       reply && commentBoxId === comment._id ?
+                       <div 
                         style={{
                             paddingBottom: '0.3rem',
                             marginLeft: `${margin+2.5}rem`
                         }}
-                       ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>
+                       ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>:<></>
                    }
                    {
-                      comment.replies && comment.replies.map((comment, index) => {
+                      comment.replies && comment.replies.map((comment) => {
 
                           return (
                             <Comment 
                                 comment={comment} 
-                                margin={margin + 1} 
-                                array={[array[0], array[1]+index, array[2]+1]}
+                                margin={margin + 0.5} 
+                                level={level}
                             />
                           )
                       }) 

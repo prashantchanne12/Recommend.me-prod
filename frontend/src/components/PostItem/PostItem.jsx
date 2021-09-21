@@ -9,8 +9,6 @@ import { IoShareSocialOutline, IoIosArrowDropupCircle, IoIosArrowDropup, AiOutli
 import { useHistory } from 'react-router-dom'; 
 import { FETCH_LIST_SUCCESS } from '../../constants/recommendPostConstants';
 import { warningCardRequestAction } from '../../actions/warningActions';
-import AddComment from '../AddComment/AddComment';
-import ShowComments from '../ShowComments/ShowComments';
 // import More from '../More/More';
 
 
@@ -148,9 +146,9 @@ const PostItem = ({item, isSinglePost}) => {
                         // onClick={() => { onClickPost(); }}
                     >
                         <span 
-                         className="post-title"
-                         onMouseEnter={() => setHover(true)}
-                         onMouseLeave={() => setHover(false)}
+                            className="post-title"
+                            onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)}
                          style={{
                             fontWeight: 700,
                             cursor: !isSinglePost && 'pointer',

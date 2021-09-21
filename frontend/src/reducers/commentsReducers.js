@@ -103,6 +103,18 @@ export const addReplyCommentReducer = (state = { loading: false, error: null, co
 
 }
 
+export const commentBoxReducer = (state = { id: null }, action) => {
+    switch (action.type) {
+        case 'ADD_COMMENT_ID': {
+            return {
+                id: action.payload,
+            }
+        }
+
+        default: return state;
+    }
+}
+
 export const fetchCommentReducer = (state = { loading: false, error: null, comment: null }, action) => {
 
     switch (action.type) {

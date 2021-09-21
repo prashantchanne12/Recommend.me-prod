@@ -15,11 +15,13 @@ const ListScreen = ({match}) => {
   
     useEffect(() => {
 
-        if(!post){
-            dispatch(getPost(match.params.listId));
-        }
+        // if(!post){
+        //     dispatch(getPost(match.params.listId));
+        // }
+        dispatch(getPost(match.params.listId));
 
-    }, [post, match, dispatch, loading]);
+
+    }, [match, dispatch]);
   
     return (
         <div>
