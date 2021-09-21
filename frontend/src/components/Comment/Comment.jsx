@@ -7,9 +7,7 @@ import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
 import { addReplyCommentAction } from '../../actions/commentActions';
 
-const Comment = ({comment, margin}) => {
-
-    console.log(margin);
+const Comment = ({comment, margin, array}) => {
 
     // const [comment, setComment] = useState({});
     // const [loading, setLoading] = useState(false);
@@ -34,7 +32,7 @@ const Comment = ({comment, margin}) => {
 
         if(commentBody.length !== 0){
 
-            dispatch(addReplyCommentAction({body: commentBody, commentId: comment._id}))
+            dispatch(addReplyCommentAction({body: commentBody, commentId: comment._id, array: array}))
             setCommentBody('');
         }
 
@@ -88,7 +86,10 @@ const Comment = ({comment, margin}) => {
                </div>
 
                <div className="comment-buttons">
-                   <span onClick={() => setReply(!reply)}>reply</span>
+                   <span onClick={() => {
+                       setReply(!reply);
+                       console.log(array);
+                   }}>reply</span>
                    {
                        reply && <div 
                         style={{
@@ -98,7 +99,16 @@ const Comment = ({comment, margin}) => {
                        ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>
                    }
                    {
-                      comment.replies && comment.replies.map(comment => <Comment comment={comment} margin={margin + 1}/>) 
+                      comment.replies && comment.replies.map((comment, index) => {
+
+                          return (
+                            <Comment 
+                                comment={comment} 
+                                margin={margin + 1} 
+                                array={[array[0], array[1]+index, array[2]+1]}
+                            />
+                          )
+                      }) 
                    }
                </div>
            </div>  

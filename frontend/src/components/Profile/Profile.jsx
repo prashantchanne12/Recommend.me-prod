@@ -29,11 +29,13 @@ const Profile = ({user, followLoading, unfollowLoading}) => {
     return user ? (
         <>
             <div className="profile-box">
-              <AiOutlineEdit className="edit"
+            {
+                !isUserProfile && <AiOutlineEdit className="edit"
                 onClick={() => {
                     dispatch(changeUserNameCard());
                 }}
               />
+            }
                <div className="profile-header">
                     <div className="profile-image">
                         <img src={user.image} alt='' />

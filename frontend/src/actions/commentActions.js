@@ -63,7 +63,7 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
 
 }
 
-export const addReplyCommentAction = (body) => async (dispatch, getState) => {
+export const addReplyCommentAction = ({ body, commentId, array }) => async (dispatch, getState) => {
 
     try {
 
@@ -81,9 +81,18 @@ export const addReplyCommentAction = (body) => async (dispatch, getState) => {
 
         const { data } = await axios.put(
             `/api/comments/reply`,
-            body,
+            {
+                body,
+                commentId,
+            },
             config
         );
+
+        // state.singlePost.post.comments.unshift(data);
+        // // state.singlePost.post.comments.unshift(data._id);
+        // const payload = state.singlePost.post;
+
+        const comments = state.singlePost.post.comments[array[0]];
 
         dispatch({
             type: ADD_REPLY_SUCESSS,
