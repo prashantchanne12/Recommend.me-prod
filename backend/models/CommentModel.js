@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Populate from '../utils/autopopulate.js';
 
 const userRef = {
     type: mongoose.Schema.Types.ObjectId,
@@ -37,6 +38,10 @@ const CommentSchema = new mongoose.Schema({
 }, {
     timestamps: true,
 });
+
+CommentSchema
+    .pre('findOne', Populate('replies'))
+    .pre('find', Populate('replies'));
 
 const Comment = mongoose.model('Comment', CommentSchema);
 

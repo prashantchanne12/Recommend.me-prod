@@ -37,7 +37,8 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
             config
         );
 
-        state.singlePost.post.comments.unshift(data._id);
+        state.singlePost.post.comments.unshift(data);
+        // state.singlePost.post.comments.unshift(data._id);
         const payload = state.singlePost.post;
 
         dispatch({

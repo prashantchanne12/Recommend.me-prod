@@ -2,36 +2,39 @@ import React,{useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
+import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
 import { addReplyCommentAction } from '../../actions/commentActions';
 
-const Comment = ({id, margin}) => {
+const Comment = ({comment, margin}) => {
 
-    const [comment, setComment] = useState({});
-    const [loading, setLoading] = useState(false);
+    console.log(margin);
+
+    // const [comment, setComment] = useState({});
+    // const [loading, setLoading] = useState(false);
     const replyLoading = useSelector(state => state.addReplyComment.loading);
     const [reply, setReply] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const getComments = async () => {
-            setLoading(true)
-            const {data} = await axios.get(`/api/comments/getComment/${id}`);
-            setComment(data);
-            setLoading(false);
-        }
+    //     const getComments = async () => {
+    //         setLoading(true)
+    //         const {data} = await axios.get(`/api/comments/getComment/${id}`);
+    //         setComment(data);
+    //         setLoading(false);
+    //     }
 
-        getComments();
+    //     getComments();
 
-    },[id]);
+    // },[id]);
 
     const addReply = (commentBody, setCommentBody) => {
 
         if(commentBody.length !== 0){
 
-            dispatch(addReplyCommentAction({body: commentBody, commentId: id}))
+            dispatch(addReplyCommentAction({body: commentBody, commentId: comment._id}))
             setCommentBody('');
         }
 
@@ -40,37 +43,48 @@ const Comment = ({id, margin}) => {
     return (
         <>
           {
-               loading ? <div
-                style={{
-                    textAlign: 'center',
-                }}
-               >
+            //    loading ? <div
+            //     style={{
+            //         textAlign: 'center',
+            //     }}
+            //    >
 
-                <Loader
-                    type="ThreeDots"
-                    color="#0984e3"
-                    height={30}
-                    width={30}
-                    />
+            //     <Loader
+            //         type="ThreeDots"
+            //         color="#0984e3"
+            //         height={30}
+            //         width={30}
+            //         />
 
-               </div> :  <div className="comment-wrapper"
+            //    </div> :
+            <div className="comment-wrapper"
                style={{
                    marginLeft: `${margin}rem`
                }}
-           >
+            >
 
                <div className="comment-section"
                >
-                   <div className="comment-from">
-                       <div className="comment-userimg">
-                           <img src={comment.fromUserImage} alt="" />
+                    <div className="comment-from">
+                       <div className="comment">
+                            <div className="comment-userimg">
+                                <img src={comment.fromUserImage} alt="" />
+                            </div>
                        </div>
-                       <div className="comment-username">{comment.fromUserName}</div>
-                   </div>
+                       <div>
 
-                   <div className="comment-body">
-                       <p>{comment.body}</p>
-                   </div>
+                        <div className="name-and-date">
+                            <div className="comment-username">{comment.fromUserName}</div>
+                            <p>{dateFormat(comment.createdAt, "mmm dS, yyyy")}</p>
+                        </div>
+
+                        <div className="comment-body">
+                                <p>{comment.body}</p>
+                            </div>
+                       </div>
+
+                    </div>
+                 
                </div>
 
                <div className="comment-buttons">
@@ -84,7 +98,7 @@ const Comment = ({id, margin}) => {
                        ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>
                    }
                    {
-                      comment.replies && comment.replies.map(id => <Comment id={id} margin={margin + 1.5}/>) 
+                      comment.replies && comment.replies.map(comment => <Comment comment={comment} margin={margin + 1}/>) 
                    }
                </div>
            </div>  

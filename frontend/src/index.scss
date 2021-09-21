@@ -85,6 +85,7 @@ p{
 
 ::-webkit-scrollbar {
   width: 19px;
+  overflow-y: overlay;
 }
 
 ::-webkit-scrollbar-track {

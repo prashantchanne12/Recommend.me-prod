@@ -1,31 +1,51 @@
 .comment-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     position: relative;
-}
-.comment-text-area{
-    margin-top: 0.6rem;
-    resize: none;
-    padding: 0.4rem;
-    border-radius: 3px;
-    position: relative;
-}
-
-.send-comment-icon{
-    cursor: pointer;
-    position: absolute;
-    right: 5px;
-    font-size: 1rem;
-    z-index: 10;
-    bottom: -25px;
-
-    &:hover{
-        color: #0984e3;
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    
+    .add-comment-loader{
+        position: absolute;
+        left: 6rem;
+        bottom: 13px;
+        z-index: 1;
     }
-}
 
-.add-comment-loader{
-    position: absolute;
-    right: 2.4rem;
-    padding-top: 0.1rem;
-}
+    .comment-text-area{
+        margin-top: 0.6rem;
+        resize: none;
+        padding: 0.4rem;
+        border-radius: 3px;
+    }
 
+    .send-comment-icon{
+        cursor: pointer;
+        font-size: 1rem;
+        z-index: 10;
+        align-items: flex-start;
+
+        &:hover{
+            color: #0984e3;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+    }
+
+
+    .add-comment-btn{
+        border: 1px solid #16a085;
+        cursor: pointer;
+        padding: 0.3rem 0.85rem;
+        background-color: #16a085;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 3px;
+
+        &:hover{
+            background-color: #fff;
+            color: #16a085;
+            transition: all 0.1s;
+        }
+        margin-bottom: 1rem;
+    }
+
+}

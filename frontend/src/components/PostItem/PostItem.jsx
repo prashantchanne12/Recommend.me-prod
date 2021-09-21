@@ -125,9 +125,7 @@ const PostItem = ({item, isSinglePost}) => {
 
     return (
         <>
-           <div
-             style={{}}
-           >
+           <div>
            <div className="list-wrapper" 
               style={{
                 borderTop: colors[0],
@@ -294,13 +292,20 @@ const PostItem = ({item, isSinglePost}) => {
            </div>
            </div>
           {/* { isSinglePost && <More userId={item.owner}/>}  */}
-          {
-              isSinglePost && <AddComment user={user} id={item._id}/>
-              
-          }
-          {
-              isSinglePost && <ShowComments /> 
-          }
+         <div
+            style={{
+               width: '70%',
+               margin: '0 auto',
+            }}
+         >
+            {
+                // isSinglePost && <AddComment user={user} id={item._id}/>
+                
+            }
+            {
+                // isSinglePost && <ShowComments /> 
+            }
+         </div>
         </>
     )
 }

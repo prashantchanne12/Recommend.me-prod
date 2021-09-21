@@ -21,7 +21,7 @@ export const createComment = asyncHandlers(async (req, res) => {
 
         if (recommendList) {
 
-            recommendList.comments.push(comment._id);
+            recommendList.comments.unshift(comment._id);
             await recommendList.save();
 
             res.send(comment);
@@ -60,7 +60,7 @@ export const createReply = asyncHandlers(async (req, res) => {
 
         if (parentComment) {
 
-            parentComment.replies.push(comment._id);
+            parentComment.replies.unshift(comment._id);
             await parentComment.save();
 
             res.send(comment);
@@ -74,6 +74,19 @@ export const createReply = asyncHandlers(async (req, res) => {
         throw new Error('Error while adding reply!');
     }
 
+});
+
+// @desc Get a comment
+// @route GET /api/comments/getAllComments
+export const getAllComments = asyncHandlers(async (req, res) => {
+
+    const { comments } = req.body;
+
+    comments.forEach(comment => {
+
+
+
+    });
 });
 
 
