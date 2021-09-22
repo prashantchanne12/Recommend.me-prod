@@ -9,10 +9,7 @@ export const createComment = asyncHandlers(async (req, res) => {
 
     const comment = await new Comment({
         body,
-        fromUserName: req.user.userName,
-        fromUserDisplayName: req.user.displayName,
-        fromUserImage: req.user.image,
-        fromUserId: req.user._id,
+        from: req.user._id,
     }).save();
 
     if (comment) {
@@ -48,10 +45,7 @@ export const createReply = asyncHandlers(async (req, res) => {
 
     const comment = await new Comment({
         body,
-        fromUserName: req.user.userName,
-        fromUserDisplayName: req.user.displayName,
-        fromUserImage: req.user.image,
-        fromUserId: req.user._id,
+        from: req.user._id,
     }).save();
 
     if (comment) {
@@ -76,19 +70,6 @@ export const createReply = asyncHandlers(async (req, res) => {
 
 });
 
-// @desc Get a comment
-// @route GET /api/comments/getAllComments
-export const getAllComments = asyncHandlers(async (req, res) => {
-
-    const { comments } = req.body;
-
-    comments.forEach(comment => {
-
-
-
-    });
-});
-
 
 // @desc Get a comment
 // @route PUT /api/comments/getComment/:id
@@ -100,7 +81,7 @@ export const getComment = asyncHandlers(async (req, res) => {
 
     if (comment) {
 
-        res.send(comment);
+        res.send(comment)
 
     } else {
         res.status(500);

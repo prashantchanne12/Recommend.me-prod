@@ -46,14 +46,14 @@ const Notification = ({notification}) => {
     return (
         <>   
             <div className="notification-details" >
-                <img src={notification.userProfileImg} 
+                <img src={notification.userId.image} 
                     alt=""
                     onClick={() => {gotoProfilePage()}}
                 />
                 <div className="details">
                     <span className="notification-username"
                         onClick={() => {gotoProfilePage()}}
-                    >{notification.userName}</span>    
+                    >{notification.userId.userName}</span>    
 
                     {notificationTemplate()}
 

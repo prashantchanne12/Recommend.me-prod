@@ -7,16 +7,14 @@ import UserNotification from '../models/userNotificationModel.js';
 // @access PRIVATE
 export const upvoteNotification = asyncHandlers(async (req, res) => {
 
-    const { postId, ownerId, userName, userProfileImg, title } = req.body;
+    const { postId, ownerId, title } = req.body;
 
     const notification = await new Notification({
         type: 'upvote',
         recommendation: postId,
         userId: req.user.id,
         ownerId,
-        userName,
         title,
-        userProfileImg,
     }).save();
 
     if (notification) {
@@ -81,7 +79,16 @@ export const getAllNotifications = asyncHandlers(async (req, res) => {
 
     const notifications = await UserNotification.findOne({
         userId: req.user._id
-    }).populate('notifications');
+    })
+        .populate('notifications')
+        .populate({
+            path: 'notifications',
+            populate: {
+                path: 'userId',
+                model: 'User',
+                select: { 'displayName': 1, 'userName': 1, 'image': 1 },
+            }
+        });
 
     res.send(notifications);
 
@@ -101,14 +108,12 @@ export const readAllNotifications = asyncHandlers(async (req, res) => {
 // @access PRIVATE
 export const followNotification = asyncHandlers(async (req, res) => {
 
-    const { ownerId, userName, userProfileImg } = req.body;
+    const { ownerId } = req.body;
 
     const notification = await new Notification({
         type: 'follow',
         userId: req.user.id,
         ownerId,
-        userName,
-        userProfileImg,
     }).save();
 
     if (notification) {
@@ -117,4 +122,4 @@ export const followNotification = asyncHandlers(async (req, res) => {
 
     throw new Error('Error saving the Notification');
 
-})
+});

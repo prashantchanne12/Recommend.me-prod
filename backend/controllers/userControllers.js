@@ -139,7 +139,7 @@ export const changeUserName = asyncHandler(async (req, res) => {
     const user = await User.findOne({ userName });
 
     if (!user) {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(id);
         user.userName = userName;
         const updatedUser = await user.save();
 

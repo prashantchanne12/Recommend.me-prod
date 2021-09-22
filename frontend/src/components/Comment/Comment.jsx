@@ -68,13 +68,13 @@ const Comment = ({comment, margin, level}) => {
                     <div className="comment-from">
                        <div className="comment">
                             <div className="comment-userimg">
-                                <img src={comment.fromUserImage} alt="" />
+                                <img src={comment.from.image} alt="" />
                             </div>
                        </div>
                        <div>
 
                         <div className="name-and-date">
-                            <div className="comment-username">{comment.fromUserName}</div>
+                            <div className="comment-username">{comment.from.userName}</div>
                             <p>{dateFormat(comment.createdAt, "mmm dS, yyyy")}</p>
                         </div>
 

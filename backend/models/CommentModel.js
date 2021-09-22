@@ -15,19 +15,7 @@ const commentRef = {
 
 const CommentSchema = new mongoose.Schema({
 
-    fromUserName: {
-        type: String,
-        required: true,
-    },
-    fromUserDisplayName: {
-        type: String,
-        required: true,
-    },
-    fromUserImage: {
-        type: String,
-        required: true,
-    },
-    fromUserId: userRef,
+    from: userRef,
     replies: [commentRef],
     body: {
         type: String,
@@ -41,6 +29,8 @@ const CommentSchema = new mongoose.Schema({
 
 CommentSchema
     .pre('findOne', Populate('replies'))
+    .pre('findOne', Populate('from'))
+    .pre('find', Populate('from'))
     .pre('find', Populate('replies'));
 
 const Comment = mongoose.model('Comment', CommentSchema);

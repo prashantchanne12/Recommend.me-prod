@@ -141,7 +141,7 @@ export const upvoteRecommendationList = asyncHandlers(async (req, res) => {
 
     if (recommendList) {
 
-        recommendList.upvotes = [...recommendList.upvotes, userId];
+        recommendList.upvotes.push(userId);
         const newRecommendList = await recommendList.save();
 
         if (newRecommendList) {
@@ -150,7 +150,7 @@ export const upvoteRecommendationList = asyncHandlers(async (req, res) => {
             const user = await User.findById(userId);
 
             if (user) {
-                user.upvotedRecommendations = [...user.upvotedRecommendations, id];
+                user.upvotedRecommendations.push(id);
                 const newUser = await user.save();
 
                 if (newUser) {
