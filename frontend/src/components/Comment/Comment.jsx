@@ -1,7 +1,7 @@
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
-import Loader from 'react-loader-spinner';
+// import axios from 'axios';
+// import Loader from 'react-loader-spinner';
 import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
