@@ -283,8 +283,6 @@ export const fetchUserRecommendations = (id) => async (dispatch) => {
 
 export const upvoteRecommendation = (id, body, isMyPost) => async (dispatch) => {
 
-    // PUT /api/recommend/list/upvote/:id
-
     try {
 
         dispatch({

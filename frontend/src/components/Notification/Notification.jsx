@@ -10,7 +10,7 @@ const Notification = ({notification}) => {
     const dispatch = useDispatch();
 
     const gotoProfilePage = () => {
-        history.push(`/profile/${notification.userId}`);
+        history.push(`/profile/${notification.userId._id}`);
         dispatch({type: NOTIFICATION_TOGGLE_RESET});
     }
 

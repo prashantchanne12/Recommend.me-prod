@@ -88,7 +88,7 @@ export const getAllNotifications = asyncHandlers(async (req, res) => {
                 model: 'User',
                 select: { 'displayName': 1, 'userName': 1, 'image': 1 },
             }
-        });
+        })
 
     res.send(notifications);
 

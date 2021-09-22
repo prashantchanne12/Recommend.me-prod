@@ -22,17 +22,9 @@ const notificationSchema = new mongoose.Schema({
     },
     recommendation: recommendationRef,
     userId: userRef,
+    ownerId: userRef,
     data: {
         type: String
-    },
-    ownerId: userRef,
-    userName: {
-        type: String,
-        required: true,
-    },
-    userProfileImg: {
-        type: String,
-        required: false,
     },
     seen: {
         type: Boolean,
