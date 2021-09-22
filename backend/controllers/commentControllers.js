@@ -7,7 +7,7 @@ import Comment from '../models/CommentModel.js';
 export const createComment = asyncHandlers(async (req, res) => {
     const { body, id } = req.body;
 
-    const comment = await new Comment({
+    let comment = await new Comment({
         body,
         from: req.user._id,
     }).save();
@@ -21,7 +21,16 @@ export const createComment = asyncHandlers(async (req, res) => {
             recommendList.comments.unshift(comment._id);
             await recommendList.save();
 
-            res.send(comment);
+
+            res.send({
+                ...comment._doc,
+                from: {
+                    userName: req.user.userName,
+                    image: req.user.image,
+                    displayName: req.user.displayName,
+                }
+
+            });
 
         } else {
             res.status(404);
@@ -56,8 +65,15 @@ export const createReply = asyncHandlers(async (req, res) => {
 
             parentComment.replies.unshift(comment._id);
             await parentComment.save();
+            res.send({
+                ...comment._doc,
+                from: {
+                    userName: req.user.userName,
+                    image: req.user.image,
+                    displayName: req.user.displayName,
+                }
 
-            res.send(comment);
+            });
 
         } else {
             res.status(404);
