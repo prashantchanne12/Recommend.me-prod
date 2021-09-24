@@ -1,26 +1,26 @@
 import axios from 'axios';
-import {
+// import {
 
-    ADD_COMMENT_REQUEST,
-    ADD_COMMENT_SUCESSS,
-    ADD_COMMENT_FAIL,
+//     ADD_COMMENT_REQUEST,
+//     ADD_COMMENT_SUCESSS,
+//     ADD_COMMENT_FAIL,
 
-    ADD_REPLY_REQUEST,
-    ADD_REPLY_SUCESSS,
-    ADD_REPLY_FAIL,
+//     ADD_REPLY_REQUEST,
+//     ADD_REPLY_SUCESSS,
+//     ADD_REPLY_FAIL,
 
-    FETCH_COMMENT_REQUEST,
-    FETCH_COMMENT_SUCESSS,
-    FETCH_COMMENT_FAIL,
+//     FETCH_COMMENT_REQUEST,
+//     FETCH_COMMENT_SUCESSS,
+//     FETCH_COMMENT_FAIL,
 
-} from '../constants/commentConstants';
+// } from '../constants/commentConstants';
 
 export const addCommentAction = (body) => async (dispatch, getState) => {
 
     try {
 
         dispatch({
-            type: ADD_COMMENT_REQUEST
+            type: 'ADD_COMMENT_REQUEST'
         });
 
         const config = {
@@ -47,13 +47,13 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
         });
 
         dispatch({
-            type: ADD_COMMENT_SUCESSS,
+            type: 'ADD_COMMENT_SUCESSS',
             payload: data
         });
 
     } catch (err) {
         dispatch({
-            type: ADD_COMMENT_FAIL,
+            type: 'ADD_COMMENT_FAIL',
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message
@@ -68,7 +68,7 @@ export const addReplyCommentAction = ({ body, commentId, level }) => async (disp
     try {
 
         dispatch({
-            type: ADD_REPLY_REQUEST
+            type: 'ADD_REPLY_REQUEST'
         });
 
         const config = {
@@ -121,13 +121,13 @@ export const addReplyCommentAction = ({ body, commentId, level }) => async (disp
         });
 
         dispatch({
-            type: ADD_REPLY_SUCESSS,
+            type: 'ADD_REPLY_SUCESSS',
             payload: data
         });
 
     } catch (err) {
         dispatch({
-            type: ADD_REPLY_FAIL,
+            type: 'ADD_REPLY_FAIL',
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message
@@ -143,19 +143,19 @@ export const fetchCommentAction = (id) => async (dispatch) => {
     try {
 
         dispatch({
-            type: FETCH_COMMENT_REQUEST
+            type: 'FETCH_COMMENT_REQUEST'
         });
 
         const { data } = await axios.get(`/api/comments/getComment/${id}`);
 
         dispatch({
-            type: FETCH_COMMENT_SUCESSS,
+            type: 'FETCH_COMMENT_SUCESSS',
             payload: data,
         });
 
     } catch (err) {
         dispatch({
-            type: FETCH_COMMENT_FAIL,
+            type: 'FETCH_COMMENT_FAIL',
             payload:
                 err.response && err.response.data.message
                     ? err.response.data.message

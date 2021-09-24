@@ -1,34 +1,34 @@
-import {
+// import {
 
-    ADD_COMMENT_REQUEST,
-    ADD_COMMENT_SUCESSS,
-    ADD_COMMENT_FAIL,
-    ADD_COMMENT_RESET,
+//     ADD_COMMENT_REQUEST,
+//     ADD_COMMENT_SUCESSS,
+//     ADD_COMMENT_FAIL,
+//     ADD_COMMENT_RESET,
 
-    ADD_REPLY_REQUEST,
-    ADD_REPLY_SUCESSS,
-    ADD_REPLY_FAIL,
-    ADD_REPLY_RESET,
+//     ADD_REPLY_REQUEST,
+//     ADD_REPLY_SUCESSS,
+//     ADD_REPLY_FAIL,
+//     ADD_REPLY_RESET,
 
-    FETCH_COMMENT_REQUEST,
-    FETCH_COMMENT_SUCESSS,
-    FETCH_COMMENT_FAIL,
-    FETCH_COMMENT_RESET,
+//     FETCH_COMMENT_REQUEST,
+//     FETCH_COMMENT_SUCESSS,
+//     FETCH_COMMENT_FAIL,
+//     FETCH_COMMENT_RESET,
 
-} from '../constants/commentConstants';
+// } from '../constants/commentConstants';
 
 export const addCommentReducer = (state = { loading: false, error: null, comment: null }, action) => {
 
     switch (action.type) {
 
-        case ADD_COMMENT_REQUEST: {
+        case 'ADD_COMMENT_REQUEST': {
             return {
                 ...state,
                 loading: true,
             }
         }
 
-        case ADD_COMMENT_SUCESSS: {
+        case 'ADD_COMMENT_SUCESSS': {
             return {
                 ...state,
                 comment: action.payload,
@@ -36,7 +36,7 @@ export const addCommentReducer = (state = { loading: false, error: null, comment
             }
         }
 
-        case ADD_COMMENT_FAIL: {
+        case 'ADD_COMMENT_FAIL': {
             return {
                 ...state,
                 loading: false,
@@ -44,7 +44,7 @@ export const addCommentReducer = (state = { loading: false, error: null, comment
             }
         }
 
-        case ADD_COMMENT_RESET: {
+        case 'ADD_COMMENT_RESET': {
             return {
                 ...state,
                 loading: false,
@@ -64,14 +64,14 @@ export const addReplyCommentReducer = (state = { loading: false, error: null, co
 
     switch (action.type) {
 
-        case ADD_REPLY_REQUEST: {
+        case 'ADD_REPLY_REQUEST': {
             return {
                 ...state,
                 loading: true,
             }
         }
 
-        case ADD_REPLY_SUCESSS: {
+        case 'ADD_REPLY_SUCESSS': {
             return {
                 ...state,
                 comment: action.payload,
@@ -79,7 +79,7 @@ export const addReplyCommentReducer = (state = { loading: false, error: null, co
             }
         }
 
-        case ADD_REPLY_FAIL: {
+        case 'ADD_REPLY_FAIL': {
             return {
                 ...state,
                 loading: false,
@@ -87,7 +87,7 @@ export const addReplyCommentReducer = (state = { loading: false, error: null, co
             }
         }
 
-        case ADD_REPLY_RESET: {
+        case 'ADD_REPLY_RESET': {
             return {
                 ...state,
                 loading: false,
@@ -119,14 +119,14 @@ export const fetchCommentReducer = (state = { loading: false, error: null, comme
 
     switch (action.type) {
 
-        case FETCH_COMMENT_REQUEST: {
+        case 'FETCH_COMMENT_REQUEST': {
             return {
                 ...state,
                 loading: true,
             }
         }
 
-        case FETCH_COMMENT_SUCESSS: {
+        case 'FETCH_COMMENT_SUCESSS': {
             return {
                 ...state,
                 comment: action.payload,
@@ -134,7 +134,7 @@ export const fetchCommentReducer = (state = { loading: false, error: null, comme
             }
         }
 
-        case FETCH_COMMENT_FAIL: {
+        case 'FETCH_COMMENT_FAIL': {
             return {
                 ...state,
                 loading: false,
@@ -142,7 +142,7 @@ export const fetchCommentReducer = (state = { loading: false, error: null, comme
             }
         }
 
-        case FETCH_COMMENT_RESET: {
+        case 'FETCH_COMMENT_RESET': {
             return {
                 ...state,
                 loading: false,
