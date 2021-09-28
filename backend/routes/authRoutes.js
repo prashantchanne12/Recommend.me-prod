@@ -1,13 +1,16 @@
 import express from 'express';
 import passport from 'passport';
 import { protect } from '../middlewares/authMiddleware.js';
+import { redirect } from '../utils/redirect.js';
 const authRouter = express.Router();
 
 // @desc Google authentication
 // @route GET auth/google
-authRouter.get('/google', passport.authenticate('google', {
-    scope: ['profile', 'email'],
-}));
+authRouter.get('/google',
+    redirect,
+    passport.authenticate('google', {
+        scope: ['profile', 'email'],
+    }));
 
 // @desc Google authentication callback
 // @route GET auth/google/callback
@@ -15,7 +18,12 @@ authRouter.get(
     '/google/callback',
     passport.authenticate('google'),
     (req, res) => {
-        res.redirect('/');
+        if (req.session.redirectUrl !== 'undefined') {
+            res.redirect(`/${req.session.redirectUrl}`);
+        } else {
+            res.redirect('/');
+        }
+
     }
 );
 

@@ -76,7 +76,7 @@ passport.use(new GoogleStrategy({
             userName,
         }).save();
 
-        console.log(profile);
+        // console.log(profile);
 
         if (newUser) {
             done(null, newUser);

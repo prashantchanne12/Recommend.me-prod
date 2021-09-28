@@ -35,6 +35,7 @@ const app = express();
 app.use(express.json());
 
 app.use(coockieSession({
+    name: 'session',
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [process.env.COOKIE_KEY]
 }));

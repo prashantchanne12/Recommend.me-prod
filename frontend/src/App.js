@@ -53,7 +53,7 @@ function App() {
       >
         <Layout>
           <Route exact path='/' component={HomeScreen} />
-          <Route exact path='/login' component={LoginScreen} />
+          <Route path='/login' component={LoginScreen} />
           <Route exact path='/create' component={CreateRecommendationScreen} />
           <Route exact path='/profile' component={ProfileScreen} />
           <Route path='/profile/:userId' component={UserProfile} />

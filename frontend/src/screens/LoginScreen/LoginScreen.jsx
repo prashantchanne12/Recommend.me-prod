@@ -7,12 +7,14 @@ import { useSelector } from 'react-redux';
 function LoginScreen({history}) {
 
     const {user} = useSelector(state => state.mySession);
+    const redirectUrl = history.location.search.split('?')[1];
  
     useEffect(() => {
         if(user){
             history.push('/');
         }
     },[user, history]);
+
 
     return (
         <div className='container'>
@@ -23,7 +25,7 @@ function LoginScreen({history}) {
                     <p className='policy'>By logging in you accept our <a href='None'>Privacy Policy</a> and <a href='None'>Terms of Service</a>.</p>
 
                     <div className="login-buttons">
-                       <a href='/auth/google'>
+                       <a href={`/auth/google?redirect=${redirectUrl}`}>
                             <div className="google-button">
                                 <FaGoogle className='icon'/>
                                 <p>Login with Google</p>
