@@ -218,9 +218,13 @@ const PostItem = ({item, isSinglePost}) => {
                         <BsBucket 
                             className="bucket-icon"
                             onClick={() => {
-                                dispatch(addRecommendToBucketAction(item))
-                                setHaveIBucketed(true);
-                                dispatch(alertMessageAction({message: `${item.title} added to bucket`, type: 'success'}));
+                               if(user){
+                                    dispatch(addRecommendToBucketAction(item))
+                                    setHaveIBucketed(true);
+                                    dispatch(alertMessageAction({message: `${item.title} added to bucket`, type: 'success'}));
+                               }else{
+                                    dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
+                               }
                             }}
                         />
 
@@ -231,9 +235,13 @@ const PostItem = ({item, isSinglePost}) => {
                         <BsBucketFill
                             className="bucketed-icon"
                             onClick={() => {
+                                if(user){
                                 dispatch(deleteBucketRecommendation(item._id));
                                 setHaveIBucketed(false);
                                 // dispatch(alertMessageAction({message: `${item.title} removed from bucket`, type: 'success'}));
+                                }else{
+                                    dispatch(alertMessageAction({message: "You need to log in!", type: "failure"}));
+                                }
                             }}
                         />
                     }
