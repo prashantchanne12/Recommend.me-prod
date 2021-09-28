@@ -19,16 +19,16 @@ import { alertMessageAction } from '../../actions/alertActions';
 import createLinkPlugin from '@draft-js-plugins/anchor';
 import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
-import {
-  ItalicButton,
-  BoldButton,
-  UnderlineButton,
-} from '@draft-js-plugins/buttons';
+// import {
+//   ItalicButton,
+//   BoldButton,
+//   UnderlineButton,
+// } from '@draft-js-plugins/buttons';
 
 const MAX_LENGTH = 450;
 const linkPlugin = createLinkPlugin();
 const inlineToolbarPlugin = createInlineToolbarPlugin();
-const { InlineToolbar } = inlineToolbarPlugin;
+// const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [linkPlugin, inlineToolbarPlugin];
 
 

@@ -6,6 +6,7 @@ import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
 import { addReplyCommentAction, commentBoxIdAction } from '../../actions/commentActions';
+import { Link } from 'react-router-dom';
 
 
 const Comment = ({comment, margin, level}) => {
@@ -14,6 +15,7 @@ const Comment = ({comment, margin, level}) => {
     // const [loading, setLoading] = useState(false);
     const replyLoading = useSelector(state => state.addReplyComment.loading);
     const commentBoxId = useSelector(state => state.commentBox.id);
+    const {user} = useSelector(state => state.mySession);
     const [reply, setReply] = useState(false);
     const dispatch = useDispatch();
 
@@ -88,21 +90,31 @@ const Comment = ({comment, margin, level}) => {
                </div>
 
                <div className="comment-buttons">
-                   <span onClick={() => {
-                      setReply(!reply);                      
-                      dispatch(commentBoxIdAction(comment._id));
-            
+                  
+                    {
+                        user ? <span onClick={() => {
+                            setReply(!reply);                      
+                            dispatch(commentBoxIdAction(comment._id));
+                  
+      
+                         }}>reply</span> : <span><Link 
+                                                    to='/login'
+                                                    style={{
+                                                        color: '#0984e3',
+                                                    }}        
+                                                >Login</Link> to add reply</span>
+                    }
 
-                   }}>reply</span>
-                   {
-                       reply && commentBoxId === comment._id ?
-                       <div 
-                        style={{
-                            paddingBottom: '0.3rem',
-                            marginLeft: `${margin+2.5}rem`
-                        }}
-                       ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>:<></>
-                   }
+                     {
+                         reply && commentBoxId === comment._id ?
+                         <div 
+                          style={{
+                              paddingBottom: '0.3rem',
+                              marginLeft: `${margin+2.5}rem`
+                          }}
+                         ><CommentBox loading={replyLoading} onClickFunction={addReply} /></div>:<></>
+                     }
+                  
                    {
                       comment.replies && comment.replies.map((comment) => {
 

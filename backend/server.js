@@ -31,10 +31,6 @@ connectDB();
 
 const app = express();
 
-
-// cors
-app.use(cors({ origin: '*' }));
-
 // parse json data
 app.use(express.json());
 
@@ -52,6 +48,10 @@ app.use(redirect);
 
 // Serving static files
 const __dirname = path.resolve();
+
+
+// cors
+app.use(cors({ origin: '*' }));
 
 // Routes
 app.use('/auth', authRouter);

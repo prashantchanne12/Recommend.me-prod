@@ -104,10 +104,10 @@ const PostItem = ({item, isSinglePost}) => {
 
 
         if(!isSinglePost){
-            dispatch({
-                type: FETCH_LIST_SUCCESS,
-                payload: {...item, upvotes: item.upvotes},
-            });
+            // dispatch({
+            //     type: FETCH_LIST_SUCCESS,
+            //     payload: {...item, upvotes: item.upvotes},
+            // });
             history.push(`/list/${item._id}`);
         }
     }
