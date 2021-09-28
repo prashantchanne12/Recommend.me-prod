@@ -9,7 +9,7 @@ import { addReplyCommentAction, commentBoxIdAction } from '../../actions/comment
 import { Link } from 'react-router-dom';
 
 
-const Comment = ({comment, margin, level}) => {
+const Comment = ({comment, margin, level, postId}) => {
 
     // const [comment, setComment] = useState({});
     // const [loading, setLoading] = useState(false);
@@ -98,7 +98,7 @@ const Comment = ({comment, margin, level}) => {
                   
       
                          }}>reply</span> : <span><Link 
-                                                    to='/login'
+                                                    to={`/login?list/${postId}`}
                                                     style={{
                                                         color: '#0984e3',
                                                     }}        
@@ -123,6 +123,7 @@ const Comment = ({comment, margin, level}) => {
                                 comment={comment} 
                                 margin={margin + 0.5} 
                                 level={level}
+                                postId={postId}
                             />
                           )
                       }) 

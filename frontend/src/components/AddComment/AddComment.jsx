@@ -36,7 +36,7 @@ const AddComment = ({user, id}) => {
                     paddingBottom: '0.7rem',
                     fontSize: '14px'
                 }}
-            > <Link to='/login?redirect=helloworld'><span
+            > <Link to={`/login?list/${id}`}><span
                 style={{
                     textDecoration: 'underline',
                     color: '#0984e3',

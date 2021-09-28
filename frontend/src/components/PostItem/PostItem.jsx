@@ -35,6 +35,7 @@ const PostItem = ({item, isSinglePost}) => {
         title: item.title,
     }
 
+
     const handleSharing = () => {
         let re = new RegExp(/^.*\//);
         let share_link = re.exec(window.location.href)[0];
