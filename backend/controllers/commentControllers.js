@@ -106,4 +106,22 @@ export const getComment = asyncHandlers(async (req, res) => {
 
 });
 
+// @desc Delete a comment
+// @route DELETE /api/comments/delete/:id
+export const deleteComment = asyncHandlers(async (req, res) => {
+
+    const id = req.params.id;
+
+    const comment = await Comment.findById(id);
+
+    
+
+    if (comment) {
+        res.send('Deleted');
+    } else {
+        res.status(500);
+        throw new Error('Error while deleting a comment!');
+    }
+
+});
 

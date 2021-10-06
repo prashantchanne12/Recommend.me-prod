@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
+import {AiOutlineDelete} from 'react-icons/ai';
 import { addReplyCommentAction, commentBoxIdAction } from '../../actions/commentActions';
 import { Link } from 'react-router-dom';
 
@@ -92,12 +93,18 @@ const Comment = ({comment, margin, level, postId}) => {
                <div className="comment-buttons">
                   
                     {
-                        user ? <span onClick={() => {
-                            setReply(!reply);                      
-                            dispatch(commentBoxIdAction(comment._id));
-                  
-      
-                         }}>reply</span> : <span><Link 
+                        user ? <div className="comment-options">
+                            <span onClick={() => {
+                                setReply(!reply);                      
+                                dispatch(commentBoxIdAction(comment._id));
+                    
+        
+                            }}>reply</span>
+
+                            {
+                                comment.from._id === user._id && <AiOutlineDelete className="comment-delete" />
+                            }
+                        </div> : <span><Link 
                                                     to={`/login?list/${postId}`}
                                                     style={{
                                                         color: '#0984e3',

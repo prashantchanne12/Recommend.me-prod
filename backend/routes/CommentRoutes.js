@@ -9,5 +9,6 @@ import { protect } from '../middlewares/authMiddleware.js';
 commentsRouter.post('/create', protect, createComment);
 commentsRouter.put('/reply', protect, createReply);
 commentsRouter.get('/getComment/:id', protect, getComment);
+commentsRouter.delete('/delete/:id', protect);
 
 export default commentsRouter;
