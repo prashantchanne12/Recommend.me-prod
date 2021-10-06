@@ -16,13 +16,26 @@ const commentRef = {
 const CommentSchema = new mongoose.Schema({
 
     from: userRef,
+    parentCommentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment',
+        default: null,
+    },
+    postId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'RecommendList',
+        default: null,
+    },
     replies: [commentRef],
     body: {
         type: String,
         required: true,
     },
     upvotes: [userRef],
-
+    deleted: {
+        type: Boolean,
+        default: false,
+    }
 }, {
     timestamps: true,
 });

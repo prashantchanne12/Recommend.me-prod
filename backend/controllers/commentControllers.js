@@ -10,6 +10,7 @@ export const createComment = asyncHandlers(async (req, res) => {
     let comment = await new Comment({
         body,
         from: req.user._id,
+        postId: id,
     }).save();
 
     if (comment) {
@@ -55,6 +56,7 @@ export const createReply = asyncHandlers(async (req, res) => {
     const comment = await new Comment({
         body,
         from: req.user._id,
+        parentCommentId: commentId,
     }).save();
 
     if (comment) {
@@ -107,21 +109,51 @@ export const getComment = asyncHandlers(async (req, res) => {
 });
 
 // @desc Delete a comment
-// @route DELETE /api/comments/delete/:id
+// @route DELETE /api/comments/delete
 export const deleteComment = asyncHandlers(async (req, res) => {
 
-    const id = req.params.id;
+    const { id, parentCommentId } = req.body;
 
     const comment = await Comment.findById(id);
+    const postId = comment.postId;
 
-    
 
-    if (comment) {
-        res.send('Deleted');
-    } else {
-        res.status(500);
-        throw new Error('Error while deleting a comment!');
+    if (postId) {
+
+        // This is root comment
+
+        // does this comment has replies?
+        if (comment.replies.length > 0) {
+
+            comment.deleted = true;
+            await comment.save();
+
+        } else {
+
+            await Comment.findByIdAndRemove(id);
+
+            const recommendList = RecommendList.findById(postId);
+            recommendList.comments = recommendList.comments.filter(commentId => commentId !== id);
+            recommendList.save();
+
+        }
+
+    } else if (parentCommentId) {
+
+        // This is reply comment
+
+        if (comment.replies.length > 0) {
+            comment.deleted = true;
+            await comment.save();
+        } else {
+            const parentComment = await Comment.findById(parentCommentId);
+            parentComment.replies = parentComment.replies.filter(replyId => replyId !== id);
+            await parentComment.save();
+        }
+
     }
+
+    res.send('Deleted');
 
 });
 
