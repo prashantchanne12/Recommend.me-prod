@@ -6,7 +6,7 @@ import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
 import {AiOutlineDelete} from 'react-icons/ai';
-import { addReplyCommentAction, commentBoxIdAction } from '../../actions/commentActions';
+import { addReplyCommentAction, commentBoxIdAction, deleteCommentAction } from '../../actions/commentActions';
 import { Link } from 'react-router-dom';
 
 
@@ -82,7 +82,9 @@ const Comment = ({comment, margin, level, postId}) => {
                         </div>
 
                         <div className="comment-body">
-                                <p>{comment.body}</p>
+                               {
+                                   !comment.deleted ?  <p>{comment.body}</p> : <p>This comment has been deleted</p>
+                               }
                             </div>
                        </div>
 
@@ -102,9 +104,16 @@ const Comment = ({comment, margin, level, postId}) => {
                             }}>reply</span>
 
                             {
-                                comment.from._id === user._id && <AiOutlineDelete className="comment-delete" />
+                                comment.from.userName === user.userName && 
+                                    <AiOutlineDelete 
+                                     className="comment-delete"
+                                     onClick={() => {
+                                         dispatch(deleteCommentAction({commentId: comment._id, level}));
+                                     }}                                     
+                                    />
                             }
-                        </div> : <span><Link 
+                            
+                            </div> : <span><Link 
                                                     to={`/login?list/${postId}`}
                                                     style={{
                                                         color: '#0984e3',

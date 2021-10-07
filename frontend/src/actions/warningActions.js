@@ -7,10 +7,10 @@ import {
 } from '../constants/warningConstants';
 import { deleteMyRecommendation } from '../actions/recommendActions';
 
-export const warningCardRequestAction = (id) => async (dispatch) => {
+export const warningCardRequestAction = ({ type, id }) => async (dispatch) => {
     dispatch({
         type: WARNING_CARD_REQUEST,
-        payload: id,
+        payload: { type, id },
     });
 }
 
@@ -20,8 +20,14 @@ export const warningCardSuccessAction = () => async (dispatch, getState) => {
 
     const state = getState();
     const id = state.warningCard.id;
+    const type = state.warningCard.type;
 
-    dispatch(deleteMyRecommendation(id));
+    if (type === 'list') {
+        dispatch(deleteMyRecommendation(id));
+    } else if (type === 'comment') {
+        // delete comment 
+    }
+
 }
 
 export const warningCardResetAction = () => async (dispatch) => {

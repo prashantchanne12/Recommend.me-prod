@@ -109,12 +109,13 @@ export const getComment = asyncHandlers(async (req, res) => {
 });
 
 // @desc Delete a comment
-// @route DELETE /api/comments/delete
+// @route DELETE /api/comments/delete/:id
 export const deleteComment = asyncHandlers(async (req, res) => {
 
-    const { id, parentCommentId } = req.body;
+    const id = req.params.id;
 
     const comment = await Comment.findById(id);
+    const parentCommentId = comment.parentCommentId;
     const postId = comment.postId;
 
 
@@ -132,11 +133,13 @@ export const deleteComment = asyncHandlers(async (req, res) => {
 
             await Comment.findByIdAndRemove(id);
 
-            const recommendList = RecommendList.findById(postId);
+            const recommendList = await RecommendList.findById(postId);
             recommendList.comments = recommendList.comments.filter(commentId => commentId !== id);
             recommendList.save();
 
         }
+
+        res.send('Deleted');
 
     } else if (parentCommentId) {
 
@@ -146,14 +149,22 @@ export const deleteComment = asyncHandlers(async (req, res) => {
             comment.deleted = true;
             await comment.save();
         } else {
+
             const parentComment = await Comment.findById(parentCommentId);
-            parentComment.replies = parentComment.replies.filter(replyId => replyId !== id);
-            await parentComment.save();
+            const index = parentComment.replies.findIndex(replyId => replyId === id);
+            parentComment.replies.splice(index, 1);
+
+            if (parentComment.replies.length === 0 && parentComment.deleted) {
+                await Comment.findByIdAndRemove(parentCommentId);
+            } else {
+                await parentComment.save();
+            }
+
         }
 
-    }
+        res.send('Deleted');
 
-    res.send('Deleted');
+    }
 
 });
 

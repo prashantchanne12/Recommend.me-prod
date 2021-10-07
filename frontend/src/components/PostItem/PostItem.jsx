@@ -249,7 +249,7 @@ const PostItem = ({item, isSinglePost}) => {
                     {
                         isSinglePost && isMyPost && <AiOutlineDelete
                         onClick={() => {
-                            dispatch(warningCardRequestAction(item._id));
+                            dispatch(warningCardRequestAction({type: 'list', id: item._id}));
                         }}
                         className="delete-icon" />
                     }

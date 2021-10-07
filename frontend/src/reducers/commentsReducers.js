@@ -60,6 +60,49 @@ export const addCommentReducer = (state = { loading: false, error: null, comment
 
 }
 
+export const deleteCommentReducer = (state = { loading: false, error: null, comment: null }, action) => {
+
+    switch (action.type) {
+
+        case 'DELETE_COMMENT_REQUEST': {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case 'DELETE_COMMENT_SUCESSS': {
+            return {
+                ...state,
+                comment: action.payload,
+                loading: false
+            }
+        }
+
+        case 'DELETE_COMMENT_FAIL': {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+
+        case 'DELETE_COMMENT_RESET': {
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                comment: null,
+
+            }
+        }
+
+        default: return state;
+
+    }
+
+}
+
 export const addReplyCommentReducer = (state = { loading: false, error: null, comment: null }, action) => {
 
     switch (action.type) {

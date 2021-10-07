@@ -63,6 +63,65 @@ export const addCommentAction = (body) => async (dispatch, getState) => {
 
 }
 
+export const deleteCommentAction = ({ commentId, level }) => async (dispatch, getState) => {
+
+    try {
+
+        dispatch({
+            type: 'DELETE_COMMENT_REQUEST'
+        });
+
+        const state = getState();
+
+        const { data } = await axios.delete(`/api/comments/delete/${commentId}`);
+
+        const findComment = (comment, index, array) => {
+
+            if (comment._id === commentId) {
+
+                if (comment.replies.length > 0) {
+                    comment.deleted = true
+                } else {
+                    array.splice(index, 1);
+                }
+
+                return
+
+            }
+
+            comment.replies.forEach((com, index, array) => {
+                findComment(com, index, array);
+            });
+
+        }
+
+        findComment(state.singlePost.post.comments[level], level, state.singlePost.post.comments);
+
+        const payload = state.singlePost.post;
+
+        dispatch({
+            type: 'FETCH_SINGLE_COMMENT',
+            payload,
+        });
+
+        dispatch({
+            type: 'DELETE_COMMENT_SUCESSS',
+            payload: data,
+        });
+
+    } catch (err) {
+        dispatch({
+            type: 'DELETE_COMMENT_FAIL',
+            payload:
+                err.response && err.response.data.message
+                    ? err.response.data.message
+                    : err.message
+        });
+    }
+}
+
+
+
 export const addReplyCommentAction = ({ body, commentId, level }) => async (dispatch, getState) => {
 
     try {

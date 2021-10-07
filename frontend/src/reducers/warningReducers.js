@@ -6,7 +6,7 @@ import {
 
 } from '../constants/warningConstants';
 
-export const warningCardReducer = (state = { toggle: null, res: null, loading: null, id: null, profile: null }, action) => {
+export const warningCardReducer = (state = { toggle: null, res: null, loading: null, id: null, profile: null, type: null }, action) => {
 
     switch (action.type) {
 
@@ -14,7 +14,8 @@ export const warningCardReducer = (state = { toggle: null, res: null, loading: n
             return {
                 ...state,
                 toggle: true,
-                id: action.payload,
+                id: action.payload.id,
+                type: action.payload.type,
             }
         }
 
@@ -40,6 +41,7 @@ export const warningCardReducer = (state = { toggle: null, res: null, loading: n
                 id: null,
                 loading: null,
                 profile: null,
+                type: null,
             }
         }
 
