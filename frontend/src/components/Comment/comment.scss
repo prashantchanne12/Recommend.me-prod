@@ -5,6 +5,7 @@
     .comment-options{
         display: flex;
         align-items: center;
+        margin-top: 0.2px;
 
         .comment-delete{
             cursor: pointer;
@@ -14,8 +15,12 @@
 
             &:hover{
                 color: #e74c3c;
-            
             }
+        }
+
+        .delete-comment-loader{
+            padding-left: 5px;
+            // margin-top: 3px;
         }
     }
 

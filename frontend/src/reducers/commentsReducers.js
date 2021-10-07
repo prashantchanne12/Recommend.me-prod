@@ -60,7 +60,7 @@ export const addCommentReducer = (state = { loading: false, error: null, comment
 
 }
 
-export const deleteCommentReducer = (state = { loading: false, error: null, comment: null }, action) => {
+export const deleteCommentReducer = (state = { loading: false, error: null, comment: null, commentId: null }, action) => {
 
     switch (action.type) {
 
@@ -68,6 +68,7 @@ export const deleteCommentReducer = (state = { loading: false, error: null, comm
             return {
                 ...state,
                 loading: true,
+                commentId: action.payload,
             }
         }
 

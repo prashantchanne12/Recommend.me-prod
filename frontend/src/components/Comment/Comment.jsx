@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // import axios from 'axios';
-// import Loader from 'react-loader-spinner';
+import Loader from 'react-loader-spinner';
 import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
@@ -15,6 +15,8 @@ const Comment = ({comment, margin, level, postId}) => {
     // const [comment, setComment] = useState({});
     // const [loading, setLoading] = useState(false);
     const replyLoading = useSelector(state => state.addReplyComment.loading);
+    const deleteLoading = useSelector(state => state.deletecomment.loading);
+    const loadingCommentId = useSelector(state => state.deletecomment.commentId);
     const commentBoxId = useSelector(state => state.commentBox.id);
     const {user} = useSelector(state => state.mySession);
     const [reply, setReply] = useState(false);
@@ -96,21 +98,38 @@ const Comment = ({comment, margin, level, postId}) => {
                   
                     {
                         user ? <div className="comment-options">
-                            <span onClick={() => {
-                                setReply(!reply);                      
-                                dispatch(commentBoxIdAction(comment._id));
-                    
-        
-                            }}>reply</span>
+                            <span 
+                                style={{
+                                    cursor: deleteLoading ? 'not-allowed' : 'pointer',
+                                }}
+                                onClick={() => {
+                                    setReply(!reply);                      
+                                    dispatch(commentBoxIdAction(comment._id));
+                                    
+                                    
+                                }}>reply</span>
 
                             {
                                 comment.from.userName === user.userName && 
                                     <AiOutlineDelete 
                                      className="comment-delete"
+                                     style={{
+                                        cursor: deleteLoading ? 'not-allowed' : 'pointer',
+                                     }}
                                      onClick={() => {
                                          dispatch(deleteCommentAction({commentId: comment._id, level}));
                                      }}                                     
                                     />
+                            }
+                    
+                            {
+                                deleteLoading && loadingCommentId === comment._id && <Loader
+                                className="delete-comment-loader"
+                                type="Oval"
+                                color="#16a085"
+                                height={12}
+                                width={12}
+                            />
                             }
                             
                             </div> : <span><Link 

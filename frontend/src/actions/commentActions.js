@@ -68,7 +68,8 @@ export const deleteCommentAction = ({ commentId, level }) => async (dispatch, ge
     try {
 
         dispatch({
-            type: 'DELETE_COMMENT_REQUEST'
+            type: 'DELETE_COMMENT_REQUEST',
+            payload: commentId,
         });
 
         const state = getState();
