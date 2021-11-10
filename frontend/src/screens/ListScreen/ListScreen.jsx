@@ -21,7 +21,7 @@ const ListScreen = ({match}) => {
         dispatch(getPost(match.params.listId));
 
 
-    }, [match, dispatch]);
+    }, [dispatch]); // match
   
     return (
         <div>
