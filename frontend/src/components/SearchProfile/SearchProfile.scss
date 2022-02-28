@@ -1,8 +1,10 @@
+
 .search-profile-details{
     display: flex;
     padding-left: 0.2rem;
-    padding-top: 0.1rem;
+    padding-top: 0.2rem;
     cursor: pointer;
+
 
     .search-profile-image{
         img{
@@ -17,6 +19,11 @@
         padding-left: 0.6rem;
         padding-top: 0.5rem;
         font-weight: bold;
+
+        &:hover{
+            color: #0984e3;
+            transition: all ease-out 0.1s;
+        }
     }
 
     .search-profile-username{

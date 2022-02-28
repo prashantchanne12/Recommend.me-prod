@@ -1,5 +1,6 @@
 .comment-wrapper{
-    margin-bottom: 0.5rem;
+    // margin-bottom: 0.7rem;
+    margin-top: 0.8rem;
     // margin-top: 5px;
 
     .comment-options{
@@ -36,9 +37,9 @@
         .comment-userimg{
 
             img {
-                height: 41px;
-                width: 41px;
-                border-radius: 5px;
+                height: 35px;
+                width: 35px;
+                border-radius: 50%;
             }
         }
 
@@ -47,14 +48,14 @@
             font-size: 0.9rem;
             color: #0984e3;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         }
 
     .comment-body{
         padding-left: 15px;
-        font-size: 15px;
+        font-size: 14px;
     }
 
     }

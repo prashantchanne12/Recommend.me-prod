@@ -14,6 +14,8 @@ import ListScreen from './screens/ListScreen/ListScreen';
 import ChangeUserName from './components/ChangeUserName/ChangeUserName';
 import Warning from './components/Warning/Warning';
 import { fetchMyRecommendations } from './actions/recommendActions';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 
 function App() {
 

@@ -1,15 +1,16 @@
 .profile-box{
     margin-top: 1rem;
     align-items: center;
-    border: 1px solid rgba(221, 221, 221, 0.658);
-    padding: 1rem;
+    border-radius: 5px;
+    padding: 1.5rem;
     background: #fdfdfd;
     position: relative;
-
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     .edit{
         position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: 1rem;
+        right: 1rem;
         font-size: 1.2rem;
         cursor: pointer;
         color: #0984e3;
@@ -28,8 +29,8 @@
 
         .profile-image{
             img{
-                height: 70px;
-                width: 70px;
+                height: 60px;
+                width: 60px;
                 border-radius: 0.20rem;
             }
         }
@@ -39,11 +40,13 @@
         display: flex;
         flex-direction: column;
         align-items: start;
+        padding-left: 7px;
 
         .display-name{
                 display: flex;
                 padding-left: 0.5rem;
                 font-weight: 500;
+
         
                 .l-name{
                     margin-left: 0.3rem;
@@ -60,7 +63,7 @@
         
 
     .counts{
-        color: #576574;
+        color: #333;
        .count{
             display: flex;  
             justify-content: flex-start;
@@ -69,6 +72,8 @@
 
             .count-number{
                 padding-left: 0.5rem;
+                color: black;
+                font-weight: 500;
            
             }
         }

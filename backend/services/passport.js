@@ -59,19 +59,19 @@ passport.use(new GoogleStrategy({
             }
         }
 
-        let initials = ''
-        if (profile.name.familyName && profile.name.familyName.length !== 0) {
-            initials = profile.name.givenName[0] + profile.name.familyName[0];
-        } else {
-            initials = profile.name.givenName[0] + profile.name.givenName[1];
-        }
+        // let initials = ''
+        // if (profile.name.familyName && profile.name.familyName.length !== 0) {
+        //     initials = profile.name.givenName[0] + profile.name.familyName[0];
+        // } else {
+        //     initials = profile.name.givenName[0] + profile.name.givenName[1];
+        // }
 
         const newUser = await new User({
             userId: profile.id,
             displayName: profile.displayName,
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
-            image: `https://avatars.dicebear.com/api/initials/${initials}.svg`,
+            image: profile.photos[0].value,
             loginMethod: 'Google',
             userName,
         }).save();
