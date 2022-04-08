@@ -22,6 +22,7 @@ import timelineRoutes from './routes/timelineRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import { redirect } from './middlewares/redirect.js';
 import commentsRouter from './routes/CommentRoutes.js';
+import chatRouter from './routes/chatRouter.js';
 
 // Configuring environment variables with .dotenv
 dotenv.config();
@@ -34,11 +35,13 @@ const app = express();
 // parse json data
 app.use(express.json());
 
-app.use(coockieSession({
+app.use(
+  coockieSession({
     name: 'session',
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY]
-}));
+    keys: [process.env.COOKIE_KEY],
+  })
+);
 
 // To tell passport make use of cookies
 app.use(passport.initialize());
@@ -49,7 +52,6 @@ app.use(redirect);
 
 // Serving static files
 const __dirname = path.resolve();
-
 
 // cors
 app.use(cors({ origin: '*' }));
@@ -62,37 +64,40 @@ app.use('/api/search', searchRoutes);
 app.use('/api/timeline', timelineRoutes);
 app.use('/api/notification', notificationRoutes);
 app.use('/api/comments', commentsRouter);
+app.use('/api/chat', chatRouter);
 
 // Widgets
 app.get('/widgetJs', (req, res) => {
-    res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.js'));
+  res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.js'));
 });
 app.get('/widgetCss', (req, res) => {
-    res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.css'));
+  res.sendFile(path.join(__dirname, 'backend', 'docs', 'index.css'));
 });
 
-
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/frontend/build')))
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-    app.get('*', (req, res, next) => {
-        res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
-    });
-
+  app.get('*', (req, res, next) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+  });
 } else {
-    app.get('/', (req, res, next) => {
-        res.send('API is running');
-    });
+  app.get('/', (req, res, next) => {
+    res.send('API is running');
+  });
 }
 
-
 // Middlewares
-app.get("/google37eb144521711fe3.html", (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'build', 'google37eb144521711fe3.html'));
+app.get('/google37eb144521711fe3.html', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, 'frontend', 'build', 'google37eb144521711fe3.html')
+  );
 });
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+app.listen(
+  PORT,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+);
