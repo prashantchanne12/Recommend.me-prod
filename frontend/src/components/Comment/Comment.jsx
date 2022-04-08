@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import dateFormat from 'dateformat';
 import './comment.scss';
 import CommentBox from '../CommentBox/CommentBox';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { DeleteOutlined } from '@ant-design/icons';
 import {
   addReplyCommentAction,
   commentBoxIdAction,
@@ -117,7 +117,7 @@ const Comment = ({ comment, margin, level, postId, count = 1 }) => {
                 </span>
 
                 {comment.from.userName === user.userName && (
-                  <AiOutlineDelete
+                  <DeleteOutlined
                     className='comment-delete'
                     style={{
                       cursor: deleteLoading ? 'not-allowed' : 'pointer',

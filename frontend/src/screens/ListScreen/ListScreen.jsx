@@ -6,13 +6,13 @@ import AddComment from '../../components/AddComment/AddComment';
 import ShowComments from '../../components/ShowComments/ShowComments';
 import './ListScreen.scss';
 import Loading from '../../components/Loading/Loading';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const ListScreen = ({ match }) => {
   const dispatch = useDispatch();
   const { post, loading } = useSelector((state) => state.singlePost);
   const { user } = useSelector((state) => state.mySession);
-  const [loadComment, setLoadComment] = useState(true);
+  // const [loadComment, setLoadComment] = useState(true);
 
   useEffect(() => {
     // if(!post){
@@ -53,14 +53,14 @@ const ListScreen = ({ match }) => {
               margin: '0 auto',
             }}
           >
-            {loadComment && (
-              <>
-                <div style={{ marginTop: '1rem' }}>
-                  <AddComment user={user} id={post._id} />
-                </div>
-                <ShowComments />
-              </>
-            )}
+            {/* {loadComment && ( */}
+            <>
+              <div style={{ marginTop: '1rem' }}>
+                <AddComment user={user} id={post._id} />
+              </div>
+              <ShowComments />
+            </>
+            {/* )} */}
           </div>
         </div>
       )}

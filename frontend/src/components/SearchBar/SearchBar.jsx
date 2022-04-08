@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import { USER_PROFILE_RESET } from '../../constants/userConstants';
 import { FETCH_USER_RECOMMEND_LIST_RESET } from '../../constants/recommendConstants';
 
-import { BiSearch } from 'react-icons/bi';
+import { SearchOutlined } from '@ant-design/icons';
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const SearchBar = () => {
         />
 
         <div className='search-icon'>
-          <BiSearch className='bi-search' />
+          <SearchOutlined className='bi-search' />
         </div>
 
         {toggle && (

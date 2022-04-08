@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CgAddR } from 'react-icons/cg';
-import { VscAccount } from 'react-icons/vsc';
+import {
+  PlusCircleOutlined,
+  UserOutlined,
+  BellOutlined,
+} from '@ant-design/icons';
+
 import './header.scss';
-// import {RiSearchLine} from 'react-icons/ri';
-import { RiNotification2Line } from 'react-icons/all';
 import ProfileOptions from '../ProfileOptions/ProfileOptions';
 import { useDispatch, useSelector } from 'react-redux';
 import { profileToggle, profileToggleReset } from '../../actions/userActions';
@@ -71,7 +73,7 @@ function Header() {
                   }
                 }}
               >
-                <RiNotification2Line className='header-icon' />
+                <BellOutlined className='header-icon' />
               </div>
               <div
                 className='notification-count'
@@ -101,7 +103,7 @@ function Header() {
             </div>
 
             <Link to='/create' className='link'>
-              <CgAddR className='header-icon' />
+              <PlusCircleOutlined className='header-icon' />
             </Link>
             <div
               className='link'
@@ -111,7 +113,7 @@ function Header() {
                   : dispatch(profileToggle())
               }
             >
-              <VscAccount className='header-icon' />
+              <UserOutlined className='header-icon' />
             </div>
           </div>
           {toggle && <ProfileOptions />}

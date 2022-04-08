@@ -1,7 +1,11 @@
 import React from 'react';
 import './profile.scss';
-// import {BiLink, BiUnlink} from 'react-icons/bi';
-import { AiOutlineEdit } from 'react-icons/ai';
+import {
+  MessageOutlined,
+  UserDeleteOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
+
 import { useSelector, useDispatch } from 'react-redux';
 import {
   followUser,
@@ -12,8 +16,8 @@ import {
   removeFollowNotification,
   sendFollowNotification,
 } from '../../actions/notificationActions';
-import { BiPencil } from 'react-icons/bi';
 import Loading from '../Loading/Loading';
+import { useHistory } from 'react-router-dom';
 
 const Profile = ({ user, followLoading, unfollowLoading }) => {
   const dispatch = useDispatch();
@@ -21,6 +25,7 @@ const Profile = ({ user, followLoading, unfollowLoading }) => {
   const currentUser = mySession.user;
   let isUserProfile = null;
   let amIFollowing = null;
+  const history = useHistory();
 
   if (currentUser && user) {
     isUserProfile = currentUser._id !== user._id;
@@ -56,7 +61,7 @@ const Profile = ({ user, followLoading, unfollowLoading }) => {
                 <p>{user.userName}</p>
               </div>
               {!isUserProfile && (
-                <BiPencil
+                <EditOutlined
                   onClick={() => {
                     dispatch(changeUserNameCard());
                   }}
@@ -84,46 +89,51 @@ const Profile = ({ user, followLoading, unfollowLoading }) => {
             <p className='count-number'>{user.followers.length}</p>
           </div>
         </div>
-        {isUserProfile ? (
-          <div
-            className='follow-unfollow'
-            style={{
-              cursor: followLoading || unfollowLoading ? 'progress' : 'pointer',
-            }}
-          >
-            <div className='hr' />
+        {isUserProfile && <div className='hr' />}
+        <div className='bottom-actions'>
+          {isUserProfile ? (
+            <div
+              className='follow-unfollow'
+              style={{
+                cursor:
+                  followLoading || unfollowLoading ? 'progress' : 'pointer',
+                display: 'inline-block',
+              }}
+            >
+              {amIFollowing ? (
+                <div
+                  className='connect unfollow-icon'
+                  onClick={() => {
+                    dispatch(unfollowUser(user._id));
+                    dispatch(removeFollowNotification({ ownerId: user._id }));
+                  }}
+                >
+                  <UserDeleteOutlined size={20} />
+                  {/* <BiUnlink className='icon' /> */}
+                </div>
+              ) : (
+                <div
+                  className='connect'
+                  onClick={() => {
+                    dispatch(followUser(user._id));
+                    dispatch(sendFollowNotification(body));
+                  }}
+                >
+                  <p className='follow'>Follow</p>
+                  {/* <BiLink className='icon' /> */}
+                </div>
+              )}
+            </div>
+          ) : null}
 
-            {amIFollowing ? (
-              <div
-                className='connect'
-                style={{
-                  color: '#d63031',
-                }}
-                onClick={() => {
-                  dispatch(unfollowUser(user._id));
-                  dispatch(removeFollowNotification({ ownerId: user._id }));
-                }}
-              >
-                <p>Unfollow</p>
-                {/* <BiUnlink className='icon' /> */}
-              </div>
-            ) : (
-              <div
-                className='connect'
-                style={{
-                  color: '#0985e3',
-                }}
-                onClick={() => {
-                  dispatch(followUser(user._id));
-                  dispatch(sendFollowNotification(body));
-                }}
-              >
-                <p>Follow</p>
-                {/* <BiLink className='icon' /> */}
-              </div>
-            )}
-          </div>
-        ) : null}
+          {amIFollowing && (
+            <MessageOutlined
+              className='msg-icon'
+              size={22}
+              onClick={() => history.push('/chats')}
+            />
+          )}
+        </div>
       </div>
     </>
   ) : (

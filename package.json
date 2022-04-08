@@ -5,7 +5,7 @@
   "main": "backend/server.js",
   "type": "module",
   "engines": {
-    "node": "v14.15.3"
+    "node": "v16.14.0"
   },
   "scripts": {
     "start": "node backend/server",
@@ -27,10 +27,8 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "express-session": "^1.17.1",
-    "i": "^0.3.6",
     "mongodb": "^4.0.1",
     "mongoose": "^5.12.4",
-    "node-sass": "^5.0.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-twitter": "^1.0.4",

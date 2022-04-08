@@ -14,16 +14,15 @@ import ListScreen from './screens/ListScreen/ListScreen';
 import ChangeUserName from './components/ChangeUserName/ChangeUserName';
 import Warning from './components/Warning/Warning';
 import { fetchMyRecommendations } from './actions/recommendActions';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import ChatScreen from './screens/ChatScreen/ChatScreen';
 
 function App() {
-
   const dispatch = useDispatch();
 
-  const { show } = useSelector(state => state.shareToggle);
-  const { toggle } = useSelector(state => state.changeUserNameToggle);
-  const { toggle: warning } = useSelector(state => state.warningCard);
+  const { show } = useSelector((state) => state.shareToggle);
+  const { toggle } = useSelector((state) => state.changeUserNameToggle);
+  const { toggle: warning } = useSelector((state) => state.warningCard);
 
   useEffect(() => {
     dispatch(mySession());
@@ -33,16 +32,11 @@ function App() {
 
   return (
     <Router>
-      {
-        toggle && <ChangeUserName />
-      }
-      {
-        show && <Share />
-      }
-      {
-        warning && <Warning />
-      }
-      <div className='overlay'
+      {toggle && <ChangeUserName />}
+      {show && <Share />}
+      {warning && <Warning />}
+      <div
+        className='overlay'
         style={{
           position: 'absolute',
           top: 0,
@@ -60,6 +54,7 @@ function App() {
           <Route exact path='/profile' component={ProfileScreen} />
           <Route path='/profile/:userId' component={UserProfile} />
           <Route path='/list/:listId' component={ListScreen} />
+          <Route path='/chats' component={ChatScreen} />
         </Layout>
       </div>
     </Router>

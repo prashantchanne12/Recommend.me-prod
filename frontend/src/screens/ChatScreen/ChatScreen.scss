@@ -1,0 +1,22 @@
+.chat-wrapper{
+    max-width: 90vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    h3{
+        margin-top: 10px;
+    }
+
+    .search{
+        input{
+            padding: 16px;
+            border: 0;
+            padding-left: 1rem;
+            width: 80%;
+            border-radius: 1rem;
+            background-color: rgb(240, 240, 240);
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+    }
+}

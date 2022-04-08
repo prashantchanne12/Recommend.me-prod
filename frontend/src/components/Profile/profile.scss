@@ -2,7 +2,7 @@
     margin-top: 1rem;
     align-items: center;
     border-radius: 5px;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     background: #fdfdfd;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -39,7 +39,7 @@
 
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: flex-start;
         padding-left: 7px;
 
         .display-name{
@@ -84,6 +84,7 @@
         text-align: center;
         cursor: pointer;
         font-weight: 500;
+        font-size: 14px;
 
         .connect{
             display: flex;
@@ -99,5 +100,58 @@
         }
 
     }
+
+    .bottom-actions{
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        justify-content: center;
+
+        .unfollow-icon{
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding: 9px;
+            border-radius: 50%;
+            color: #d63031;
+            cursor: pointer;
+
+            &:hover{
+                box-shadow: rgba(214, 48, 49, 0.2) 0px 12px 28px 0px, rgba(214, 48, 49, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+                transition: all ease-out 0.3s;
+            }
+        }
+
+        .msg-icon{
+           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+           border-radius: 50%;
+           padding: 9px;
+           color: #0984e3;
+           display: block;
+           margin-left: 1rem;
+           cursor: pointer;
+
+           &:hover{
+            box-shadow: rgba(9, 132, 227, 0.2) 0px 12px 28px 0px, rgba(9, 132, 227, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+            transition: all ease-out 0.3s;
+        }
+
+       
+
+        }
+
+        .follow{
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding: 6px 28px;
+            border-radius: 1rem;
+            margin-bottom: 6px;
+            background-color: #0985e3;
+            color: white;
+
+            &:hover{
+                box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+                transition: all ease-out 0.3s;
+            }
+        }
+    }
+
 
 }

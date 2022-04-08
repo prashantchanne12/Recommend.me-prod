@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pulse } from 'better-react-spinkit';
 import './loading.scss';
+// better-react-spinkit
 
 const Loading = () => {
   return (
