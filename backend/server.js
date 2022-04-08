@@ -23,6 +23,7 @@ import notificationRoutes from './routes/notificationRoutes.js';
 import { redirect } from './middlewares/redirect.js';
 import commentsRouter from './routes/CommentRoutes.js';
 import chatRouter from './routes/chatRouter.js';
+import messageRouter from './routes/messageRoutes.js';
 
 // Configuring environment variables with .dotenv
 dotenv.config();
@@ -65,6 +66,7 @@ app.use('/api/timeline', timelineRoutes);
 app.use('/api/notification', notificationRoutes);
 app.use('/api/comments', commentsRouter);
 app.use('/api/chat', chatRouter);
+app.use('/api/message', messageRouter);
 
 // Widgets
 app.get('/widgetJs', (req, res) => {

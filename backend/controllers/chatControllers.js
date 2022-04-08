@@ -2,8 +2,8 @@ import asyncHandler from 'express-async-handler';
 import Chat from '../models/chatModel.js';
 import User from '../models/userModel.js';
 
-const userDataExcept =
-  '-recommendations -upvotedRecommendations -bucket -followers -followings -loginMethod -firstName -lastName';
+// const userDataExcept =
+//   '-recommendations -upvotedRecommendations -bucket -followers -followings -loginMethod -firstName -lastName';
 
 // @desc Fetch chats of the user
 // @route /api/chat/
@@ -13,8 +13,8 @@ export const fetchChats = asyncHandler(async (req, res) => {
     Chat.find({
       users: { $elemMatch: { $eq: req.user._id } },
     })
-      .populate('users', userDataExcept)
-      .populate('groupAdmin', userDataExcept)
+      .populate('users', 'displayName userName image')
+      .populate('groupAdmin', 'displayName userName image')
       .populate('latestMessage')
       .sort({ updatedAt: -1 })
       .then(async (results) => {
@@ -48,7 +48,7 @@ export const accessChat = asyncHandler(async (req, res) => {
       { users: { $elemMatch: { $eq: userId } } },
     ],
   })
-    .populate('users', userDataExcept)
+    .populate('users', 'displayName userName image')
     .populate('latestMessage');
 
   isChat = await User.populate(isChat, {
@@ -69,7 +69,7 @@ export const accessChat = asyncHandler(async (req, res) => {
       const createdChat = await Chat.create(chatData);
       const FullChat = await Chat.findOne({ _id: createdChat._id }).populate(
         'users',
-        userDataExcept
+        'displayName userName image'
       );
       res.status(200).send(FullChat);
     } catch (err) {
