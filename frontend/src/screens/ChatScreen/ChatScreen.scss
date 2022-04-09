@@ -8,7 +8,7 @@
     .my-chats-section{
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         width: 100%;
-        height: 100vh;
+        height: 87vh;
         overflow-y: scroll;
         padding-left: 1.2rem;
         padding-top: 1.2rem;
@@ -31,7 +31,7 @@
     .search{
         position: relative;
         display: inline-block;
-        // margin-left: 8px;
+        margin-left: 8px;
         width: 365px;
 
       
@@ -57,7 +57,7 @@
 
 
     .chats{
-        margin-top: 3.8rem;
+        margin-top: 3.2rem;
         padding: 5px;
     }
 
@@ -68,6 +68,22 @@
     }
 
     .message-section{
-        margin-left: 2rem;
+        margin-left: 1.2rem;
     }
+
+    .chat-loading{
+        text-align: center;
+        margin-right: 2rem;
+     }
+
+     .chat-item-wrapper{
+         cursor: pointer;
+         border-radius: 10px;
+
+         &:hover{
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+            background: rgb(252, 252, 252);
+            transition: all 100ms ease-out;
+        }
+     }
 }

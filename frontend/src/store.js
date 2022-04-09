@@ -4,85 +4,99 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Reducers
 import {
-    changeUserNameReducer,
-    changeUserNameToggleReducer,
-    followUserReducer,
-    inboxToggleReducer,
-    myNotificationReducer,
-    mySessionReducer,
-    notificationToggleReducer,
-    profileToggleReducer,
-    unfollowUserReducer,
-    userLogoutReducer,
-    userProfileReducer,
+  changeUserNameReducer,
+  changeUserNameToggleReducer,
+  followUserReducer,
+  inboxToggleReducer,
+  myNotificationReducer,
+  mySessionReducer,
+  notificationToggleReducer,
+  profileToggleReducer,
+  unfollowUserReducer,
+  userLogoutReducer,
+  userProfileReducer,
 } from './reducers/userReducers';
 import {
-    addRecommendationReducer,
-    addRecommendationToBucketReducer,
-    deleteRecommendationReducer,
-    deleteRecommendationToBucketReducer,
-    downvoteRecommendListsReducer,
-    fetchMyRecommendListsReducer,
-    fetchUserRecommendListReducer,
-    shareListReducer,
-    upvoteRecommendListsReducer,
+  addRecommendationReducer,
+  addRecommendationToBucketReducer,
+  deleteRecommendationReducer,
+  deleteRecommendationToBucketReducer,
+  downvoteRecommendListsReducer,
+  fetchMyRecommendListsReducer,
+  fetchUserRecommendListReducer,
+  shareListReducer,
+  upvoteRecommendListsReducer,
 } from './reducers/recommendReducers';
 import { searchProfileReducer } from './reducers/searchReducers';
 import { loadingReducer } from './reducers/loadingReducer';
 import { alertMessageReducer } from './reducers/alertReducer';
 import { myTimelineReducer } from './reducers/timelineReducers';
 import { postReducer } from './reducers/recommendPostReducers';
-import { readAllNotificationReducer, removeFollowNotificationReducer, removeUpvoteNotificationReducer, sendFollowNotificationReducer, sendUpvoteNotificationReducer } from './reducers/notificationReducers';
+import {
+  readAllNotificationReducer,
+  removeFollowNotificationReducer,
+  removeUpvoteNotificationReducer,
+  sendFollowNotificationReducer,
+  sendUpvoteNotificationReducer,
+} from './reducers/notificationReducers';
 import { warningCardReducer } from './reducers/warningReducers';
-import { addCommentReducer, addReplyCommentReducer, commentBoxReducer, deleteCommentReducer, fetchCommentReducer } from './reducers/commentsReducers';
-
+import {
+  addCommentReducer,
+  addReplyCommentReducer,
+  commentBoxReducer,
+  deleteCommentReducer,
+  fetchCommentReducer,
+} from './reducers/commentsReducers';
+import { getChatsReducer } from './reducers/chatReducers';
 
 // Combine reducers
 const reducer = combineReducers({
-    loader: loadingReducer,
-    alertMessage: alertMessageReducer,
-    warningCard: warningCardReducer,
+  loader: loadingReducer,
+  alertMessage: alertMessageReducer,
+  warningCard: warningCardReducer,
 
-    mySession: mySessionReducer,
-    myRecommendations: fetchMyRecommendListsReducer,
-    addRecommendation: addRecommendationReducer,
-    addRecommendationToBucket: addRecommendationToBucketReducer,
-    deleteRecommendation: deleteRecommendationReducer,
-    deleteRecommendationBucket: deleteRecommendationToBucketReducer,
-    profileToggle: profileToggleReducer,
-    userLogout: userLogoutReducer,
-    changeUserName: changeUserNameReducer,
+  mySession: mySessionReducer,
+  myRecommendations: fetchMyRecommendListsReducer,
+  addRecommendation: addRecommendationReducer,
+  addRecommendationToBucket: addRecommendationToBucketReducer,
+  deleteRecommendation: deleteRecommendationReducer,
+  deleteRecommendationBucket: deleteRecommendationToBucketReducer,
+  profileToggle: profileToggleReducer,
+  userLogout: userLogoutReducer,
+  changeUserName: changeUserNameReducer,
 
-    addComment: addCommentReducer,
-    addReplyComment: addReplyCommentReducer,
-    fetchComment: fetchCommentReducer,
-    commentBox: commentBoxReducer,
-    deletecomment: deleteCommentReducer,
+  addComment: addCommentReducer,
+  addReplyComment: addReplyCommentReducer,
+  fetchComment: fetchCommentReducer,
+  commentBox: commentBoxReducer,
+  deletecomment: deleteCommentReducer,
 
-    notifications: myNotificationReducer,
-    sendUpvoteNotification: sendUpvoteNotificationReducer,
-    removeUpvoteNotification: removeUpvoteNotificationReducer,
-    readAllNotification: readAllNotificationReducer,
-    sendFollowNotification: sendFollowNotificationReducer,
-    removeFollowNotification: removeFollowNotificationReducer,
+  notifications: myNotificationReducer,
+  sendUpvoteNotification: sendUpvoteNotificationReducer,
+  removeUpvoteNotification: removeUpvoteNotificationReducer,
+  readAllNotification: readAllNotificationReducer,
+  sendFollowNotification: sendFollowNotificationReducer,
+  removeFollowNotification: removeFollowNotificationReducer,
 
-    userProfile: userProfileReducer,
-    userRecommendations: fetchUserRecommendListReducer,
-    userFollow: followUserReducer,
-    userUnfollow: unfollowUserReducer,
+  userProfile: userProfileReducer,
+  userRecommendations: fetchUserRecommendListReducer,
+  userFollow: followUserReducer,
+  userUnfollow: unfollowUserReducer,
 
-    searchUsers: searchProfileReducer,
-    inboxToggle: inboxToggleReducer,
-    shareToggle: shareListReducer,
-    changeUserNameToggle: changeUserNameToggleReducer,
-    notificationToggle: notificationToggleReducer,
+  searchUsers: searchProfileReducer,
+  inboxToggle: inboxToggleReducer,
+  shareToggle: shareListReducer,
+  changeUserNameToggle: changeUserNameToggleReducer,
+  notificationToggle: notificationToggleReducer,
 
-    recommendListUpvote: upvoteRecommendListsReducer,
-    recommendLisDownvote: downvoteRecommendListsReducer,
+  recommendListUpvote: upvoteRecommendListsReducer,
+  recommendLisDownvote: downvoteRecommendListsReducer,
 
-    myTimeline: myTimelineReducer,
+  myTimeline: myTimelineReducer,
 
-    singlePost: postReducer,
+  singlePost: postReducer,
+
+  chats: getChatsReducer,
 });
 
 // const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
@@ -94,9 +108,9 @@ const middleware = [thunk];
 // }
 
 const store = createStore(
-    reducer,
-    // initialState,
-    composeWithDevTools(applyMiddleware(...middleware))
+  reducer,
+  // initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;

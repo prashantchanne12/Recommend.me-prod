@@ -1,26 +1,29 @@
 import React from 'react';
 import './ChatItem.scss';
+import dateFormat from 'dateformat';
+import { getSender } from '../config/logic';
 
-const ChatItem = () => {
+const ChatItem = ({ chat, chatId, userId }) => {
+  const user = getSender(chat.users, userId);
+
   return (
-    <div>
+    <>
       <div className='chat-item'>
         <div className='img-wrapper'>
-          <img
-            src='https://i.pinimg.com/550x/a7/5e/9e/a75e9e35a8ed1ccc1017db40438c60e9.jpg'
-            alt='Logan profile'
-          />
+          <img src={user.image} alt='Logan profile' />
         </div>
         <div className='meta'>
-          <div>
-            <p className='name'>Logan Paul</p>
-            <p className='time'>12:00pm</p>
+          <div className='meta-1'>
+            <p className='name'>{user.displayName}</p>
+            <p className='time'>
+              {dateFormat(chat.latestMessage.createdAt, 'h:MM TT')}
+            </p>
           </div>
-          <p className='last-msg'>This is the last message</p>
+          <p className='last-msg'>{chat.latestMessage.content}</p>
         </div>
       </div>
-      <hr className='chat-hr' />
-    </div>
+      {/* <hr className='chat-hr' /> */}
+    </>
   );
 };
 

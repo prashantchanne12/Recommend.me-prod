@@ -20,6 +20,11 @@ export const sendMessage = asyncHandler(async (req, res) => {
   try {
     let message = await Message.create(newMessage);
 
+    const updatedMessage = await Message.findById(message._id).populate(
+      'sender',
+      'displayName userName image'
+    );
+
     // message = await message.populate('sender', 'displayName userName image');
 
     // message = await message.populate('chat');
@@ -33,7 +38,7 @@ export const sendMessage = asyncHandler(async (req, res) => {
       latestMessage: message._id,
     });
 
-    res.status(201).send(message);
+    res.status(201).send(updatedMessage);
   } catch (err) {
     res.status(400);
     throw new Error(err.message);

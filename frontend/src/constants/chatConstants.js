@@ -1,0 +1,4 @@
+export const GET_CHAT_REQUEST = 'GET_CHAT_REQUEST';
+export const GET_CHAT_SUCESSS = 'GET_CHAT_SUCESSS';
+export const GET_CHAT_FAIL = 'GET_CHAT_FAIL';
+export const GET_CHAT_RESET = 'GET_CHAT_RESET';
