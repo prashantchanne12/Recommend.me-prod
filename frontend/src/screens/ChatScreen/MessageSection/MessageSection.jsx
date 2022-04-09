@@ -8,7 +8,7 @@ import MessageItem from '../MessageItem/MessageItem';
 import './MessageSection.scss';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const MessageSection = ({ chat, userId }) => {
+const MessageSection = ({ chat, userId, socket }) => {
   const user = getSender(chat.users, userId);
   const [messages, setMessages] = useState([]);
   const mySession = useSelector((state) => state.mySession);
@@ -19,7 +19,7 @@ const MessageSection = ({ chat, userId }) => {
     try {
       const { data } = await axios.get(`/api/message/${chat._id}`);
       setMessages(data);
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -48,13 +48,18 @@ const MessageSection = ({ chat, userId }) => {
         config
       );
 
-      console.log(data);
-
+      await socket.emit('send_message', data);
       setMessages([...messages, data]);
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    socket.on('receive_message', (data) => {
+      console.log('Recieved: ', data);
+      setMessages((list) => [...list, data]);
+    });
+  }, [socket]);
 
   useEffect(() => {
     fetchMessages();

@@ -9,6 +9,10 @@ import ChatItem from './ChatItem/ChatItem';
 import { getChatAction } from '../../actions/chatActions';
 import MessageSection from './MessageSection/MessageSection';
 
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:5000');
+
 const ChatScreen = () => {
   const [search, setSearch] = useState('');
   const [placeHolder, setPlaceHolder] = useState(
@@ -85,7 +89,10 @@ const ChatScreen = () => {
                 <div
                   className='chat-item-wrapper'
                   key={chat._id}
-                  onClick={() => setSelectedChat(chat)}
+                  onClick={() => {
+                    socket.emit('join_room', chat._id);
+                    setSelectedChat(chat);
+                  }}
                 >
                   <ChatItem
                     chat={chat}
@@ -102,8 +109,11 @@ const ChatScreen = () => {
       </div>
       {chat ? (
         <div className='message-section'>
-          <MessageSection chat={chat}                     userId={currentUser._id}
- />
+          <MessageSection
+            socket={socket}
+            chat={chat}
+            userId={currentUser._id}
+          />
         </div>
       ) : (
         <></>

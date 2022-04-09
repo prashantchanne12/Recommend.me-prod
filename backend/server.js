@@ -104,6 +104,7 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 
 const io = new Server(server, {
+  pingTimeout: 60000,
   cors: {
     origin: 'http://localhost:3000',
   },
@@ -118,8 +119,8 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send_message', (data) => {
-    // console.log(data);
-    socket.to(data.room).emit('receive_message', data);
+    console.log('On server', data);
+    socket.to(data.chat).emit('receive_message', data);
   });
 
   socket.on('disconnect', () => {
