@@ -12,7 +12,7 @@
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\"  \"npm run client \" ",
-    "heroku-postbuild": "yarn install --prefix frontend && yarn run build --prefix frontend"
+    "heroku-postbuild": "yarn install --prefix frontend && yarn build --prefix frontend"
   },
   "author": "Prashant Channe",
   "license": "ISC",
