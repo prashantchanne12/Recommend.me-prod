@@ -32,6 +32,10 @@
             &:last-child{
                 margin-right: 1rem;
             }
+            &:hover{
+                transform: scale(1.15);
+                transition: all 150ms ease-out;
+            }
         }
 
         .notification{

@@ -63,7 +63,7 @@ const MessageSection = ({ chat, userId, socket }) => {
 
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [chat]);
 
   return (
     <div className='message-section-wrapper'>

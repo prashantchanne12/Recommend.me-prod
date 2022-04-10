@@ -1,9 +1,14 @@
 import React from 'react';
 import './UserItem.scss';
 
-const UserItem = ({ user }) => {
+const UserItem = ({ user, accessChat }) => {
   return (
-    <div className='user-item-wrapper'>
+    <div
+      className='user-item-wrapper'
+      onClick={() => {
+        accessChat(user._id);
+      }}
+    >
       <div className='img-wrapper'>
         <img src={user.image} alt='img' />
       </div>

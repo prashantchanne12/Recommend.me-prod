@@ -15,6 +15,12 @@ import UserItem from './UserItem/UserItem';
 
 const socket = io.connect('http://localhost:5000');
 
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
 const ChatScreen = () => {
   const [search, setSearch] = useState('');
   const [placeHolder, setPlaceHolder] = useState(
@@ -33,15 +39,21 @@ const ChatScreen = () => {
   const mySession = useSelector((state) => state.mySession);
   const currentUser = mySession.user;
 
+  const accessChat = async (userId) => {
+    try {
+      const { data } = await axios.post('/api/chat', { userId }, config);
+      dispatch(getChatAction());
+      setSearch('');
+      socket.emit('join_room', data._id);
+      setSelectedChat(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const searchUser = async (searchTerm) => {
     try {
       setLoading(true);
-
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
 
       const { data } = await axios.post(
         '/api/search/profile',
@@ -153,7 +165,11 @@ const ChatScreen = () => {
                 }}
               >
                 {searchedUsers.map((user) => (
-                  <UserItem key={user._id} user={user} />
+                  <UserItem
+                    key={user._id}
+                    user={user}
+                    accessChat={accessChat}
+                  />
                 ))}
               </div>
             )}
@@ -169,7 +185,7 @@ const ChatScreen = () => {
           />
         </div>
       ) : (
-        <></>
+        <div className='empty-chat'></div>
       )}
     </div>
   );

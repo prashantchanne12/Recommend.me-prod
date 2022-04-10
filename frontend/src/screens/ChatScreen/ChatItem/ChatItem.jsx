@@ -16,10 +16,10 @@ const ChatItem = ({ chat, chatId, userId }) => {
           <div className='meta-1'>
             <p className='name'>{user.displayName}</p>
             <p className='time'>
-              {dateFormat(chat.latestMessage.createdAt, 'h:MM TT')}
+              {dateFormat(chat?.latestMessage?.createdAt, 'h:MM TT')}
             </p>
           </div>
-          <p className='last-msg'>{chat.latestMessage.content}</p>
+          <p className='last-msg'>{chat.latestMessage?.content}</p>
         </div>
       </div>
       {/* <hr className='chat-hr' /> */}

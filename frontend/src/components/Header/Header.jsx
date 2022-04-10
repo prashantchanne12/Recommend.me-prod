@@ -4,6 +4,7 @@ import {
   PlusCircleOutlined,
   UserOutlined,
   BellOutlined,
+  MessageOutlined,
 } from '@ant-design/icons';
 
 import './header.scss';
@@ -105,6 +106,12 @@ function Header() {
             <Link to='/create' className='link'>
               <PlusCircleOutlined className='header-icon' />
             </Link>
+            <Link to='/chats' className='link'>
+              <div>
+                <MessageOutlined className='header-icon' />
+              </div>
+            </Link>
+
             <div
               className='link'
               onClick={() =>

@@ -4,11 +4,25 @@
 
     // background-color: #eec0c6;
     // background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
-        background-color: #f9ea8f;
-background-image: linear-gradient(315deg, #f9ea8f 0%, #aff1da 74%);
+//         background-color: #f9ea8f;
+// background-image: linear-gradient(315deg, #f9ea8f 0%, #aff1da 74%);
 
+// https://media.istockphoto.com/vectors/school-doodle-icon-seamless-pattern-background-vector-id1165559292
 
-
+    &::before{
+        content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  opacity: 0.1;        
+background-image: url('https://media.istockphoto.com/vectors/school-doodle-icon-seamless-pattern-background-vector-id1165559292');
+    width: 100%;
+    background-size: contain;
+    }
 
     .chat-header-wrapper{
         padding-left: 1.3rem;
