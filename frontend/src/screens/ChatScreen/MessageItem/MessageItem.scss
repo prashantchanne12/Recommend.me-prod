@@ -38,15 +38,27 @@
     
     .message-item{
         border-radius: 13px 13px 0px 13px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
     }
 
 }
 
 #not-mine{
     justify-content: flex-start;
+    margin-left: 1.5rem;
+
     
     .message-item{
         border-radius: 10px 10px 10px 0px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        background: white;
+        color: black;
+
+        .message-time{
+            color: #ccc;
+           
+        }
     }
 
 }

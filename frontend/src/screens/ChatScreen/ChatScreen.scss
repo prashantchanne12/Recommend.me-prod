@@ -83,7 +83,9 @@
          &:hover{
             box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
             background: rgb(252, 252, 252);
-            transition: all 100ms ease-out;
+            transform: scale(1.05);
+            transition: all 250ms ease-out;
         }
      }
-}
+
+    }

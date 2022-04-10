@@ -10,6 +10,8 @@ import { getChatAction } from '../../actions/chatActions';
 import MessageSection from './MessageSection/MessageSection';
 
 import io from 'socket.io-client';
+import axios from 'axios';
+import UserItem from './UserItem/UserItem';
 
 const socket = io.connect('http://localhost:5000');
 
@@ -19,9 +21,9 @@ const ChatScreen = () => {
     '       Search or start new chat'
   );
   const [focus, setFocus] = useState(false);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showSearchResult, setShowSearchResult] = useState(false);
-  const [showResult, setShowResult] = useState([]);
+  const [searchedUsers, setSearchedUsers] = useState([]);
   const [chat, setSelectedChat] = useState();
 
   const debouncedSearchTerm = useDebounce(search, 500);
@@ -30,6 +32,31 @@ const ChatScreen = () => {
   const { chats, loading: chatLoading } = useSelector((state) => state.chats);
   const mySession = useSelector((state) => state.mySession);
   const currentUser = mySession.user;
+
+  const searchUser = async (searchTerm) => {
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const { data } = await axios.post(
+        '/api/search/profile',
+        { query: searchTerm },
+        config
+      );
+
+      setSearchedUsers(data);
+
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     dispatch(getChatAction());
@@ -45,7 +72,7 @@ const ChatScreen = () => {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      console.log(debouncedSearchTerm);
+      searchUser(debouncedSearchTerm);
     }
   }, [debouncedSearchTerm]);
 
@@ -104,7 +131,33 @@ const ChatScreen = () => {
             )}
           </div>
         ) : (
-          <div className='search-results'></div>
+          <div className='search-results'>
+            {loading ? (
+              <div
+                style={{
+                  marginTop: '4rem',
+                }}
+              >
+                <Loader
+                  type='Oval'
+                  height={35}
+                  width={35}
+                  color='#0984e3'
+                  className='chat-loading'
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  marginTop: '3rem',
+                }}
+              >
+                {searchedUsers.map((user) => (
+                  <UserItem key={user._id} user={user} />
+                ))}
+              </div>
+            )}
+          </div>
         )}
       </div>
       {chat ? (
