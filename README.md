@@ -1,4 +1,4 @@
-# Recommend.me Production Website
+# Recommend.me
 ### create, view, share your recommendations with your friends
 
 ## Work In Progress
