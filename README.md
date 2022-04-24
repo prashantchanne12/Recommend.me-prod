@@ -1,4 +1,4 @@
-# Recommend.me
+# [Recommend.me](https://new-recommend-me.herokuapp.com/)
 ### create, view, share your recommendations with your friends
 
 ## Work In Progress
