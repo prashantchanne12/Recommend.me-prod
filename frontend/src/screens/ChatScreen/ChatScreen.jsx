@@ -13,7 +13,8 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import UserItem from './UserItem/UserItem';
 
-const socket = io.connect('http://localhost:5000');
+// const socket = io.connect('http://localhost:5000');
+const socket = io.connect('https://new-recommend-me.herokuapp.com');
 
 const config = {
   headers: {
